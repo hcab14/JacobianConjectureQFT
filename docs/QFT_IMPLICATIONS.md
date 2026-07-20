@@ -1,7 +1,7 @@
 # The Alpöge–Mathew Counterexample as a Zero-Dimensional Field Theory: What It Does and Does Not Teach Us About Rigorous QFT
 
 **Status.** Working notes accompanying the computations in this repository
-(`verify_counterexample.py`, `tree_expansion.py`, `branch_locus.py`). All
+(`scripts/verify_counterexample.py`, `scripts/tree_expansion.py`, `scripts/branch_locus.py`). All
 mathematical claims about the specific map below have been verified
 symbolically or numerically in these scripts; statements about the literature
 carry references checked against the published record.
@@ -42,7 +42,7 @@ y + 3x(1+xy)^2 z + 3xy^2(4+3xy),\;\;
 2x - 3x^2y - x^3 z\,\bigr).
 $$
 
-Direct computation (`verify_counterexample.py`) gives
+Direct computation (`scripts/verify_counterexample.py`) gives
 $\det DF \equiv -2$, so $F$ is a Keller map (constant nonzero Jacobian). Yet
 
 $$
@@ -96,7 +96,7 @@ Wright [Wri87, Wri89]. For the present map the dictionary is:
   theory is globally, polynomially solvable.* That statement is now false
   for $n \ge 3$.
 
-`tree_expansion.py` implements this iteration in a truncated polynomial ring
+`scripts/tree_expansion.py` implements this iteration in a truncated polynomial ring
 and confirms $F(G(J)) = J$ to total order $10$ in $(a,b,c)$ and to order
 $t^{60}$ along rays $J = t\,v$.
 
@@ -107,10 +107,10 @@ $t^{60}$ along rays $J = t\,v$.
 ### 2.1 The tree series converges — to an algebraic function
 
 The formal inverse $G(J)$ never terminates: every order $1\le d\le 10$ of the
-multivariate series carries nonzero coefficients (`tree_expansion.py`, check
+multivariate series carries nonzero coefficients (`scripts/tree_expansion.py`, check
 2), consistent with the nonexistence of a polynomial inverse. But it is very
 far from being a "merely formal" series. Gröbner elimination
-(`branch_locus.py`) shows that the $x$-component of any preimage of
+(`scripts/branch_locus.py`) shows that the $x$-component of any preimage of
 $(a,b,c)$ satisfies the cubic
 
 $$
@@ -121,7 +121,7 @@ r = -2c,
 $$
 
 and the tree series satisfies this relation identically to all computed
-orders (`tree_expansion.py`, check 3). **Perturbation theory is computing the
+orders (`scripts/tree_expansion.py`, check 3). **Perturbation theory is computing the
 Taylor series of an explicit degree-3 algebraic function.** The corresponding
 minimal cubics for $y$ and $z$ over $\mathbb{C}[a,b,c]$ are *monic* — this
 will matter below.
@@ -320,6 +320,101 @@ The honest headline is narrower and still interesting: *constant-Jacobian
 polynomial dynamics can hide non-perturbative sectors at infinity, and no
 amount of perturbative or even locally-analytic information detects them.*
 
+### 4.3 Algebraic QFT specifically (Haag–Kastler; Fredenhagen–Rejzner; Buchholz–Fredenhagen)
+
+Since the question "what does this mean for AQFT?" is naturally raised, we
+spell out the contact points layer by layer, in decreasing order of rigor of
+what we can actually assert.
+
+**(a) The algebraic viewpoint is vindicated by an exact 0D statement.**
+Haag–Kastler AQFT [HK64] takes the *algebras of observables*, not field
+coordinates, as the primary data; fields are regarded as interchangeable
+"coordinates" on the theory (Borchers classes). The counterexample turns this
+philosophical preference into a theorem-sized fact in the only setting we
+control completely. The pullback
+
+$$
+F^*:\ \mathbb{C}[a,b,c] \longrightarrow \mathbb{C}[x,y,z],
+\qquad
+F^*(\mathcal{O}) = \mathcal{O}\circ F,
+$$
+
+is an injective algebra homomorphism that is **not surjective**: the
+polynomial observables of the "redefined field" $F(\phi)$ form a *proper*
+subalgebra of the observables of $\phi$, of index measured by the degree-3
+field extension $\mathbb{C}(x,y,z)\,/\,\mathbb{C}(a,b,c)$ with Galois closure
+group $S_3$ (this is exactly the verified eliminant cubic and monodromy;
+`scripts/branch_locus.py`, `scripts/monodromy.py`). The observables missing
+from the image are precisely those that separate the three sheets. So: *a
+polynomial field redefinition with invertible propagator and constant unit
+Jacobian can be a monomorphism, but not an automorphism, of the observable
+algebra.* Any framework whose objects are algebras and whose morphisms must
+be checked for surjectivity is structurally protected against the mistake
+this example punishes; any framework that treats "invertible field
+redefinition" as certified by the Jacobian is not. This is, we believe, the
+cleanest AQFT-flavored lesson of the counterexample, and it is exact.
+
+**(b) pAQFT (Fredenhagen–Rejzner): the deferral is calibrated, not
+contradicted.** In pAQFT [FR12, FR16, Rej16] interacting observables are
+constructed from free ones by Møller-type maps built as formal power series
+in the coupling and $\hbar$; classical inversions of nonlinear field
+equations enter through the (classical) Møller map, and invertibility holds
+automatically at the formal-series level. Nothing in the counterexample
+exhibits an inconsistency in this: the constructions are internally coherent
+as formal deformation quantization, and their formal character is a stated
+feature of the framework. What the counterexample adds is a *calibration of
+the worst case* of that deferral, sharper than previously available: the
+formal inverse here is not merely consistent but **convergent**, analytic on
+a neighborhood of the vacuum, and satisfies every identity perturbation
+theory can formulate — and still describes only one of three solution
+sectors, the others being invisible at every order because they sit at
+infinite field strength. So "upgrade formal to convergent" is *not* the
+missing step between pAQFT and a non-perturbative construction; the missing
+input is global (properness of the classical dynamics), and it must come
+from outside perturbation theory. Relatedly, statements of *perturbative
+agreement* (independence of the split of the action into free and
+interacting parts, [HW05, DHP17]) are field-redefinition-adjacent moves
+established as formal-series identities; the example is a reminder of
+exactly which global questions such identities do not decide.
+
+**(c) Non-perturbative algebraic constructions: a minimal test case, not a
+threat.** The Buchholz–Fredenhagen $C^*$-algebraic approach [BF20] builds
+interacting dynamics from unitaries $S(f)$ subject to causal factorization
+relations, bypassing formal series altogether. Nothing in a 0D polynomial
+map bears on the correctness of that program. The counterexample instead
+supplies the minimal instance of a phenomenon any non-perturbative framework
+must *represent* somewhere in its data: classical dynamics whose solution
+count jumps (here $1 \leftrightarrow 3$) as an external source crosses an
+algebraic wall, with the extra solutions entering from infinity in field
+space and permuted by an $S_3$ monodromy under cycles of the source. A
+well-posed exercise — open, and we claim nothing about its outcome — is to
+formulate the 0D caricature of the $S(f)$ relations for this $F$ and see how
+the wall $\{p=0\}$ and the sheet structure are encoded.
+
+**(d) What the 0D model cannot say about AQFT.** There is no spacetime, no
+net of local algebras, no causality, no Hilbert space, no states, no
+superselection theory here. Analogies between "extra solution sheets" and
+"sectors" are structural motivation, not theorems. In particular the
+existence results of constructive AQFT in $D=2,3$ and the open problems in
+$D=4$ are entirely untouched, per §4.2.
+
+### 4.4 Claims ledger
+
+Because results of this kind are easily inflated in transmission (§3 is the
+proof), we keep a ledger: each claim, where it is verified, and the nearest
+overstatement that it does **not** license.
+
+| Verified claim | Where | Does **not** imply |
+|---|---|---|
+| $\det DF \equiv -2$, yet $F$ is not injective (3 preimages of $(-\tfrac14,0,0)$) | `scripts/verify_counterexample.py` | anything about existence/triviality of interacting QFT in $D \ge 1$ |
+| The tree expansion converges with finite nonzero radius (≈ 0.302 along $t(1,2,3)$), set by the exact branch locus | `scripts/tree_expansion.py` | "zero radius of convergence"; any Borel-summability statement; any contact with large-order/loop divergences |
+| Escape locus is $\{p=0\}$; only the $x$-sheet escapes; the vacuum $J=0$ lies on the wall | `scripts/branch_locus.py` | a tunneling/instanton interpretation — there is no action here ($DF$ is not symmetric, the dynamics is not variational) |
+| Geometric monodromy of the 3 sheets is the full $S_3$ | `scripts/monodromy.py`, `docs/MONODROMY.md` | an anomaly in the cohomological sense; no symmetry is broken and nothing is loop-generated |
+| Real change-of-variables defect: $N(J) = 3$ iff $p<0$, measured $A(\sigma)\to 2$ as $\sigma\to 0$ | `scripts/measure_anomaly.py` | failure of the perturbative equivalence theorem — formal-series equivalence statements are untouched |
+| Sheet-summed observables are rational with poles only on $\{p=0\}$; residues factorize at the wall | `scripts/trace_pushforward.py` | existence of a positive geometry / canonical form for the chambers — that is an open question (§6.3) |
+| $F^*$ is a monomorphism, not an automorphism, of polynomial observable algebras; extension degree 3, Galois group $S_3$ | `scripts/branch_locus.py` + `scripts/monodromy.py` | any statement about automorphisms of local nets or Borchers classes in $D\ge 1$ |
+| Alpöge–Mathew is rigid modulo gauge to first order within the equivariant degree box | `scripts/search_counterexamples.py` | uniqueness of counterexamples — the check is first-order, box-limited, and within one equivariance class |
+
 ---
 
 ## 5. Open questions and a small research program
@@ -406,7 +501,7 @@ redefinition), seems to us the most concrete next step in the QFT direction.
 ## 6. Addendum: anomaly-adjacent structures and a measured field-redefinition defect
 
 *(Added after the monodromy computation; quantitative results from
-`measure_anomaly.py`.)*
+`scripts/measure_anomaly.py`.)*
 
 ### 6.1 A field-redefinition "measure anomaly", measured
 
@@ -543,9 +638,15 @@ stratification of Keller maps is an open — and now well-posed — question.
   reduction of degree and formal expansion of the inverse*, Bull. Amer.
   Math. Soc. (N.S.) **7** (1982) 287–330.
   DOI:10.1090/S0273-0979-1982-15032-7.
+- [BF20] D. Buchholz, K. Fredenhagen, *A C\*-algebraic approach to
+  interacting quantum field theories*, Comm. Math. Phys. **377** (2020)
+  947–969. arXiv:1902.06062.
 - [dBvdE05] M. de Bondt, A. van den Essen, *A reduction of the Jacobian
   conjecture to the symmetric case*, Proc. Amer. Math. Soc. **133** (2005)
   2201–2205. DOI:10.1090/S0002-9939-05-07570-2.
+- [DHP17] N. Drago, T.-P. Hack, N. Pinamonti, *The generalised principle of
+  perturbative agreement and the thermal mass*, Ann. Henri Poincaré **18**
+  (2017) 807–868. arXiv:1502.02705.
 - [EMS75] J.-P. Eckmann, J. Magnen, R. Sénéor, *Decay properties and Borel
   summability for the Schwinger functions in $P(\phi)_2$ theories*, Comm.
   Math. Phys. **39** (1975) 251–271. DOI:10.1007/BF01705374.
@@ -557,6 +658,11 @@ stratification of Keller maps is an open — and now well-posed — question.
   (2016). arXiv:1208.1428.
 - [GJ87] J. Glimm, A. Jaffe, *Quantum Physics: A Functional Integral Point
   of View*, 2nd ed., Springer, New York (1987).
+- [HK64] R. Haag, D. Kastler, *An algebraic approach to quantum field
+  theory*, J. Math. Phys. **5** (1964) 848–861. DOI:10.1063/1.1704187.
+- [HW05] S. Hollands, R. M. Wald, *Conservation of the stress tensor in
+  perturbative interacting quantum field theory in curved spacetimes*, Rev.
+  Math. Phys. **17** (2005) 227–311. arXiv:gr-qc/0404074.
 - [Jel93] Z. Jelonek, *The set of points at which a polynomial map is not
   proper*, Ann. Polon. Math. **58** (1993) 259–266.
   DOI:10.4064/ap-58-3-259-266.

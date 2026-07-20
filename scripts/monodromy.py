@@ -33,7 +33,7 @@ from dataclasses import dataclass, field
 import mpmath as mp
 import sympy as sp
 
-from counterexample import F, PHI, SRC, X, cubic, p, q, r
+from jcqft import F, PHI, SRC, X, cubic, p, q, r
 
 WALL0 = time.time()
 

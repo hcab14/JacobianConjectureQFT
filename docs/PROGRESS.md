@@ -6,7 +6,7 @@ the commands given. Environment: `.venv` (Python 3.12, `requirements.txt`).
 
 ## 2026-07-20 — Verification of the counterexample
 
-`verify_counterexample.py`
+`scripts/verify_counterexample.py`
 
 - $\det DF \equiv -2$ exactly (symbolic determinant).
 - $F(0,0,-\tfrac14) = F(1,-\tfrac32,\tfrac{13}{2}) = F(-1,\tfrac32,\tfrac{13}{2})
@@ -22,7 +22,7 @@ the commands given. Environment: `.venv` (Python 3.12, `requirements.txt`).
 
 ## 2026-07-20 — Exact algebra of the inverse (Gröbner elimination)
 
-`branch_locus.py`
+`scripts/branch_locus.py`
 
 - **x-eliminant.** Every preimage of a target $(a,b,c)$ has $x$-coordinate
   satisfying the cubic
@@ -60,7 +60,7 @@ the commands given. Environment: `.venv` (Python 3.12, `requirements.txt`).
 
 ## 2026-07-20 — Tree-graph (perturbative) expansion
 
-`tree_expansion.py` (sparse truncated-ring arithmetic; Picard iteration =
+`scripts/tree_expansion.py` (sparse truncated-ring arithmetic; Picard iteration =
 sum over rooted tree Feynman graphs; runtime ~1 min)
 
 - Formal inverse computed to total order 10 in $(a,b,c)$;
@@ -125,7 +125,7 @@ Yang–Mills.
 
 ## 2026-07-20 — Monodromy of the three sheets
 
-`monodromy.py`, `docs/MONODROMY.md` (high-precision predictor–corrector
+`scripts/monodromy.py`, `docs/MONODROMY.md` (high-precision predictor–corrector
 continuation of all 3 sheets, mp.dps = 30, residuals $\le 10^{-22}$;
 cross-checked on a second generic line)
 
@@ -151,11 +151,11 @@ Physics reading: dialing the external source around the escape locus
 $\{p=0\}$ exchanges the two "vacua at infinity" with one another or with the
 perturbative sheet — a source-space analogue of vacuum interchange, mediated
 entirely through the boundary of field space. Reproduce:
-`.venv/bin/python monodromy.py` (~80 s; `monodromy.py 7` for the check line).
+`.venv/bin/python scripts/monodromy.py` (~80 s; `monodromy.py 7` for the check line).
 
 ## 2026-07-20 — Field-redefinition "measure anomaly" (non-properness defect)
 
-`measure_anomaly.py` (~6 s); write-up in `docs/QFT_IMPLICATIONS.md` §6.
+`scripts/measure_anomaly.py` (~6 s); write-up in `docs/QFT_IMPLICATIONS.md` §6.
 
 - $F$ is also a *real* local diffeomorphism $\mathbb{R}^3\to\mathbb{R}^3$
   (Jacobian $-2$, three real preimages). **Chamber rule (exact):** the number
@@ -207,7 +207,7 @@ entirely through the boundary of field space. Reproduce:
 
 ## 2026-07-20 — Trace/pushforward structure and the amplitudes dictionary
 
-`trace_pushforward.py` (~1 s); full discussion in
+`scripts/trace_pushforward.py` (~1 s); full discussion in
 `docs/AMPLITUDES_CONNECTION.md`.
 
 - **Trace-map rationality (CHY/pushforward mechanism, exact):** the sum over
@@ -245,7 +245,7 @@ artifact; the invariant content is the wall + chamber structure.
 
 ## 2026-07-20 — Construction mechanism and rigidity (search for new examples)
 
-`search_counterexamples.py` (~40 s); full report in
+`scripts/search_counterexamples.py` (~40 s); full report in
 `docs/NEW_COUNTEREXAMPLES.md`. (Sub-agent exploration consolidated and
 re-verified independently after two session timeouts.)
 
@@ -268,3 +268,35 @@ re-verified independently after two session timeouts.)
   branch collapse). Next: other weight systems (potential $\mathbb{Z}_3$
   monodromy), larger boxes, the bootstrap route, exact Groebner
   certification of rigidity.
+
+## 2026-07-20 — Refactor: `jcqft` package + `scripts/`; AQFT implications fleshed out
+
+Code reorganization (behavior-preserving; all seven scripts re-run and
+outputs verified identical — radius ≈ 0.302, monodromy $S_3$, $A(\sigma)\to 2$,
+rigidity result unchanged):
+
+- Shared library extracted into the installable package `jcqft/`
+  (`core.py` map/eliminant/chamber rule, `truncated.py` tree-graph inverse,
+  `fibers.py` Groebner fiber parametrization + numeric helpers,
+  `reduction.py` equivariant normal form + 2D Keller reduction). The
+  package asserts its own consistency on import (eliminant matches the
+  Groebner basis, $A = 2D_0$, reduced Keller identity holds).
+- All analyses moved to `scripts/`; duplicated Groebner/parametrization code
+  in `branch_locus`/`measure_anomaly` now comes from `jcqft.fibers`.
+- `pyproject.toml` added; install with `uv pip install -e .`
+  (replaces `requirements.txt`).
+
+Documentation:
+
+- `docs/QFT_IMPLICATIONS.md` §4.3 (new): implications for algebraic QFT,
+  layer by layer — the exact 0D statement that $F^*$ is a monomorphism but
+  not an automorphism of observable algebras (degree-3 extension, Galois
+  group $S_3$), vindicating the algebra-first viewpoint [HK64]; what the
+  example does and does not say about pAQFT's formal-series constructions
+  [FR12, FR16] (calibration of the deferral, no inconsistency; "formal to
+  convergent" is not the missing step — properness is); a well-posed 0D
+  exercise for the non-perturbative Buchholz–Fredenhagen approach [BF20];
+  and an explicit list of what the 0D model cannot address.
+- `docs/QFT_IMPLICATIONS.md` §4.4 (new): **claims ledger** — every verified
+  claim, the script that verifies it, and the nearest overstatement it does
+  *not* license.

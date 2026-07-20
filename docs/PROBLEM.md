@@ -18,7 +18,7 @@ $(-1,\tfrac32,\tfrac{13}{2})$ all map to $(-\tfrac14,0,0)$. Hence the
 conjecture is false in dimension $n \ge 3$ (the case $n = 2$ remains open).
 The example was verified by the community and formalized in Lean 4
 (`deancureton/jacobian`). All claims above are independently re-verified in
-this repository (`verify_counterexample.py`).
+this repository (`scripts/verify_counterexample.py`).
 
 ## Why this matters for QFT
 

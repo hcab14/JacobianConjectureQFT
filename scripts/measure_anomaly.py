@@ -30,10 +30,8 @@ where N(J) is the number of real preimages.  This script establishes:
 import numpy as np
 import sympy as sp
 
-from counterexample import F, PHI, SRC, X, cubic, p, q, r
-
-a, b, c = SRC
-D0 = 27 * a * c**2 - 9 * b * c + 8
+from jcqft import D0, SRC, p, q, r
+from jcqft.fibers import F_num, coef_num, p_num, yz_num
 
 # ---------------------------------------------------------------------------
 print("=== 1. Exact chamber rule for the real preimage count N(J) ===")
@@ -46,19 +44,6 @@ print(f"  p has no constant term (p(0)= {p.subs(dict(zip(SRC,(0,0,0))))}), "
 
 # ---------------------------------------------------------------------------
 print("\n=== 2. Spot-checks: chamber rule vs direct real-preimage count ===")
-F_num = sp.lambdify(PHI, F, "numpy")
-p_num = sp.lambdify(SRC, p, "numpy")
-coef_num = sp.lambdify(SRC, (p, q, r), "numpy")
-
-# rational y,z parametrization from the lex Groebner basis
-gb = sp.groebner([F[0] - a, F[1] - b, F[2] - c],
-                 PHI[1], PHI[2], PHI[0], order="lex")
-g_y = next(g for g in gb.exprs if sp.degree(g, PHI[1]) == 1)
-g_z = next(g for g in gb.exprs if sp.degree(g, PHI[2]) == 1)
-A_, B_ = sp.Poly(g_y, PHI[1]).all_coeffs()
-C_, D_ = sp.Poly(g_z, PHI[2]).all_coeffs()
-yz_num = sp.lambdify((PHI[0],) + SRC, (-B_ / A_, -D_ / C_), "numpy")
-
 rng = np.random.default_rng(0)
 mismatches = 0
 for _ in range(300):

@@ -11,19 +11,11 @@ Checks:
 
 import sympy as sp
 
-x, y, z = sp.symbols("x y z")
-
-F = sp.Matrix(
-    [
-        (1 + x * y) ** 3 * z + y**2 * (1 + x * y) * (4 + 3 * x * y),
-        y + 3 * x * (1 + x * y) ** 2 * z + 3 * x * y**2 * (4 + 3 * x * y),
-        2 * x - 3 * x**2 * y - x**3 * z,
-    ]
-)
+from jcqft import F, PHI
+from jcqft.fibers import exact_fiber
 
 print("=== 1. Jacobian determinant ===")
-J = F.jacobian([x, y, z])
-detJ = sp.expand(J.det())
+detJ = sp.expand(sp.Matrix(F).jacobian(PHI).det())
 print(f"det DF = {detJ}")
 assert detJ == -2, "Jacobian determinant is NOT constant -2!"
 
@@ -33,19 +25,16 @@ points = [
     (1, sp.Rational(-3, 2), sp.Rational(13, 2)),
     (-1, sp.Rational(3, 2), sp.Rational(13, 2)),
 ]
-for p in points:
-    image = tuple(sp.simplify(f.subs(dict(zip((x, y, z), p)))) for f in F)
-    print(f"F{p} = {image}")
+for pt in points:
+    image = tuple(sp.simplify(f.subs(dict(zip(PHI, pt)))) for f in F)
+    print(f"F{pt} = {image}")
     assert image == (sp.Rational(-1, 4), 0, 0)
 
 print("\n=== 3. Fiber over a generic target (a,b,c) = (1, 2, 3) ===")
-eqs = [F[0] - 1, F[1] - 2, F[2] - 3]
-gb = sp.groebner(eqs, x, y, z, order="lex")
-sols = sp.solve(eqs, [x, y, z], dict=True)
-print(f"Number of solutions over C: {len(sols)}")
-for s in sols:
-    approx = {k: sp.nsimplify(v, rational=False) for k, v in s.items()}
-    print("  ", {k: sp.N(v, 8) for k, v in s.items()})
+fiber = exact_fiber((1, 2, 3))
+print(f"Number of solutions over C: {len(fiber)}")
+for pt in fiber:
+    print("  ", tuple(sp.N(v, 8) for v in pt))
 
 print("\nAll checks passed: F is a Keller map (det DF = -2) that is not injective.")
 print("The Jacobian conjecture is FALSE in dimension >= 3.")

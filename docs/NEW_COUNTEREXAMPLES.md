@@ -1,7 +1,7 @@
 # Reverse-Engineering the Counterexample and the Search for New Ones
 
 *(Results of the ansatz/deformation search. Reproducible via
-`.venv/bin/python search_counterexamples.py` (~40 s). Strategy context in
+`.venv/bin/python scripts/search_counterexamples.py` (~40 s). Strategy context in
 `docs/SEARCH_STRATEGIES.md`. This writeup consolidates a long sub-agent
 exploration — which twice exceeded its session limit — with an independent
 re-implementation and verification of its key claims.)*
@@ -77,7 +77,7 @@ identified them as gauge directions of this type.
 
 First-order deformation theory around $(P,Q,R)$ inside the degree box
 $\deg_x P \in [2,7]$, $\deg_x Q \in [1,6]$, $\deg_x R \in [0,4]$
-(43 coefficient unknowns incl. $\delta\kappa$), from `search_counterexamples.py`:
+(43 coefficient unknowns incl. $\delta\kappa$), from `scripts/search_counterexamples.py`:
 
 - Kernel of the linearized Keller condition: **dimension 15**.
 - In-box gauge tangents: **rank 9**, all inside the kernel (4 further gauge

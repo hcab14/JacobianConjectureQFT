@@ -23,23 +23,16 @@ discriminant locus:
 
 import sympy as sp
 
-from counterexample import F, PHI, SRC, X, cubic, p, q, r
+from jcqft import D0, SRC, X, cubic, p, q, r
+from jcqft.fibers import A, B, C, D, exact_fiber, g_x
 
-x, y, z = PHI
+x = sp.Symbol("x")
 a, b, c = SRC
-system = [F[0] - a, F[1] - b, F[2] - c]
 
 print("=== 1. Lex Groebner basis: rational fiber parametrization ===")
-gb = sp.groebner(system, y, z, x, order="lex")
-g_y = next(g for g in gb.exprs if sp.degree(g, y) == 1)
-g_z = next(g for g in gb.exprs if sp.degree(g, z) == 1)
-g_x = next(g for g in gb.exprs if not g.has(y) and not g.has(z))
-A, B = sp.Poly(g_y, y).all_coeffs()  # A*y + B = 0,  A independent of x
-C, D = sp.Poly(g_z, z).all_coeffs()  # C*z + D = 0,  C independent of x
-
-resid = sp.expand(g_x.subs(x, X) - cubic)
-print(f"x-eliminant matches the cubic  p*X^3 + q*X + r: {resid == 0}")
-D0 = sp.factor(A / 2)
+# (the basis itself is computed once in jcqft.fibers, which also asserts that
+#  the x-eliminant matches the cubic and that A = 2*D0, C = 8*D0)
+print("x-eliminant matches the cubic  p*X^3 + q*X + r: True (asserted on import)")
 print(f"parametrization:  y = -B/A,  z = -D/C  with  A = 2*({sp.sstr(D0)}),"
       f"  C = 8*({sp.sstr(sp.factor(C / 8))})")
 print(f"  (denominator D0 = {sp.sstr(D0)} vanishes exactly where two sheets"
@@ -78,18 +71,8 @@ print("    already over the perturbative vacuum two of the three sheets sit"
 
 
 def fiber(target, label):
-    """Exact fiber via the cubic + rational parametrization (with fallback
-    to sp.solve where the parametrization denominator vanishes)."""
-    sub = dict(zip(SRC, target))
-    if D0.subs(sub) != 0:
-        pts = []
-        for xr in sp.Poly(g_x.subs(sub), x).all_roots():
-            yr = (-B / A).subs(sub).subs(x, xr)
-            zr = (-D / C).subs(sub).subs(x, xr)
-            pts.append(tuple(sp.simplify(v) for v in (xr, yr, zr)))
-    else:
-        sols = sp.solve([eq.subs(sub) for eq in system], [x, y, z], dict=True)
-        pts = [tuple(s[v] for v in (x, y, z)) for s in sols]
+    """Exact fiber (via jcqft.fibers), with pretty-printing."""
+    pts = exact_fiber(target)
     print(f"\nfiber over {label} = ({', '.join(str(t) for t in target)}):"
           f"  {len(pts)} finite point(s)")
     for pt in sorted(pts, key=lambda t: abs(complex(sp.N(t[0])))):

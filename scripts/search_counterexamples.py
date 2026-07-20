@@ -35,37 +35,11 @@ from __future__ import annotations
 
 import sympy as sp
 
-from counterexample import F, PHI
+from jcqft import F, PHI
+from jcqft.reduction import KAPPA, P0, Q0, R0, extract, j2, keller_residual, v, w
 
 x, y, z = PHI
-w, v = sp.symbols("w v")
 eps = sp.Symbol("eps")
-KAPPA = -2
-
-
-# ---------------------------------------------------------------------------
-# 1. Normal form extraction
-# ---------------------------------------------------------------------------
-
-def extract(F3: tuple) -> tuple:
-    """(P, Q, R) of an equivariant map F = (P/x^2, Q/x, x*R)."""
-    out = []
-    for expr, xpow in zip(F3, (2, 1, -1)):
-        e = sp.cancel(sp.expand(expr.subs({y: w / x, z: v / x**2})) * x**xpow)
-        assert e.free_symbols <= {w, v, eps}, f"not equivariant: {e}"
-        out.append(sp.expand(e))
-    return tuple(out)
-
-
-def j2(A, B):
-    return sp.expand(sp.diff(A, w) * sp.diff(B, v) - sp.diff(A, v) * sp.diff(B, w))
-
-
-P0, Q0, R0 = extract(F)
-
-
-def keller_residual(P, Q, R, kappa):
-    return sp.expand(j2(P * R**2, Q * R) - kappa * R**2)
 
 
 def run_checks():
@@ -166,7 +140,7 @@ def gauge_tangents():
     }
     for label, sub in source_moves.items():
         Fp = tuple(sp.expand(f.subs(sub)) for f in F)
-        Pe, Qe, Re = extract(Fp)
+        Pe, Qe, Re = extract(Fp, extra_syms=(eps,))
         add(*(sp.expand(e.coeff(eps, 1)) for e in (Pe, Qe, Re)), label)
 
     # --- target automorphisms: torus scalings and weighted-triangular shifts

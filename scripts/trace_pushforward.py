@@ -23,7 +23,7 @@ program (see docs/AMPLITUDES_CONNECTION.md):
 
 import sympy as sp
 
-from counterexample import SRC, p, q, r
+from jcqft import SRC, p, q, r
 
 a, b, c = SRC
 

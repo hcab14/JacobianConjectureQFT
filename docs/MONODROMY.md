@@ -6,16 +6,16 @@ acts as a transposition, loops around the x-collision locus
 `{4q^3 + 27pr^2 = 0}` act trivially, and different branch points give
 *different* transpositions, so together they generate all of S3.
 
-Script: [`monodromy.py`](../monodromy.py).  Reproduce with
+Script: [`scripts/monodromy.py`](../scripts/monodromy.py).  Reproduce with
 
 ```bash
-.venv/bin/python monodromy.py          # default line (seed 20260720), ~80 s
-.venv/bin/python monodromy.py 7        # independent cross-check line
+.venv/bin/python scripts/monodromy.py          # default line (seed 20260720), ~80 s
+.venv/bin/python scripts/monodromy.py 7        # independent cross-check line
 ```
 
 ## Setup
 
-The map `F : C^3 -> C^3` (see `counterexample.py`) has `det DF = -2`
+The map `F : C^3 -> C^3` (see `jcqft/core.py`) has `det DF = -2`
 identically, so `F` is a local biholomorphism everywhere and fiber points can
 never merge at finite points.  The generic fiber has 3 points.  Every
 preimage of a target `(a, b, c)` has x-coordinate solving the eliminant cubic

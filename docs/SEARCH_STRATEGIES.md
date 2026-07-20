@@ -3,8 +3,8 @@
 *(Strategy document. The mechanism facts referenced here are verified in this
 repo: the $\mathbb{C}^*$-equivariance/orbifold mechanism in `PROGRESS.md`, the
 discriminant structure $\operatorname{disc}_X = -4D_0^2\,p$ in
-`branch_locus.py`/`monodromy.py`, the trace rationality in
-`trace_pushforward.py`. The ansatz/deformation search itself is reported in
+`scripts/branch_locus.py`/`scripts/monodromy.py`, the trace rationality in
+`scripts/trace_pushforward.py`. The ansatz/deformation search itself is reported in
 `docs/NEW_COUNTEREXAMPLES.md`.)*
 
 ## 1. Three search strategies imported from physics

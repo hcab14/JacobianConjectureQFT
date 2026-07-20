@@ -1,9 +1,9 @@
 # What the Counterexample Really Means for QFT, and the Connection to the Amplitudes Program
 
 *(Companion to `docs/QFT_IMPLICATIONS.md` §6.3, going deeper. All toy-model
-statements below are verified in this repository: `tree_expansion.py`,
-`branch_locus.py`, `monodromy.py`, `measure_anomaly.py`,
-`trace_pushforward.py`.)*
+statements below are verified in this repository: `scripts/tree_expansion.py`,
+`scripts/branch_locus.py`, `scripts/monodromy.py`, `scripts/measure_anomaly.py`,
+`scripts/trace_pushforward.py`.)*
 
 ## 0. The one-sentence versions
 
@@ -85,7 +85,7 @@ from this catalogue:
   creation from infinity* ($N: 1 \to 3$ across $\{p = 0\}$).
 
 The measured order parameter is the anomaly factor $A(\sigma) \to 2$ of
-`measure_anomaly.py`: an $O(1)$ effect for sources arbitrarily close to the
+`scripts/measure_anomaly.py`: an $O(1)$ effect for sources arbitrarily close to the
 vacuum, carried by field configurations at distance $\sim \sigma^{-1/2}$.
 Boundary-of-field-space effects of this type are what compactified/projective
 formulations (or weighted compactifications respecting the $\mathbb{C}^*$
@@ -120,7 +120,7 @@ The singularities of amplitudes are governed by the Landau equations; their
 modern algebro-geometric form is the *Landau discriminant* of Mizera–Telen
 [MT22]: eliminate the internal variables from a polynomial system and ask for
 which external parameters solutions degenerate. That is *literally* what
-`branch_locus.py` does for the field equations: eliminate $(x,y,z)$, obtain
+`scripts/branch_locus.py` does for the field equations: eliminate $(x,y,z)$, obtain
 the eliminant cubic, and stratify its discriminant
 $-4D_0^2\,p$.
 
@@ -151,7 +151,7 @@ CHY [CHY14] computes amplitudes as sums over *all* $(n-3)!$ solutions of the
 scattering equations; only the sum is rational. The canonical-form technology
 of positive geometries [ABL17] uses the same operation: *pushforward* along a
 finite map, i.e. the algebraic trace. In the toy model
-(`trace_pushforward.py`, exact):
+(`scripts/trace_pushforward.py`, exact):
 
 - Any single sheet: degree-3 algebraic, multivalued, $S_3$ monodromy.
 - The trace (sum over the three sheets) of every polynomial observable is
@@ -216,6 +216,15 @@ counterexample defines such a stratification, so an answer would classify
   discriminants, and forms with prescribed boundary behavior — and that the
   counterexample supplies the simplest nontrivial testing ground for those
   tools outside kinematic space.
+- To keep the question falsifiable, here is what would settle it either way.
+  *Positive outcome:* an explicit canonical form for the chamber $\{p<0\}$
+  (log poles on $\{p=0\}$, recursive boundary structure in the sense of
+  [ABL17]) whose residues on the wall reproduce the boundary factorization
+  verified in `scripts/trace_pushforward.py`, together with a pushforward
+  identity under $F_*$ accounting for the measured $N(J)$ jump. *Negative
+  outcome:* a proof that the chamber violates the positive-geometry axioms
+  (e.g. its natural forms have non-logarithmic singularities on the wall).
+  Both outcomes would be informative; neither is claimed here.
 
 ## 3. References (addendum-specific)
 
@@ -229,7 +238,7 @@ counterexample defines such a stratification, so an answer would classify
 - [MT22] S. Mizera, S. Telen, *Landau discriminants*, JHEP **08** (2022)
   200. arXiv:2109.08036. (Second-type singularities as solutions escaping to
   infinity; elimination-theoretic computation of singularity loci — the
-  method of `branch_locus.py`.)
+  method of `scripts/branch_locus.py`.)
 - [FMT24] C. Fevola, S. Mizera, S. Telen, *Landau singularities revisited:
   computational algebraic geometry for Feynman integrals*, Phys. Rev. Lett.
   **132** (2024) 101601. arXiv:2311.14669.
