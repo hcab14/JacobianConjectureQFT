@@ -243,9 +243,28 @@ $\mathbb{Z}_3$ vs $S_3$ monodromy classes; $d \ge 4$ chamber combinatorics).
 Also records the normalization insight: "vacuum on the wall" is a translation
 artifact; the invariant content is the wall + chamber structure.
 
-## Next (delegated to sub-agents, results to be merged here)
+## 2026-07-20 — Construction mechanism and rigidity (search for new examples)
 
-- Reverse-engineering of the construction + search for new inequivalent
-  counterexamples → `search_counterexamples.py`, `docs/NEW_COUNTEREXAMPLES.md`
-  (sub-agent writing up: equivariant ansatz, gauge analysis, first-order
-  rigidity evidence).
+`search_counterexamples.py` (~40 s); full report in
+`docs/NEW_COUNTEREXAMPLES.md`. (Sub-agent exploration consolidated and
+re-verified independently after two session timeouts.)
+
+- **Normal form:** in the invariants $w = xy$, $v = x^2z$,
+  $F = (P/x^2,\ Q/x,\ xR)$ with explicit $P, Q, R$; realizability =
+  $x$-degree conditions on the monomials of $P, Q$.
+- **2D reduction of the Keller condition (exact):**
+  $\det DF = \kappa \iff \partial(PR^2, QR)/\partial(w,v) = \kappa R^2$.
+  The 3D search inside the symmetry class is a two-variable problem.
+- **Non-injectivity criterion:** a common zero of $(Q, R)$ with $P \neq 0$
+  gives a 2:1 orbit (residual $\mathbb{Z}_2$); reproduces the triple point
+  from $(w_0,v_0) = (-3/2, 13/2)$, $P = -1/4$.
+- **Rigidity evidence:** in the box $\deg_x P\in[2,7]$, $Q\in[1,6]$,
+  $R\in[0,4]$: linearized-Keller kernel dim 15; in-box gauge rank 9 (all
+  inside the kernel); all 6 non-gauge directions fail nonlinear continuation
+  (obstructed or jump to distant gauge images). **Zero nearby families** —
+  the Alpöge–Mathew map is locally rigid modulo gauge in this class.
+  (Sub-agent cross-check in a different box: kernel dim = gauge dim = 11.)
+- **No new counterexample found**; dead ends recorded (a $\kappa = 0$
+  branch collapse). Next: other weight systems (potential $\mathbb{Z}_3$
+  monodromy), larger boxes, the bootstrap route, exact Groebner
+  certification of rigidity.
