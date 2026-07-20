@@ -153,6 +153,35 @@ perturbative sheet — a source-space analogue of vacuum interchange, mediated
 entirely through the boundary of field space. Reproduce:
 `.venv/bin/python monodromy.py` (~80 s; `monodromy.py 7` for the check line).
 
+## 2026-07-20 — Field-redefinition "measure anomaly" (non-properness defect)
+
+`measure_anomaly.py` (~6 s); write-up in `docs/QFT_IMPLICATIONS.md` §6.
+
+- $F$ is also a *real* local diffeomorphism $\mathbb{R}^3\to\mathbb{R}^3$
+  (Jacobian $-2$, three real preimages). **Chamber rule (exact):** the number
+  of real preimages is
+  $$N(J) = 3 \iff p(a,b,c) < 0, \qquad N(J) = 1 \iff p > 0,$$
+  since the monic discriminant of the $x$-cubic is $-4D_0^2/p^3$. Verified
+  against direct preimage computation at 300 random targets (0 mismatches).
+- Change of variables for non-injective local diffeos carries the factor
+  $N(J)$: the naive equivalence-theorem substitution $\phi' = F(\phi)$
+  ("constant Jacobian, harmless") is wrong by a **step function**. Measured
+  anomaly factor $A(\sigma) = \langle N\rangle$ over Gaussian source
+  ensembles ($10^7$ samples): $A(10) = 1.205$, $A(1) = 1.696$,
+  $A(0.1) = 2.006$, $A(0.01) = 2.001$, $A(0.001) = 2.000$.
+- **$A \to 2$ as $\sigma \to 0$**: since $J=0$ lies on the wall $\{p=0\}$
+  (linear part of $p$ is $16a$), the defect is $O(1)$ arbitrarily close to
+  the perturbative vacuum — invisible to every perturbative order.
+- Upstream practices affected: nonlinear field redefinitions certified only
+  by Jacobians; Gribov copies *without* a Gribov horizon (FP-type
+  determinant $\equiv -2$, copies anyway — the horizon sits at infinity);
+  Nicolai maps (global invertibility is an unchecked hypothesis).
+- **Sum over all sheets restores single-valuedness (CHY analogy):** the
+  symmetric functions of the three $x$-roots are rational,
+  $e_1 = 0,\ e_2 = q/p,\ e_3 = -r/p$, with poles exactly on $\{p=0\}$.
+  Monodromy-invariant "sum over all vacua" observables are single-valued;
+  the multivaluedness is an artifact of selecting one branch.
+
 ## Next (delegated to sub-agents, results to be merged here)
 
 - Reverse-engineering of the construction + search for new inequivalent
