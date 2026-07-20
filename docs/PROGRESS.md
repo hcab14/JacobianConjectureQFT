@@ -111,11 +111,49 @@ diagnostic (constant Jacobian, convergent trees) looks perfectly healthy.
    present phenomenon is tree-level, global, and dimension-0. See
    `docs/QFT_IMPLICATIONS.md`.
 
+## 2026-07-20 — QFT implications document
+
+`docs/QFT_IMPLICATIONS.md` (456 lines; all 16 references verified against the
+literature). Key theses: the tree expansion converges to one *local* branch of
+an explicit degree-3 algebraic function; the obstruction is Jelonek
+non-properness, not divergence; constant-Jacobian field redefinitions require
+global-injectivity checks before use as exact changes of variables
+(equivalence-theorem caveat); "vacua at infinity" are a non-perturbative
+mechanism genuinely distinct from instantons; no bearing on UV
+renormalization, $\phi^4_{2,3}$ Borel summability, $\phi^4_4$ triviality, or
+Yang–Mills.
+
+## 2026-07-20 — Monodromy of the three sheets
+
+`monodromy.py`, `docs/MONODROMY.md` (high-precision predictor–corrector
+continuation of all 3 sheets, mp.dps = 30, residuals $\le 10^{-22}$;
+cross-checked on a second generic line)
+
+- **The geometric monodromy group is the full $S_3$.** On a generic line in
+  source space, each loop around a root of $p(t)$ yields a *transposition*
+  (the two sheets with $x \sim \pm\sqrt{-q/p}$ swap while the finite sheet
+  stays fixed); the four loops gave $(1\,2), (1\,3), (2\,3), (2\,3)$ —
+  three distinct transpositions, generating all of $S_3$.
+- **Exact identity** (verified symbolically): with $D_0 = 27ac^2 - 9bc + 8$
+  (the denominator of the $y,z$ fiber parametrization),
+  $$4q^3 + 27 p r^2 = 4\,D_0^2, \qquad\text{so}\qquad
+    \operatorname{disc}_X = -4\,D_0^2\,p .$$
+  The $x$-collision locus is exactly $\{D_0 = 0\}$, and the discriminant is
+  manifestly a non-square (multiplicity-1 factor $p$), so the Galois group of
+  the cubic over $\mathbb{Q}(a,b,c)$ is $S_3$ — realized geometrically by the
+  numerics.
+- **Trivial monodromy confirmed** around $\{D_0 = 0\}$ (identity permutation,
+  as forced by $\det DF = -2$: no ramification, only shared $x$-coordinates)
+  and around a big loop enclosing all singularities on the line (the four
+  transpositions cancel in path order).
+
+Physics reading: dialing the external source around the escape locus
+$\{p=0\}$ exchanges the two "vacua at infinity" with one another or with the
+perturbative sheet — a source-space analogue of vacuum interchange, mediated
+entirely through the boundary of field space. Reproduce:
+`.venv/bin/python monodromy.py` (~80 s; `monodromy.py 7` for the check line).
+
 ## Next (delegated to sub-agents, results to be merged here)
 
-- Numerical monodromy of the 3 sheets around $\{p=0\}$ → `monodromy.py`,
-  `docs/MONODROMY.md`.
 - Reverse-engineering of the construction + search for new inequivalent
   counterexamples → `search_counterexamples.py`, `docs/NEW_COUNTEREXAMPLES.md`.
-- Careful assessment of implications for rigorous QFT ($D=4$, pAQFT, field
-  redefinitions) → `docs/QFT_IMPLICATIONS.md`.
