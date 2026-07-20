@@ -182,6 +182,29 @@ entirely through the boundary of field space. Reproduce:
   Monodromy-invariant "sum over all vacua" observables are single-valued;
   the multivaluedness is an artifact of selecting one branch.
 
+## 2026-07-20 — $\mathbb{C}^*$-equivariance: the orbifold mechanism
+
+(verified symbolically; one-liner in the session log)
+
+- The map is **equivariant under a weighted scaling action**: with source
+  weights $(1,-1,-2)$ and target weights $(-2,-1,1)$,
+  $$F(\lambda x,\ \lambda^{-1}y,\ \lambda^{-2}z)
+    = (\lambda^{-2}F_1,\ \lambda^{-1}F_2,\ \lambda F_3).$$
+  (Consistent with all interactions being organized by the invariant
+  $w = xy$ and the building blocks $g = 1+xy$, $u$.)
+- The 2:1 curve $\varphi(s) = (s, -\tfrac{3}{2s}, \tfrac{13}{2s^2})$ is
+  precisely the $\mathbb{C}^*$-**orbit** of $(1,-\tfrac32,\tfrac{13}{2})$;
+  its image $(-\tfrac{1}{4s^2},0,0)$ lies on the target stratum where only
+  the weight-$(-2)$ coordinate is nonzero, so $\lambda \mapsto \lambda^{-2}$
+  is 2-to-1 there: $\pm\lambda$ are indistinguishable.
+- **Physics reading:** the non-injectivity is an *orbifold phenomenon* — a
+  residual $\mathbb{Z}_2 \subset \mathbb{C}^*$ that acts freely on field
+  space but trivially on the sources. This suggests a systematic search
+  principle for new counterexamples: enumerate weight systems (graded scalar
+  models), impose the Keller condition on equivariant maps (a
+  finite-dimensional ansatz per weight system), and look for orbits whose
+  images land in even-weight strata.
+
 ## Next (delegated to sub-agents, results to be merged here)
 
 - Reverse-engineering of the construction + search for new inequivalent
