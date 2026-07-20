@@ -205,6 +205,32 @@ entirely through the boundary of field space. Reproduce:
   finite-dimensional ansatz per weight system), and look for orbits whose
   images land in even-weight strata.
 
+## 2026-07-20 — Trace/pushforward structure and the amplitudes dictionary
+
+`trace_pushforward.py` (~1 s); full discussion in
+`docs/AMPLITUDES_CONNECTION.md`.
+
+- **Trace-map rationality (CHY/pushforward mechanism, exact):** the sum over
+  all three sheets of any polynomial observable is rational with poles
+  confined to $\{p=0\}$; verified for power sums $S_2..S_6$ (denominators
+  $p^{\lceil(k-1)/3\rceil}$). Single sheets: multivalued, $S_3$ monodromy.
+  The tree expansion is a "one-solution CHY formula" — its failure is the
+  failure to sum over all solutions.
+- **Boundary factorization at the wall:** near $p \to 0$ the fiber splits
+  into an escaping pair $x_\pm \sim \pm\sqrt{-q/p}$ and a finite sheet
+  $x_3 = -r/q + p\,r^3/q^4 + O(p^2)$; the polar part factorizes Vieta-exactly,
+  $e_3 = (x_+x_-)\cdot x_3 = [q/p + O(1)]\cdot[-r/q + O(p)]$ — the analogue
+  of amplitude factorization on a physical pole.
+- **Landau-discriminant dictionary (Mizera–Telen):** eliminating fields from
+  the field equations and stratifying the discriminant is methodologically
+  identical to computing Landau discriminants of Feynman integrals; the
+  model has *no* first-type (pinch) singularities (étale) and *only*
+  second-type ones (escape to infinity) — a solvable laboratory for the
+  least-understood class of amplitude singularities.
+- Effective-action reading: the source–field relation $J \mapsto \bar\phi(J)$
+  underlying $\Gamma$ is exactly the object that is globally 3:1 here; the
+  1PI construction silently selects a branch with no finite-distance flag.
+
 ## Next (delegated to sub-agents, results to be merged here)
 
 - Reverse-engineering of the construction + search for new inequivalent
