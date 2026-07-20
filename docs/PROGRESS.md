@@ -231,7 +231,21 @@ entirely through the boundary of field space. Reproduce:
   underlying $\Gamma$ is exactly the object that is globally 3:1 here; the
   1PI construction silently selects a branch with no finite-distance flag.
 
+## 2026-07-20 — Search strategies and defect phase diagram
+
+`docs/SEARCH_STRATEGIES.md`: three physics-derived strategies for finding new
+counterexamples (graded/orbifold ansatz; bootstrap on the inverse data with
+the forced consistency conditions — perfect-square collision factor,
+integrality off the escape directions, Jelonek uniruledness; Witten-index
+prefilter at infinity), and the "phase diagram of non-properness defects"
+reading of what new examples would mean (gradient example = biggest prize;
+$\mathbb{Z}_3$ vs $S_3$ monodromy classes; $d \ge 4$ chamber combinatorics).
+Also records the normalization insight: "vacuum on the wall" is a translation
+artifact; the invariant content is the wall + chamber structure.
+
 ## Next (delegated to sub-agents, results to be merged here)
 
 - Reverse-engineering of the construction + search for new inequivalent
-  counterexamples → `search_counterexamples.py`, `docs/NEW_COUNTEREXAMPLES.md`.
+  counterexamples → `search_counterexamples.py`, `docs/NEW_COUNTEREXAMPLES.md`
+  (sub-agent writing up: equivariant ansatz, gauge analysis, first-order
+  rigidity evidence).
