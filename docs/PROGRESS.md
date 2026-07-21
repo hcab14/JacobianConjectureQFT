@@ -481,3 +481,38 @@ and integrated.)
   materially stronger evidence that the counterexample is isolated in
   this weight class. (Numerical; exact Gröbner certification remains
   OPEN_QUESTIONS B4.)
+
+## 2026-07-21 — B5 resolved: the damped partition function, exactly
+
+`scripts/damped_partition.py` (~30 s; exact claims asserted, numerics with
+convergence tables; figure `outputs/damped_partition.png`); write-up in
+`docs/DAMPED_PARTITION.md`. (Sub-agent work, independently re-run and
+integrated.)
+
+- **Exact closed form, finiteness unconditional:** via the verified
+  pushforward $F_*(d^3\phi) = \tfrac{N(J)}{2} d^3J$,
+  $Z_\hbar(J) = (2\pi\hbar)^{3/2}\bigl(\tfrac12 +
+  \mathbb{P}[p(J+\sqrt{\hbar}\,\xi)<0]\bigr)$ with $\xi$ standard normal —
+  finite and uniformly bounded for EVERY $J$, Jelonek set and cusp
+  included. The escaping tube is unbounded but its cross-section decays
+  like $|x|^{-3}$; no divergence detects the wall. (Corrects the guessed
+  mechanism: the signature is in the prefactor, not in finiteness.)
+- **Semiclassical prefactor = chamber function:** $Z/(2\pi\hbar)^{3/2}
+  \to N(J)/2$ per chamber at a pure Gaussian rate (verified to $10^{-4}$);
+  on the wall it tends to the two-sided mean $1$ — at the perturbative
+  vacuum $J=0$ the damped partition function counts TWICE the perturbative
+  saddle (it sees the sheets at infinity); at the empty-fiber cusp it
+  tends to $\tfrac12$ with an anomalous $\hbar^{1/4}$ correction whose
+  amplitude is computed in closed form from the $A_2$ normal form.
+- **Uniformity boundary:** the $\hbar$-expansion around one vacuum is
+  uniform only for $\hbar \ll \mathrm{dist}(J, \text{wall})^2$; measured
+  $\gamma_{\text{wall}} = 2.001$ and $\gamma_{\text{cusp}} = 2.9996$ with
+  closed-form constants matched to $<1\%$. $\gamma_{\text{cusp}} = 3 =
+  2\times\tfrac32$ is the $A_2$ horn-width exponent: the boundary is set
+  by target-space chamber geometry, NOT by the field-space escape rates.
+- **QFT synthesis:** a constructively finite partition function whose
+  semiclassical normalization is a step function of the source, jumping
+  on the non-properness set, while every local perturbative datum is
+  chamber-independent (det $DF$ constant). "Constant Jacobian implies
+  trivial semiclassics" holds per vacuum, fails globally. 0D statement
+  only; no claim about $D \ge 1$.

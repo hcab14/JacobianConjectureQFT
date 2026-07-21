@@ -103,11 +103,20 @@ Gröbner blow-up; mitigations (weights, truncation) are understood. *(Code —
 deferred.)*
 
 **B5. Damped 0D integrals and $\hbar \to 0$ sheet resolution.**
-[`QFT_IMPLICATIONS.md` §5.3 first bullet]
-Study $Z_\hbar(J) = \int e^{-|F(\phi)-J|^2/2\hbar} d^3\phi$: convergence,
-Laplace asymptotics per chamber, boundary contributions from the sheets at
-infinity. Numerics are easy; the interesting (and harder) part is extracting
-an exact statement about the wall's signature in the $\hbar$-expansion.
+✅ **Resolved 2026-07-21** (`scripts/damped_partition.py`;
+`docs/DAMPED_PARTITION.md`). Exact closed form: $Z_\hbar(J) =
+(2\pi\hbar)^{3/2}\bigl(\tfrac12 + \mathbb{P}[p(J+\sqrt{\hbar}\,\xi)<0]\bigr)$
+— finite and uniformly bounded for ALL $J$, Jelonek set included (the
+escaping tube has finite volume; no divergence signature). The wall's
+signature is the **piecewise-constant semiclassical prefactor** $N(J)/2$,
+jumping across $\{p=0\}$, equal to the two-sided mean $1$ on the wall
+(vacuum $J=0$ included: twice the perturbative saddle) and to $\tfrac12 +
+\kappa\hbar^{1/4}$ (anomalous exponent, $\kappa$ in closed form) at the
+empty-fiber cusp. Uniformity boundary $\hbar^* \sim
+\mathrm{dist}(J,\text{wall})^2$: $\gamma_{\text{wall}} = 2$,
+$\gamma_{\text{cusp}} = 3 = 2\cdot\tfrac32$ (the $A_2$ horn exponent) —
+set by target-space chamber geometry, not by field-space escape rates.
+Sheet resolution beyond total mass remains open.
 
 **B6. Certified monodromy.**
 [`MONODROMY.md` caveats]

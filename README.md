@@ -16,6 +16,7 @@ rigorous QFT.
 - The wall complement as the braid-group classifying space: [`docs/WALL_COMPLEMENT.md`](docs/WALL_COMPLEMENT.md)
 - Twisted cohomology of the wall complement and the fate of the period pairing: [`docs/TWISTED_PERIODS.md`](docs/TWISTED_PERIODS.md)
 - The infinity prefilter and rigidity in larger degree boxes: [`docs/RIGIDITY_AND_PREFILTER.md`](docs/RIGIDITY_AND_PREFILTER.md)
+- The damped partition function: finiteness, chamber prefactor, uniformity exponents: [`docs/DAMPED_PARTITION.md`](docs/DAMPED_PARTITION.md)
 - All open questions, consolidated and ranked by tractability: [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md)
 
 ## Setup
@@ -60,6 +61,7 @@ runnable script in `scripts/`.
 | `scripts/twisted_cohomology.py` | Exact twisted cohomology of the wall complement via Fox calculus + Wang-sequence cross-check; jump loci = trefoil Alexander roots; integer-twist exactness of the canonical form (see `docs/TWISTED_PERIODS.md`) | ~3 s |
 | `scripts/witten_prefilter.py` | Validates the infinity prefilter: Alpöge–Mathew survives with witness [1:0:0], proper maps rejected in ~1 ms, 200-map benchmark (see `docs/RIGIDITY_AND_PREFILTER.md`) | ~6 s |
 | `scripts/rigidity_boxes.py` | Rigidity of the counterexample in strictly larger degree boxes: all non-gauge first-order deformations obstructed at 2nd order, continuation confirms (see `docs/RIGIDITY_AND_PREFILTER.md`) | ~50 s |
+| `scripts/damped_partition.py` | Damped partition function: exact closed form and finiteness for all J, prefactor = N(J)/2 per chamber, wall/cusp corrections, uniformity exponents (see `docs/DAMPED_PARTITION.md`) | ~30 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

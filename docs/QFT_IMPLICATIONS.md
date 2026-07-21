@@ -466,6 +466,13 @@ Abdesselam–Rivasseau [AR95]. Two sharp versions of the question:
   $Z_\hbar(J) = \int d^3\phi\, e^{-|F(\phi)-J|^2/2\hbar}$, converge, and do
   their $\hbar\to 0$ asymptotics resolve the individual sheets, including
   the ones at infinity?
+  *(✅ Resolved 2026-07-21, `docs/DAMPED_PARTITION.md`: $Z_\hbar$ is finite
+  for ALL $J$ — exactly $(2\pi\hbar)^{3/2}(\tfrac12 +
+  \mathbb{P}[p(J+\sqrt{\hbar}\xi)<0])$ — the Jelonek set is detected not by
+  divergence but by a piecewise-constant semiclassical prefactor $N(J)/2$
+  jumping across the wall, with uniformity boundary
+  $\hbar \ll \mathrm{dist}(J,\text{wall})^2$. Sheet resolution beyond total
+  mass remains open.)*
 - Is there a *gradient* counterexample, i.e. a Keller map $F = \nabla S$
   with symmetric $DF$ that is non-injective? By de Bondt–van den Essen
   [dBvdE05], the Jacobian conjecture is equivalent to its symmetric
