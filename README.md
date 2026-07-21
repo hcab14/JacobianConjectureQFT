@@ -13,6 +13,7 @@ rigorous QFT.
 - Monodromy of the three sheets: [`docs/MONODROMY.md`](docs/MONODROMY.md)
 - Search strategies for new counterexamples: [`docs/SEARCH_STRATEGIES.md`](docs/SEARCH_STRATEGIES.md)
 - Chamber geometry and the positive-geometry verdict: [`docs/POSITIVE_GEOMETRY.md`](docs/POSITIVE_GEOMETRY.md)
+- The wall complement as the braid-group classifying space: [`docs/WALL_COMPLEMENT.md`](docs/WALL_COMPLEMENT.md)
 - All open questions, consolidated and ranked by tractability: [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md)
 
 ## Setup
@@ -52,6 +53,7 @@ runnable script in `scripts/`.
 | `scripts/plot_chamber.py` | Figure of the reduced chamber geometry (`docs/img/chamber_geometry.png`) | ~2 s |
 | `scripts/cusp_traces.py` | Exact trace asymptotics at the wall and cusp: floor(k/2) law, cube-root-of-unity cancellation, exact solvability on the cuspidal tangent (see `docs/POSITIVE_GEOMETRY.md` §6) | ~2 s |
 | `scripts/pushforward_forms.py` | Pushforward of general forms: poles only on the wall, D0-cancellation between sheets, pole-order law (closes `docs/AMPLITUDES_CONNECTION.md` §2.4 Q2) | ~8 s |
+| `scripts/wall_braid.py` | The wall is affinely the A2 discriminant: invariant eliminant, explicit affine isomorphism, cusp-loop = Coxeter element, local-system decomposition (see `docs/WALL_COMPLEMENT.md`) | ~6 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

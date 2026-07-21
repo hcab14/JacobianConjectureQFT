@@ -66,12 +66,19 @@ computation; the risk is conceptual (the caricature may trivialize), which is
 itself a documentable outcome.
 
 **B2. Canonical form for the wall complement + $S_3$ local system.**
-[`POSITIVE_GEOMETRY.md` §5 Q2; `MONODROMY.md`]
-The real chamber failed positivity, but $\mathbb{C}^2\setminus\{P_2=0\}$ with
-the rank-3 sheet local system is the natural home for log forms
-($dP_2/P_2$); computing the twisted (co)homology and its intersection pairing
-is standard machinery for a cuspidal cubic complement. Likely the right
-"amplituhedron-analogue" object for this model.
+✅ **Resolved 2026-07-21** (`scripts/wall_braid.py`;
+`docs/WALL_COMPLEMENT.md`). The wall pair is *affinely isomorphic* to the
+$A_2$-discriminant pair via $(Q,R) = (w - \tfrac43,\, 2u - \tfrac{2w}{3} +
+\tfrac{16}{27})$ with $4Q^3 + 27R^2 = 4P_2$ exactly; hence the wall
+complement is a $K(B_3,1)$ (Arnold–Brieskorn–Deligne) and the $S_3$ sheet
+monodromy is the canonical $B_3 \twoheadrightarrow S_3$. Cusp-loop monodromy
+measured: a **Coxeter element** (3-cycle, order 3), image of
+$\sigma_1\sigma_2$. Sheet local system $= \mathrm{triv} \oplus
+\mathrm{std}$: trace rationality is the trivial summand, all
+multivaluedness the reflection representation. Proposed
+amplituhedron-analogue: (complement, standard local system) with twisted
+periods; the concrete follow-up (twisted $H^1$ + intersection pairing) is
+`WALL_COMPLEMENT.md` §6 Q3.
 
 **B3. Other $\mathbb{C}^*$ weight systems, especially $\mathbb{Z}_3$ orbits.**
 [`NEW_COUNTEREXAMPLES.md` §5 step 1; `SEARCH_STRATEGIES.md` §1.1, §2]

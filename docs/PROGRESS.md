@@ -393,3 +393,34 @@ $\mathrm{ord}_p T[x^k] = \lfloor k/2 \rfloor$; wall poles sourced only by
 $x$-powers $\ge 2$ (only $x$ escapes). Exact extremes:
 $F_*(d^3\phi) = -\tfrac32\,d^3J$ (wall invisible) and
 $F_*(x\,d^3\phi) = 0$ identically.
+
+## 2026-07-21 — B2 resolved: the wall complement is the braid-group classifying space
+
+`scripts/wall_braid.py` (~6 s; symbolic identities exact, monodromy
+numerical with three cross-checks); full write-up in
+`docs/WALL_COMPLEMENT.md`. (Sub-agent work, independently re-run and
+integrated.)
+
+- **Invariant eliminant (exact):** $\xi = X/c$ turns the eliminant into
+  $P_2(u,w)\,\xi^3 + (4-3w)\,\xi - 2$ — the whole covering is a cubic
+  family over the invariant plane.
+- **The wall IS the $A_2$ discriminant (exact, affine):**
+  $(Q,R) = (w - \tfrac43,\ 2u - \tfrac{2w}{3} + \tfrac{16}{27})$ satisfies
+  $4Q^3 + 27R^2 = 4P_2$ — an affine isomorphism of pairs sending cusp to
+  origin and the $D_0$-line to the cuspidal tangent $\{R=0\}$. The
+  universal coordinates are $q/9$ and $D_0/27$ themselves.
+- **Consequence:** $\pi_1(\mathbb{C}^2 \setminus \{P_2=0\}) = B_3$ and the
+  complement is a $K(B_3,1)$ (Arnold, Brieskorn, Deligne); the verified
+  $S_3$ sheet monodromy is the canonical $B_3 \twoheadrightarrow S_3$.
+- **Cusp-loop monodromy measured: a Coxeter element** — 3-cycle of order
+  $h = 3$, image of $\sigma_1\sigma_2$ (not of the half-twist); the full
+  twist $(\sigma_1\sigma_2)^3$ acts trivially (verified). A loop around the
+  empty-fiber orbit cyclically rotates the three vacua.
+- **Local system:** rank-3 sheet system $=$ trivial $\oplus$ standard;
+  trace rationality $=$ trivial summand; ALL multivaluedness lives in the
+  reflection representation of $W(A_2)$. $\chi(\text{complement}) = 0$.
+- **Proposal (marked as such):** the amplituhedron-analogue is
+  (wall complement, standard local system) $=$ the $K(B_3,1)$ with its
+  reflection local system; twisted periods replace canonical-form
+  integrals. Concrete follow-up: twisted $H^1$ + intersection pairing
+  (`docs/WALL_COMPLEMENT.md` §6).

@@ -220,6 +220,11 @@ sensitive to non-properness.*
    ($S_3$, `docs/MONODROMY.md`) acts on precisely this local system. The
    right amplituhedron-analogue object may be this pair (complement +
    local system), not the real chamber.
+   *(Resolved 2026-07-21, and the answer is stronger than hoped: the wall
+   pair is affinely isomorphic to the $A_2$-discriminant pair, the
+   complement is a $K(B_3,1)$, and the sheet monodromy is the canonical
+   $B_3 \to S_3$. See `docs/WALL_COMPLEMENT.md` and
+   `scripts/wall_braid.py`.)*
 3. **Cusp as an operator statement.** The empty-fiber orbit means the
    "interacting field" $\phi(J)$ has no branch — not even a multivalued one
    — over one curve of sources. What does this do to the trace observables?
