@@ -13,6 +13,7 @@ rigorous QFT.
 - Monodromy of the three sheets: [`docs/MONODROMY.md`](docs/MONODROMY.md)
 - Search strategies for new counterexamples: [`docs/SEARCH_STRATEGIES.md`](docs/SEARCH_STRATEGIES.md)
 - Chamber geometry and the positive-geometry verdict: [`docs/POSITIVE_GEOMETRY.md`](docs/POSITIVE_GEOMETRY.md)
+- All open questions, consolidated and ranked by tractability: [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md)
 
 ## Setup
 

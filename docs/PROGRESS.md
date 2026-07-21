@@ -338,3 +338,29 @@ This answers question (1) of `docs/AMPLITUDES_CONNECTION.md` §2.4.
 - Cross-check: the ray $J = t(1,2,3)$ maps to $(9t^3, 6t^2)$ in the
   invariant plane; nearest wall crossing $|t^*| = 0.302028$ = the verified
   tree-series radius.
+
+## 2026-07-21 — Lagrangian stated; open questions consolidated and ranked
+
+- **`docs/PROBLEM.md`, new section "The model, stated as a Lagrangian":**
+  the honest statement that no single-field action exists ($DF$ non-symmetric
+  already at the origin: $\partial F_1/\partial z(0) = 1 \neq 2 =
+  \partial F_3/\partial x(0)$), the correct first-order (conjugate-field)
+  action $S = \bar\varphi\cdot(F(\varphi) - J)$ à la Abdesselam [Abd03] with
+  trivial ghost sector (constant $\det DF = -2$), the propagator
+  $\langle\varphi_i\bar\varphi_j\rangle = (L^{-1})_{ij}$, all **13
+  interaction vertices** listed explicitly (cubic to octic, one
+  $\bar\varphi$-leg each), the $\mathbb{C}^*$-grading extended to
+  $\bar\varphi$ (weights $(2,1,-1)$; every term of $S$ has weight 0), and
+  the identification of the tree expansion as the one-point function.
+  All expansions verified symbolically against `jcqft/core.py`.
+- **`docs/OPEN_QUESTIONS.md` (new):** every open question from all documents,
+  merged, de-duplicated, and ranked into tiers by effort and likelihood of
+  fast progress (Tier A: cusp-orbit trace observables, pushforward closure,
+  infinity prefilter, larger boxes; Tier B: Buchholz–Fredenhagen 0D
+  caricature, wall-complement local system, other weight systems, exact
+  rigidity certification, damped integrals, certified monodromy; Tier C:
+  bootstrap realization, chamber classification, 3D cone, $d=4$, BCW
+  reduction, gradient counterexample, $n=2$, functional-integral vacua at
+  infinity). One stale claims-ledger row corrected
+  (`QFT_IMPLICATIONS.md`: chamber positive-geometry question now marked
+  resolved for this map).
