@@ -453,3 +453,31 @@ integrated.)
   this model has zero generic-twist master integrals; all content is
   resonant. (Contrast with generic hyperplane-arrangement amplitudes,
   where $|\chi|$ counts master integrals.)
+
+## 2026-07-21 — A3 + A4 resolved: infinity prefilter; rigidity survives larger boxes
+
+`scripts/witten_prefilter.py` (~6 s) and `scripts/rigidity_boxes.py`
+(~50 s); reusable module `jcqft/prefilter.py`; write-up in
+`docs/RIGIDITY_AND_PREFILTER.md`. (Sub-agent work, independently re-run
+and integrated.)
+
+- **A3, infinity prefilter:** if the leading forms of a polynomial map
+  have only the trivial common zero, the map is provably proper — and a
+  proper Keller map is injective, so no counterexample is proper. The
+  filter rejects such maps in ~1–30 ms (one grevlex Gröbner basis of the
+  leading forms), before any symbolic Keller work; 199/200 random cubic
+  maps rejected. The Alpöge–Mathew map survives with witness $[1:0:0]$ at
+  infinity — exactly its escape direction. Honest limitation: the test is
+  necessary-not-sufficient; nonlinear polynomial automorphisms always
+  survive (Bézout argument), so it screens, it does not decide. Plain and
+  weighted variants.
+- **A4, larger degree boxes:** the first-order/continuation rigidity
+  analysis re-run in two strictly larger ansatz boxes in the
+  $(1,-1,-2)$ class (57×43 → 65×55 → 74×69 equations × unknowns). In
+  every box the linearized-Keller kernel = gauge tangents ⊕ obstructed
+  directions; **every non-gauge direction (6, 9, 15 per box) is
+  obstructed at second order**, and nonlinear continuation confirms none
+  integrates to a nearby family. Verdict: still rigid modulo gauge —
+  materially stronger evidence that the counterexample is isolated in
+  this weight class. (Numerical; exact Gröbner certification remains
+  OPEN_QUESTIONS B4.)

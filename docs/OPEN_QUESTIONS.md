@@ -41,17 +41,24 @@ $\mathrm{ord}_p T[x^k] = \lfloor k/2\rfloor$; $F_*(d^3\phi) = -\tfrac32 d^3J$
 and $F_*(x\,d^3\phi) = 0$ exactly.
 
 **A3. Witten-index / infinity prefilter for searches.**
-[`SEARCH_STRATEGIES.md` §1.3, §3]
-A linear-algebra test (degeneration of the leading homogeneous part on the
-hyperplane at infinity) that rejects proper maps before any symbolic Keller
-work. Half a day of implementation; immediately reusable by every search in
-Tier B. *(Code — deferred until we decide to resume script work.)*
+✅ **Resolved 2026-07-21** (`jcqft/prefilter.py`;
+`scripts/witten_prefilter.py`; `docs/RIGIDITY_AND_PREFILTER.md` §1).
+Maps whose leading forms have only the trivial common zero are provably
+proper, hence rejected in ~1–30 ms before any symbolic Keller work (199/200
+random cubic maps rejected). The Alpöge–Mathew map survives with witness
+$[1:0:0]$ — its escape direction. Necessary-not-sufficient: nonlinear
+automorphisms always survive (Bézout), documented as false positives.
+Plain and weighted variants available for every Tier-B search.
 
 **A4. Larger degree boxes in the $(1,-1,-2)$ class.**
-[`NEW_COUNTEREXAMPLES.md` §5 step 2]
-Re-run the existing rigidity analysis in bigger boxes. Cheap because the 2D
-reduction is already implemented; outcome is either "still rigid" (extends
-the evidence) or a new family (a major find). *(Code — deferred.)*
+✅ **Resolved 2026-07-21** (`scripts/rigidity_boxes.py`;
+`docs/RIGIDITY_AND_PREFILTER.md` §2). Two strictly larger boxes (up to 74
+equations × 69 unknowns): in every box the kernel of the linearized Keller
+condition splits as gauge tangents ⊕ obstructed directions; **all 30
+non-gauge first-order deformations across the enlarged boxes are obstructed
+at second order** and nonlinear continuation confirms none integrates.
+Still rigid modulo gauge — stronger evidence, no new family. (Numerical
+evidence; exact certification remains B4.)
 
 ---
 

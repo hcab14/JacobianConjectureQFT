@@ -15,6 +15,7 @@ rigorous QFT.
 - Chamber geometry and the positive-geometry verdict: [`docs/POSITIVE_GEOMETRY.md`](docs/POSITIVE_GEOMETRY.md)
 - The wall complement as the braid-group classifying space: [`docs/WALL_COMPLEMENT.md`](docs/WALL_COMPLEMENT.md)
 - Twisted cohomology of the wall complement and the fate of the period pairing: [`docs/TWISTED_PERIODS.md`](docs/TWISTED_PERIODS.md)
+- The infinity prefilter and rigidity in larger degree boxes: [`docs/RIGIDITY_AND_PREFILTER.md`](docs/RIGIDITY_AND_PREFILTER.md)
 - All open questions, consolidated and ranked by tractability: [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md)
 
 ## Setup
@@ -38,6 +39,7 @@ runnable script in `scripts/`.
 | `jcqft/truncated.py` | Sparse truncated-ring polynomial arithmetic; the tree-graph (Picard) formal inverse |
 | `jcqft/fibers.py` | Lex Groebner fiber parametrization, exact fiber solver, lambdified numeric helpers |
 | `jcqft/reduction.py` | C\*-equivariant normal form (P, Q, R) and the 2D-reduced Keller condition |
+| `jcqft/prefilter.py` | Infinity prefilter: millisecond properness-at-infinity rejection test for search candidates (plain and weighted) |
 
 ## Scripts
 
@@ -56,6 +58,8 @@ runnable script in `scripts/`.
 | `scripts/pushforward_forms.py` | Pushforward of general forms: poles only on the wall, D0-cancellation between sheets, pole-order law (closes `docs/AMPLITUDES_CONNECTION.md` §2.4 Q2) | ~8 s |
 | `scripts/wall_braid.py` | The wall is affinely the A2 discriminant: invariant eliminant, explicit affine isomorphism, cusp-loop = Coxeter element, local-system decomposition (see `docs/WALL_COMPLEMENT.md`) | ~6 s |
 | `scripts/twisted_cohomology.py` | Exact twisted cohomology of the wall complement via Fox calculus + Wang-sequence cross-check; jump loci = trefoil Alexander roots; integer-twist exactness of the canonical form (see `docs/TWISTED_PERIODS.md`) | ~3 s |
+| `scripts/witten_prefilter.py` | Validates the infinity prefilter: Alpöge–Mathew survives with witness [1:0:0], proper maps rejected in ~1 ms, 200-map benchmark (see `docs/RIGIDITY_AND_PREFILTER.md`) | ~6 s |
+| `scripts/rigidity_boxes.py` | Rigidity of the counterexample in strictly larger degree boxes: all non-gauge first-order deformations obstructed at 2nd order, continuation confirms (see `docs/RIGIDITY_AND_PREFILTER.md`) | ~50 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.
