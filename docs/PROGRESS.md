@@ -424,3 +424,32 @@ integrated.)
   reflection local system; twisted periods replace canonical-form
   integrals. Concrete follow-up: twisted $H^1$ + intersection pairing
   (`docs/WALL_COMPLEMENT.md` §6).
+
+## 2026-07-21 — Twisted cohomology of the wall complement (WALL_COMPLEMENT §6 Q3)
+
+`scripts/twisted_cohomology.py` (~3 s; exact sympy — Fox calculus on the
+1-relator presentation of $B_3$, cross-checked against the Wang sequence of
+the global Milnor fibration $P_2 : M \to \mathbb{C}^*$; the two methods
+agree everywhere, with identical jump polynomials). Full write-up in
+`docs/TWISTED_PERIODS.md`. (Sub-agent work, independently re-run and
+integrated.)
+
+- **Complete exact dimension table** for $H^*(B_3;\rho) = H^*(M;\rho)$:
+  Kummer twist $P_2^s$ jumps ONLY at $s \in \mathbb{Z}$ ($(1,1,0)$,
+  untwisted) and $s \in \pm\tfrac16 + \mathbb{Z}$ ($(0,1,1)$) — the roots
+  of the trefoil Alexander polynomial $\Delta(t) = t^2 - t + 1$, which
+  appears verbatim as the Fox differential. Standard (reflection) local
+  system: $(0,1,1)$ — the proposed amplituhedron-analogue pair carries
+  exactly one twisted class per degree. Reduced Burau: jump locus
+  $\{t^3 = 1\}$; Burau at $t = +1$ IS the reflection rep (at $t = -1$ it is
+  the $SL(2,\mathbb{Z})$ rep — a corrected expectation, flagged honestly).
+- **The failed canonical form, explained cohomologically:** at integer
+  twist the form is globally twisted-exact,
+  $dU{\wedge}dW/f = d(-(2U\,dW - 3W\,dU)/f)$ — every period vanishes;
+  $h^2 = 0$. The residueless double pole of `docs/POSITIVE_GEOMETRY.md`
+  is the local face of this global exactness. The classes revive exactly
+  at $s \equiv \pm\tfrac16$: the singularity spectrum of the cusp.
+- **Generic twists carry NOTHING:** $(0,0,0)$, since $|\chi(M)| = 0$ —
+  this model has zero generic-twist master integrals; all content is
+  resonant. (Contrast with generic hyperplane-arrangement amplitudes,
+  where $|\chi|$ counts master integrals.)

@@ -381,6 +381,13 @@ carrier identified on the toy-model side.
    intersection matrix at $s \in \mathbb{Z}$, and is it invertible for
    generic $s$ (the usual genericity mechanism of twisted period
    integrals)?
+   *(✅ Resolved 2026-07-21: `scripts/twisted_cohomology.py`,
+   `docs/TWISTED_PERIODS.md`. $H^*(M;\mathcal{S}) = (0,1,1)$; the Kummer
+   twist jumps exactly at $s \in \mathbb{Z}$ and $s \in \pm\frac16 +
+   \mathbb{Z}$ (trefoil Alexander polynomial / cusp spectrum); at integer
+   $s$ the canonical form is globally twisted-exact — the cohomological
+   face of the residueless double pole; generic twists have NO classes at
+   all ($|\chi| = 0$), so everything interesting is resonant.)*
 4. **Lift to the 3D cone.** The identification lives in the invariant
    plane. The 3D wall is the C\*-cone over it; is
    $\mathbb{C}^3 \setminus \{p = 0\}$ a $K(\pi,1)$ as well (e.g. a
