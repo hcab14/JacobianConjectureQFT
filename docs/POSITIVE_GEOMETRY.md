@@ -222,12 +222,66 @@ sensitive to non-properness.*
    local system), not the real chamber.
 3. **Cusp as an operator statement.** The empty-fiber orbit means the
    "interacting field" $\phi(J)$ has no branch — not even a multivalued one
-   — over one curve of sources. What does this do to the trace observables
-   (which remain rational and *finite* there: $e_2 = q/p$, $e_3 = -r/p$
-   have removable behavior along the cusp direction)? A small, sharp
-   computation worth doing exactly.
+   — over one curve of sources. What does this do to the trace observables?
+   *(Resolved 2026-07-21, `scripts/cusp_traces.py`; see §6 below. Note the
+   parenthetical originally attached to this question — that $e_2 = q/p$,
+   $e_3 = -r/p$ stay finite at the cusp — was **wrong**: they diverge, as
+   everywhere on the wall. The correct exact statements are in §7.)*
 
-## 6. References
+## 6. Addendum (2026-07-21): trace asymptotics at the wall and the cusp — resolved
+
+*(All exact; `scripts/cusp_traces.py`, ~2 s. This resolves §5 Q3 and
+corrects its original parenthetical.)*
+
+The Newton power sums of the $x$-sheets are polynomial in $q/p$, $-r/p$:
+
+$$
+S_1 = 0,\quad
+S_2 = -\frac{2q}{p},\quad
+S_3 = -\frac{3r}{p},\quad
+S_4 = \frac{2q^2}{p^2},\quad
+S_5 = \frac{5qr}{p^2},\quad
+S_6 = -\frac{2q^3}{p^3} + \frac{3r^2}{p^2},\ \ldots
+$$
+
+so **all traces except $S_1 \equiv 0$ diverge on the wall, cusp included**
+— the original suggestion that $e_2, e_3$ stay finite there was wrong. The
+sharp structure is in the *rates*, stratum by stratum:
+
+1. **Generic wall point** ($p \to 0$, $q \neq 0$): the escaping pair
+   $x \sim \pm\sqrt{-q/p}$ gives pole order $\lfloor k/2 \rfloor$ for
+   $S_k$ — odd powers cancel between the pair at leading order (verified
+   symbolically for $k \le 8$).
+2. **Cusp, generic approach** ($p \sim \varepsilon^2$,
+   $q \sim \varepsilon$, $r = O(1)$): all three sheets escape as
+   *asymptotic cube roots of unity*,
+   $x_j \sim \omega^j(-r/p)^{1/3}$. Since
+   $1 + \omega + \omega^2 = 0$, the naive rate $\varepsilon^{-2k/3}$ of
+   $S_k$ is reduced **exactly when $3 \nmid k$** (the
+   "$\omega$-cancellation"); the exact rate is
+   $\max\{a + 2b : 2a + 3b = k\}$ in $\varepsilon^{-1}$, verified for
+   $k \le 9$. *The trace remembers that the escaping configuration is a
+   $\mathbb{Z}_3$-symmetric triple even though no fiber point exists over
+   the cusp itself.*
+3. **Cusp, tangent approach** (along the $D_0$-line): the model is
+   **exactly solvable for every $\varepsilon$**:
+   $27\varepsilon^3X^3 - 9\varepsilon X - 2
+   = (3\varepsilon X - 2)(3\varepsilon X + 1)^2$, so the fiber
+   $x$-coordinates are exactly $\{2/(3\varepsilon),\,
+   -1/(3\varepsilon)\ \text{(double)}\}$ — the $x$-collision structure of
+   the $D_0$-locus persists all the way into the cusp, and there is no
+   cube-root regime on the tangent (the $qX$ term balances $pX^3$). The
+   fiber itself stays étale: the two $x$-degenerate points remain distinct
+   in $(y,z)$ (verified exactly at $\varepsilon = 1/10$).
+
+Physics reading: the wall carries a stratified escape structure —
+square-root pair (generic), $\mathbb{Z}_3$-triple (cusp, generic
+direction), collided pair (cusp, tangent direction) — and the trace
+observables detect the stratum through their divergence *rates*, even
+where they detect nothing through their *values* (all rational in $J$ with
+poles only on $\{p=0\}$).
+
+## 7. References
 
 - [ABL17] N. Arkani-Hamed, Y. Bai, T. Lam, *Positive geometries and
   canonical forms*, JHEP **11** (2017) 039. arXiv:1703.04541.

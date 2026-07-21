@@ -50,6 +50,8 @@ runnable script in `scripts/`.
 | `scripts/search_counterexamples.py` | Construction mechanism (2D reduction of the Keller condition) + first-order rigidity and continuation analysis (see `docs/NEW_COUNTEREXAMPLES.md`) | ~40 s |
 | `scripts/positive_geometry.py` | C\*-reduction of the wall to a cuspidal plane cubic; exact non-surjectivity locus; canonical-form test: the chamber is NOT a positive geometry (see `docs/POSITIVE_GEOMETRY.md`) | ~2 s |
 | `scripts/plot_chamber.py` | Figure of the reduced chamber geometry (`docs/img/chamber_geometry.png`) | ~2 s |
+| `scripts/cusp_traces.py` | Exact trace asymptotics at the wall and cusp: floor(k/2) law, cube-root-of-unity cancellation, exact solvability on the cuspidal tangent (see `docs/POSITIVE_GEOMETRY.md` §6) | ~2 s |
+| `scripts/pushforward_forms.py` | Pushforward of general forms: poles only on the wall, D0-cancellation between sheets, pole-order law (closes `docs/AMPLITUDES_CONNECTION.md` §2.4 Q2) | ~8 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

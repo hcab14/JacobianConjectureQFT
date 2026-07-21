@@ -22,22 +22,23 @@ Ranking key — the two axes the ordering combines:
 ## Tier A — hours-to-a-day each; high probability of a clean result
 
 **A1. Trace observables along the empty-fiber (cusp) orbit.**
-[`POSITIVE_GEOMETRY.md` §5 Q3]
-Over the cusp orbit the field $\phi(J)$ has no branch at all, yet the trace
-observables $e_2 = q/p$, $e_3 = -r/p$ stay finite (removable behavior along
-the cusp direction). Compute their exact limits and the limit of the full
-pushforward algebra there; determine what "the sum over no solutions is
-finite" means operatorially. *Small, sharp, exact computation with existing
-modules; essentially guaranteed to terminate.*
+✅ **Resolved 2026-07-21** (`scripts/cusp_traces.py`;
+`POSITIVE_GEOMETRY.md` §6). The premise of the question was partly wrong:
+$e_2, e_3$ *diverge* at the cusp. True exact statements: $S_1 \equiv 0$;
+pole order $\lfloor k/2\rfloor$ at generic wall points; at the cusp the
+divergence rates drop below naive $2k/3$ exactly when $3 \nmid k$
+($\omega$-cancellation of the escaping $\mathbb{Z}_3$-triple); along the
+cuspidal tangent the model is exactly solvable,
+$27\varepsilon^3X^3 - 9\varepsilon X - 2 = (3\varepsilon X-2)(3\varepsilon X+1)^2$.
 
 **A2. Close out the pushforward question (AMPLITUDES_CONNECTION §2.4 Q2).**
-[`AMPLITUDES_CONNECTION.md` §2.4 Q2; partial result in `POSITIVE_GEOMETRY.md` §4]
-The holomorphic/real pushforward dichotomy ($-\tfrac32\,d^3J$ vs
-$\tfrac{N}{2}\,d^3J$) already answers the constant-form case; what remains is
-the pushforward of *non-constant* forms $g(\phi)\,d^3\phi$ (poles land on
-$\{p=0\}$ by trace rationality) and a precise statement of which spurious
-boundaries cancel. Mostly bookkeeping on top of `jcqft` trace machinery, then
-an "Update" banner like the one Q1 received.
+✅ **Resolved 2026-07-21** (`scripts/pushforward_forms.py`;
+`AMPLITUDES_CONNECTION.md` §2.4 update banner). $F_*(g\,d^3\phi)$ is
+rational with poles only on $\{p=0\}$ for all polynomial $g$; all
+collision-locus ($D_0$) singularities cancel between sheets (verified on a
+15-observable basket; forced by étaleness off the wall);
+$\mathrm{ord}_p T[x^k] = \lfloor k/2\rfloor$; $F_*(d^3\phi) = -\tfrac32 d^3J$
+and $F_*(x\,d^3\phi) = 0$ exactly.
 
 **A3. Witten-index / infinity prefilter for searches.**
 [`SEARCH_STRATEGIES.md` §1.3, §3]

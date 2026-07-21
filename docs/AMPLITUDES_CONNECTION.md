@@ -214,6 +214,23 @@ counterexample defines such a stratification, so an answer would classify
 > infinity). See `docs/POSITIVE_GEOMETRY.md` and
 > `scripts/positive_geometry.py`.
 
+> **Update (2026-07-21): question 2 is now answered — affirmatively, and
+> exactly** (`scripts/pushforward_forms.py`). For every polynomial
+> observable $g$, $F_*\bigl(g\,d^3\phi\bigr) = -\tfrac12\,T[g]\,d^3J$ is a
+> rational form whose poles lie **only** on the non-properness wall
+> $\{p=0\}$: all singularities of the per-sheet values on the collision
+> locus $\{D_0=0\}$ are spurious and cancel in the sheet sum (verified on
+> a basket of 15 observables; conceptually forced because $F$ is finite
+> étale off the wall). Pole orders obey
+> $\mathrm{ord}_p\,T[x^k] = \lfloor k/2\rfloor$, wall poles are sourced
+> exclusively by $x$-powers $\ge 2$ (only $x$ escapes), and two exact
+> extremes hold: $F_*(d^3\phi) = -\tfrac32\,d^3J$ (constant — the wall is
+> *invisible* to the holomorphic pushforward, in contrast to the real
+> pushforward $\tfrac{N(J)}{2}\,d^3J$, the gap being the measured
+> anomaly), and $F_*(x\,d^3\phi) = 0$ identically. The "cancellation
+> between sheets except on $\{p=0\}$" asked about is thus a verified exact
+> mechanism, not an analogy.
+
 ### 2.5 Honest limits of the connection
 
 - The amplituhedron computes loop integrands of a specific interacting

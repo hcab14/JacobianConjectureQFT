@@ -364,3 +364,32 @@ This answers question (1) of `docs/AMPLITUDES_CONNECTION.md` §2.4.
   infinity). One stale claims-ledger row corrected
   (`QFT_IMPLICATIONS.md`: chamber positive-geometry question now marked
   resolved for this map).
+
+## 2026-07-21 — A1 and A2 resolved: trace asymptotics at wall/cusp; pushforward of general forms
+
+**A1** (`scripts/cusp_traces.py`, ~2 s; write-up `docs/POSITIVE_GEOMETRY.md`
+§6). The original Q3 parenthetical was wrong ($e_2, e_3$ do NOT stay finite
+at the cusp). Exact results:
+
+- $S_1 \equiv 0$ (the only finite trace); $S_2 = -2q/p$, $S_3 = -3r/p$, ….
+- Generic wall: escaping pair $\pm\sqrt{-q/p}$, pole order
+  $\lfloor k/2 \rfloor$ for $S_k$ (odd-power pair cancellation).
+- Cusp, generic approach: three sheets escape as asymptotic cube roots of
+  unity; divergence rate of $S_k$ drops below naive $2k/3$ **iff**
+  $3 \nmid k$ ($\omega$-cancellation); exact rate
+  $\max\{a+2b : 2a+3b=k\}$, verified $k \le 9$.
+- Cusp, tangent (D0-line) approach: exactly solvable for all $\varepsilon$:
+  $27\varepsilon^3X^3\!-\!9\varepsilon X\!-\!2 =
+  (3\varepsilon X\!-\!2)(3\varepsilon X\!+\!1)^2$; collided-$x$ pair
+  persists into the cusp, fiber stays étale (distinct $(y,z)$).
+
+**A2** (`scripts/pushforward_forms.py`, ~8 s; banner in
+`docs/AMPLITUDES_CONNECTION.md` §2.4). Question 2 answered affirmatively:
+$F_*(g\,d^3\phi) = -\tfrac12 T[g]\,d^3J$ is rational with poles ONLY on the
+wall for every polynomial $g$; all $D_0$-collision singularities of the
+per-sheet parametrization cancel in the sheet sum (verified on 15
+observables; conceptually forced by étaleness off the wall). Pole-order law
+$\mathrm{ord}_p T[x^k] = \lfloor k/2 \rfloor$; wall poles sourced only by
+$x$-powers $\ge 2$ (only $x$ escapes). Exact extremes:
+$F_*(d^3\phi) = -\tfrac32\,d^3J$ (wall invisible) and
+$F_*(x\,d^3\phi) = 0$ identically.
