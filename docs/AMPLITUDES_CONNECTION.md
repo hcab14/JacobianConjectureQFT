@@ -204,6 +204,16 @@ degree-3 cover of $\mathbb{C}^3$, rather than metaphors — and *any* Keller
 counterexample defines such a stratification, so an answer would classify
 "positive geometries of Keller maps".
 
+> **Update (2026-07-21): question 1 is now answered — negatively, with an
+> instructive mechanism.** The C\*-symmetry reduces the wall to a *cuspidal
+> plane cubic* in the invariants $(u,w)=(ac^2,bc)$; the residue of every
+> candidate canonical form has a residueless double pole at the cusp, and
+> the chamber is **not a positive geometry** — it fails by a vertex
+> collision (node $\to$ cusp), not by genus. The cusp is simultaneously the
+> exact non-surjectivity locus of $F$ (empty fiber: all three sheets at
+> infinity). See `docs/POSITIVE_GEOMETRY.md` and
+> `scripts/positive_geometry.py`.
+
 ### 2.5 Honest limits of the connection
 
 - The amplituhedron computes loop integrands of a specific interacting
@@ -225,6 +235,9 @@ counterexample defines such a stratification, so an answer would classify
   outcome:* a proof that the chamber violates the positive-geometry axioms
   (e.g. its natural forms have non-logarithmic singularities on the wall).
   Both outcomes would be informative; neither is claimed here.
+  *(Resolved 2026-07-21: the negative outcome holds, in exactly this form —
+  the residue on the wall is a non-logarithmic double pole at the cusp of
+  the reduced wall curve. See `docs/POSITIVE_GEOMETRY.md`.)*
 
 ## 3. References (addendum-specific)
 

@@ -300,3 +300,41 @@ Documentation:
 - `docs/QFT_IMPLICATIONS.md` §4.4 (new): **claims ledger** — every verified
   claim, the script that verifies it, and the nearest overstatement it does
   *not* license.
+
+## 2026-07-21 — Chamber geometry: cuspidal cubic wall, exact non-surjectivity locus, positive-geometry verdict
+
+`scripts/positive_geometry.py` (exact symbolic, ~2 s); figure
+`scripts/plot_chamber.py`; full write-up in `docs/POSITIVE_GEOMETRY.md`.
+This answers question (1) of `docs/AMPLITUDES_CONNECTION.md` §2.4.
+
+- **C\*-reduction of the wall:** $p$ is quasi-homogeneous (weight $-2$)
+  under the source weights $(-2,-1,1)$. In the invariants $u = ac^2$,
+  $w = bc$: $c^2 p = P_2(u,w) = 27u^2 + 16u - 18uw + w^3 - w^2$ — the
+  quartic wall in $\mathbb{C}^3$ is a **plane cubic**.
+- **The reduced wall is a cuspidal cubic** (unique $A_2$ singularity at
+  $(4/27, 4/3)$, hence rational), with exact parametrization
+  $u = 4/27 - 3(m-3)^2/m^3$, $w = 4/3 - 3(m-3)^2/m^2$. Its **cuspidal
+  tangent is the $\{D_0=0\}$ line** — the geometric origin of the identity
+  $4q^3 + 27pr^2 = 4D_0^2$.
+- **Exact non-surjectivity locus:** $F(\mathbb{C}^3)$ misses precisely the
+  C\*-orbit $\{ac^2 = 4/27,\ bc = 4/3\}$ (the cusp): there $p = q = 0$,
+  $r \neq 0$, the fiber is empty, **all three sheets are at infinity** —
+  sources with no classical solution at all. Generic wall points lose 2
+  sheets; the cusp loses 3.
+- **The $N=3$ chamber is NOT a positive geometry:** the residue of the
+  candidate canonical form on the normalized wall is
+  $-(\kappa/3)\,dm/(m-3)^2$ — a residueless **double pole at the cusp**,
+  not a log form; admitting an adjoint line (KPR+25 polypol framework,
+  unbounded chamber with flex at infinity) leads to a linear system with
+  only the zero solution. Failure mechanism: **vertex collision**
+  (node → cusp degeneration of the would-be interval form), *not* genus —
+  nodal-wall chambers would pass. The negative branch of the
+  falsifiability criteria in `docs/AMPLITUDES_CONNECTION.md` §2.5 is
+  realized in exactly the predicted form.
+- **Pushforward dichotomy (exact):** $F_*(d^3\phi) = -\tfrac32\,d^3J$
+  (holomorphic — constant, wall invisible) vs $\tfrac{N(J)}{2}\,d^3J$
+  (real — jumps $\tfrac12 \leftrightarrow \tfrac32$). The measured anomaly
+  $A(\sigma) \to 2$ is exactly the gap between the two pushforwards.
+- Cross-check: the ray $J = t(1,2,3)$ maps to $(9t^3, 6t^2)$ in the
+  invariant plane; nearest wall crossing $|t^*| = 0.302028$ = the verified
+  tree-series radius.

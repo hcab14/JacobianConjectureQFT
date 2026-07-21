@@ -12,6 +12,7 @@ rigorous QFT.
 - Connection to the amplitudes program: [`docs/AMPLITUDES_CONNECTION.md`](docs/AMPLITUDES_CONNECTION.md)
 - Monodromy of the three sheets: [`docs/MONODROMY.md`](docs/MONODROMY.md)
 - Search strategies for new counterexamples: [`docs/SEARCH_STRATEGIES.md`](docs/SEARCH_STRATEGIES.md)
+- Chamber geometry and the positive-geometry verdict: [`docs/POSITIVE_GEOMETRY.md`](docs/POSITIVE_GEOMETRY.md)
 
 ## Setup
 
@@ -46,6 +47,8 @@ runnable script in `scripts/`.
 | `scripts/measure_anomaly.py` | Field-redefinition measure anomaly: exact chamber rule for the real preimage count, Monte Carlo anomaly factor, rational sum-over-sheets observables | ~6 s |
 | `scripts/trace_pushforward.py` | Amplitudes-program structures: trace/pushforward rationality, boundary factorization at the wall (see `docs/AMPLITUDES_CONNECTION.md`) | ~1 s |
 | `scripts/search_counterexamples.py` | Construction mechanism (2D reduction of the Keller condition) + first-order rigidity and continuation analysis (see `docs/NEW_COUNTEREXAMPLES.md`) | ~40 s |
+| `scripts/positive_geometry.py` | C\*-reduction of the wall to a cuspidal plane cubic; exact non-surjectivity locus; canonical-form test: the chamber is NOT a positive geometry (see `docs/POSITIVE_GEOMETRY.md`) | ~2 s |
+| `scripts/plot_chamber.py` | Figure of the reduced chamber geometry (`docs/img/chamber_geometry.png`) | ~2 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

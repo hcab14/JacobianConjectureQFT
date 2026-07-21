@@ -414,6 +414,9 @@ overstatement that it does **not** license.
 | Sheet-summed observables are rational with poles only on $\{p=0\}$; residues factorize at the wall | `scripts/trace_pushforward.py` | existence of a positive geometry / canonical form for the chambers — that is an open question (§6.3) |
 | $F^*$ is a monomorphism, not an automorphism, of polynomial observable algebras; extension degree 3, Galois group $S_3$ | `scripts/branch_locus.py` + `scripts/monodromy.py` | any statement about automorphisms of local nets or Borchers classes in $D\ge 1$ |
 | Alpöge–Mathew is rigid modulo gauge to first order within the equivariant degree box | `scripts/search_counterexamples.py` | uniqueness of counterexamples — the check is first-order, box-limited, and within one equivariance class |
+| The wall $\{p=0\}$ reduces, by C\*-invariance, to a cuspidal plane cubic; the cuspidal tangent is $\{D_0=0\}$ | `scripts/positive_geometry.py` | any statement about walls of other (hypothetical) counterexamples |
+| $F(\mathbb{C}^3)$ misses exactly one C\*-orbit ($ac^2=\tfrac{4}{27}$, $bc=\tfrac43$): sources with empty fiber | `scripts/positive_geometry.py` | a physical "instability" — there is no dynamics or energy here, only an exact solvability statement |
+| The $N=3$ chamber admits **no** canonical form: it is not a positive geometry (residueless double pole at the cusp; adjoint-line system has only the zero solution) | `scripts/positive_geometry.py`, `docs/POSITIVE_GEOMETRY.md` | irrelevance of positive geometry — nodal-wall chambers would pass; the failure mode is itself structured |
 
 ---
 
