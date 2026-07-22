@@ -354,6 +354,8 @@ this example punishes; any framework that treats "invertible field
 redefinition" as certified by the Jacobian is not. This is, we believe, the
 cleanest AQFT-flavored lesson of the counterexample, and it is exact.
 
+*(Explicit module generators of the missing observables, the free basis $\{1,x,x^2\}$, and the normal-form criterion are recorded in `docs/MISSING_OBSERVABLES.md` (2026-07-22).)*
+
 **(b) pAQFT (Fredenhagen–Rejzner): the deferral is calibrated, not
 contradicted.** In pAQFT [FR12, FR16, Rej16] interacting observables are
 constructed from free ones by Møller-type maps built as formal power series
@@ -413,6 +415,8 @@ overstatement that it does **not** license.
 | Real change-of-variables defect: $N(J) = 3$ iff $p<0$, measured $A(\sigma)\to 2$ as $\sigma\to 0$ | `scripts/measure_anomaly.py` | failure of the perturbative equivalence theorem — formal-series equivalence statements are untouched |
 | Sheet-summed observables are rational with poles only on $\{p=0\}$; residues factorize at the wall | `scripts/trace_pushforward.py` | existence of a positive geometry / canonical form for the chambers — for *this* map that question is now settled negatively (`docs/POSITIVE_GEOMETRY.md`); the classification across Keller maps remains open |
 | $F^*$ is a monomorphism, not an automorphism, of polynomial observable algebras; extension degree 3, Galois group $S_3$ | `scripts/branch_locus.py` + `scripts/monodromy.py` | any statement about automorphisms of local nets or Borchers classes in $D\ge 1$ |
+| Module generators of the missing observables are $\{x,x^2\}$; free basis $\{1,x,x^2\}$; normal-form criterion | `docs/MISSING_OBSERVABLES.md` (2026-07-22) | any claim about higher-dimensional nets |
+| Finite-preimage description (cubic + rational $y,z$ + fallback on $\{D_0=0\}$) is exhaustive | `docs/MISSING_OBSERVABLES.md` | description of the escaped sheets (those are accounted for by degree drop of $p$) |
 | Alpöge–Mathew is rigid modulo gauge to first order within the equivariant degree box | `scripts/search_counterexamples.py` | uniqueness of counterexamples — the check is first-order, box-limited, and within one equivariance class |
 | The wall $\{p=0\}$ reduces, by C\*-invariance, to a cuspidal plane cubic; the cuspidal tangent is $\{D_0=0\}$ | `scripts/positive_geometry.py` | any statement about walls of other (hypothetical) counterexamples |
 | $F(\mathbb{C}^3)$ misses exactly one C\*-orbit ($ac^2=\tfrac{4}{27}$, $bc=\tfrac43$): sources with empty fiber | `scripts/positive_geometry.py` | a physical "instability" — there is no dynamics or energy here, only an exact solvability statement |
