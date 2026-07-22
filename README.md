@@ -62,6 +62,8 @@ runnable script in `scripts/`.
 | `scripts/witten_prefilter.py` | Validates the infinity prefilter: Alpöge–Mathew survives with witness [1:0:0], proper maps rejected in ~1 ms, 200-map benchmark (see `docs/RIGIDITY_AND_PREFILTER.md`) | ~6 s |
 | `scripts/rigidity_boxes.py` | Rigidity of the counterexample in strictly larger degree boxes: all non-gauge first-order deformations obstructed at 2nd order, continuation confirms (see `docs/RIGIDITY_AND_PREFILTER.md`) | ~50 s |
 | `scripts/damped_partition.py` | Damped partition function: exact closed form and finiteness for all J, prefactor = N(J)/2 per chamber, wall/cusp corrections, uniformity exponents (see `docs/DAMPED_PARTITION.md`) | ~30 s |
+| `scripts/missing_observables.py` | Exact structure of im F\*: basis {1,x,x²}, normal form and membership criterion, non-integrality escape certificate, fiber exhaustiveness (see `docs/MISSING_OBSERVABLES.md`) | ~15 s |
+| `scripts/reduction_113.py` | Exact reduced Keller identity for all weight systems (1,-1,-m): generic-function proof, compact form J₂(PRᵐ,QR)=κRᵐ, polynomiality boxes (module `jcqft/reduction_w.py`) | ~4 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

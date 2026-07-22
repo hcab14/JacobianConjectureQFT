@@ -91,9 +91,12 @@ periods; the concrete follow-up (twisted $H^1$ + intersection pairing) is
 [`NEW_COUNTEREXAMPLES.md` §5 step 1; `SEARCH_STRATEGIES.md` §1.1, §2]
 Enumerate weight systems (e.g. $(1,-1,-3)$, $(2,-1,-3)$, 4-field gradings),
 reduce each to a finite 2D Keller problem, search for residual-$\mathbb{Z}_3$
-orbits (3:1 non-injectivity, possible $\mathbb{Z}_3$ monodromy). Uses the
-`jcqft.reduction` template directly. Could produce the second-ever
-counterexample; could also legitimately come up empty. *(Code — deferred.)*
+orbits (3:1 non-injectivity, possible $\mathbb{Z}_3$ monodromy). Could
+produce the second-ever counterexample; could also legitimately come up
+empty. *(IN PROGRESS 2026-07-22: step 1 done for the whole family
+$(1,-1,-m)$ — exact reduced Keller identity $J_2(PR^m, QR) = \kappa R^m$,
+`jcqft/reduction_w.py` + `scripts/reduction_113.py`; searches in
+$(1,-1,-3)$ and $(2,-1,-3)$ running.)*
 
 **B4. Exact Gröbner certification of local rigidity.**
 [`NEW_COUNTEREXAMPLES.md` §5 step 4, §3]
