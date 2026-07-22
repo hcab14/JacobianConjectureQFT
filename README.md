@@ -6,6 +6,26 @@ theory (tree-graph expansions, branch loci, monodromy, non-perturbative
 "vacua at infinity"), with an eye toward implications for mathematically
 rigorous QFT.
 
+## Status and provenance
+
+This is **AI-assisted exploratory research**, produced in interactive
+sessions with AI coding agents and **not peer-reviewed**. The counterexample
+itself is due to **Alpöge and Mathew** (announced July 19, 2026); this
+repository only studies it. Read the claims with the following calibration,
+which the documents themselves state case by case:
+
+- **Exact/symbolic results** (most of the repository): every displayed
+  identity is asserted by a reproducible sympy script listed below; "verified"
+  means the script passes, within the stated scope (often box- or
+  chart-limited — the scope lines matter).
+- **Numerical results** (monodromy, rigidity continuation, Monte Carlo):
+  labelled as evidence, not proof.
+- **Interpretation** (QFT/amplitudes readings): clearly flagged opinion;
+  see the claims-vs-limitations ledger in
+  [`docs/QFT_IMPLICATIONS.md`](docs/QFT_IMPLICATIONS.md).
+
+Corrections and counter-arguments are very welcome — please open an issue.
+
 - Problem statement: [`docs/PROBLEM.md`](docs/PROBLEM.md)
 - Running progress log with all results: [`docs/PROGRESS.md`](docs/PROGRESS.md)
 - Implications for rigorous QFT: [`docs/QFT_IMPLICATIONS.md`](docs/QFT_IMPLICATIONS.md)
