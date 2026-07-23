@@ -566,3 +566,41 @@ OPEN_QUESTIONS B3, step 1: the reduction that any (1,-1,-3) search needs.
   in a box (m = 3) including the rejected complements.
 - Random-ansatz consistency check at m = 3: 3D symbolic determinant ==
   reduced 2D form.
+
+## 2026-07-23 — B3 (2,-1,-3): complete degree-1 classification — no counterexample, Z3 mechanism empty
+
+`jcqft/reduction_213.py`, `scripts/search_213.py` (~40 s default, all
+assertions; `--full` adds the CE2-box no-go, ~8 min); write-up
+`docs/SEARCH_213.md`. (Sub-agent work, independently re-run and
+integrated.)
+
+- **Invariant theory (exact):** the (2,-1,-3) invariant ring is the $A_1$
+  quadric cone $\mathbb{C}[u_1,u_2,u_3]/(u_2^2 - u_1u_3)$,
+  $u = (xy^2, x^2yz, x^3z^2)$ — NOT free, unlike $(1,-1,-m)$. Weight
+  modules with syzygy-free splits: $M_2 = xR$,
+  $M_{-1} = yR \oplus xz\,\mathbb{C}[u_3]$,
+  $M_{-3} = zR \oplus y^3\mathbb{C}[u_1]$; invertible $DF(0)$ forces
+  component weights = permutation of $(2,-1,-3)$, $DF(0)$ diagonal.
+- **Exact chart-based reduced Keller identity** (undetermined-function
+  proof + two independent cross-checks): on the dense chart,
+  $\det DF = p^2(2p\tilde a\,J_2(\tilde b,\tilde e) +
+  \tilde b\,J_2(p\tilde a,\tilde e) - 3\tilde e\,J_2(p\tilde a,\tilde b))$
+  — a function of the two invariant chart coordinates $(p,q)$ alone; the
+  Keller condition is a trilinear polynomial system.
+- **Degree-1 box, complete classification (theorem for the box):** the
+  Keller variety is exactly $V_1 \cup V_2$ (Groebner nilpotency
+  certificates): elementary $z$-shears and $w$-shears along
+  $w = xz - \nu y$. Both families are TAME automorphisms (explicit
+  inverses verified); generic fiber = 1 point.
+- **Both orbifold mechanisms provably empty:** the $\mathbb{Z}_2$ (2:1,
+  the Alpöge–Mathew mechanism) AND the new $\mathbb{Z}_3$ (3:1,
+  cube-root-escape/new-monodromy scenario) systems have Groebner basis
+  $[1]$ — exact over $\mathbb{Q}$ — in the degree-1 box and (--full) the
+  CE2 box. No counterexample in this weight system at low degree.
+- Honest limits: full degree-2 box (29 unknowns) exceeds sympy's
+  Buchberger (exposed behind `--deg2`, unresolved); CE2 no-go covers the
+  stabilizer-jump mechanisms only, not free-orbit pairing.
+- **QFT reading:** the hoped-for $\mathbb{Z}_3$ global-anomaly class does
+  not materialize — the $A_1$ cone singularity of the quotient appears to
+  rigidify low-degree Keller moduli; the non-properness defect (so far)
+  needs the free invariant ring of $(1,-1,-m)$.
