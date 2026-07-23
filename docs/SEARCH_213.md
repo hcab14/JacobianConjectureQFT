@@ -235,12 +235,48 @@ longest single Gröbner basis ≈ 5 min). So no 2:1 or 3:1
 orbifold-mechanism counterexample exists in the CE2 box either. (A full
 variety decomposition of CE2 was not attempted — see limitations.)
 
-### 5.3 Full degree-2 box (`--deg2`): attempted, unresolved
+### 5.3 Full degree-2 box: attempted with three engines, unresolved
 
-29 unknowns, 57 equations. Sympy's Buchberger did not finish any mechanism
-query within generous timeouts (>25 min each, also mod $p$). The script
-exposes the attempt behind `--deg2` with per-query timeouts; the box is
-**unresolved**, not ruled out.
+29 unknowns, 57 Keller equations plus witnesses. Status after a serious
+tooling campaign (2026-07-23): **unresolved, with the obstruction now
+precisely mapped.**
+
+1. **sympy Buchberger** (`--deg2`): no query finishes (>25 min each, also
+   mod $p$).
+2. **msolve F4** (v0.10.1, submodule, via `jcqft/gb_backend.py`, all runs
+   under a 16 GB address-space cap after an uncapped run froze the
+   machine): all six queries exceed the cap over $\mathbb{Q}$ — and,
+   decisively, **also mod three independent ~30-bit primes**, even after
+   the exact reductions below. The memory blow-up is intrinsic to F4 on
+   this system, not a coefficient-growth artifact.
+3. **Exact structural reductions** (`scripts/deg2_213_elim.py`, all
+   asserted): (i) the 57 Keller equations are *triangular* in the A-block
+   with integer pivots in $\{2,\dots,7\}$ — the A-block eliminates by a
+   global polynomial substitution, no denominators, valid over any field
+   of characteristic $0$ or $p > 7$ (49 equations, 21 unknowns, degree
+   $\le 4$); (ii) the Rabinowitsch saturation variable is unnecessary:
+   $\Delta = \tilde a X + \tilde b Y + \tilde e Z$ identically, so at a
+   witness point the Keller condition itself forces the third chart
+   function nonzero; (iii) linear witness equations eliminate 1–2 more
+   unknowns per query. Net: 19–20 unknowns per query. **Still past the
+   16 GB cap for F4, even mod $p$.**
+4. **Singular truncated `std()` ladder** (degBound, one-sided: finding
+   $1$ below the bound is an exact certificate; memory-frugal, ~2 GB):
+   mod $p$, degBound 4 and 5 complete in under a minute — no certificate;
+   degBound 6 and 7 exceed 20-minute budgets. The unit certificate (if
+   the ideal is unit) has degree $\ge 6$, where the truncated basis is
+   already past this machine's practical time budget.
+
+**Honest verdict.** The six degree-2 mechanism queries are beyond direct
+Gröbner methods on 30 GB hardware: F4 hits a memory wall (>16 GB even
+mod $p$ at 20 unknowns), Buchberger/std a time wall (certificate degree
+$\ge 6$). The box remains **unresolved, not ruled out**. Plausible
+routes: much larger memory, further stratification (by vanishing leading
+block coefficients), or numerical algebraic geometry
+(HomotopyContinuation.jl) for discovery with exact certification of any
+find. Reproduce: `.venv/bin/python scripts/deg2_213_elim.py`
+(reductions + capped screens; `--skip-exact` for the mod-$p$ screen
+only).
 
 ## 6. Honest limitations
 

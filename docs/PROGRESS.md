@@ -604,3 +604,31 @@ integrated.)
   not materialize — the $A_1$ cone singularity of the quotient appears to
   rigidify low-degree Keller moduli; the non-properness defect (so far)
   needs the free invariant ring of $(1,-1,-m)$.
+
+## 2026-07-23 — Degree-2 box of (2,-1,-3): exact reductions, three-engine campaign, honest wall
+
+`scripts/deg2_213_elim.py` (exact reduction assertions, ~30 s;
+memory-capped GB screens); backend `jcqft/gb_backend.py` extended with
+mod-p and Singular degBound support; full account in
+`docs/SEARCH_213.md` §5.3.
+
+- **Exact reductions (asserted):** the 57 Keller equations of the
+  degree-2 box are triangular in the A-block (integer pivots 2..7) —
+  global polynomial elimination, valid over char 0 and p > 7; the
+  Rabinowitsch variable is redundant ($\Delta = \tilde aX + \tilde bY +
+  \tilde eZ$ identically); linear witness elimination. 29 unknowns
+  → 19–20 per mechanism query, degree ≤ 4.
+- **The wall, mapped:** msolve F4 exceeds a 16 GB cap on all six queries
+  — over $\mathbb{Q}$ AND mod three independent ~30-bit primes, even
+  after the reductions (memory-intrinsic). Singular truncated std
+  (one-sided exact certificate) completes degBound ≤ 5 mod p in under a
+  minute (no certificate) and times out from degBound 6: the unit
+  certificate, if any, has degree ≥ 6.
+- **Verdict: unresolved, not ruled out** — now with the obstruction
+  quantified (F4: memory wall; Buchberger/std: time wall at certificate
+  degree ≥ 6). Routes left: bigger RAM, finer stratification, or
+  homotopy continuation for discovery + exact certification.
+- Infrastructure: msolve v0.10.1 as git submodule (built locally), and
+  every GB subprocess now runs under a hard address-space cap
+  (`JCQFT_GB_MEM_MB`, default 16 GB) after an uncapped 6-way parallel
+  run exhausted 30 GB and froze the machine. Lesson recorded.
