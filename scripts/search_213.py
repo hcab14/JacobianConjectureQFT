@@ -56,6 +56,7 @@ import argparse
 import itertools
 import signal
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 import sympy as sp
 
@@ -402,12 +403,15 @@ def run_full():
 
 
 # ===========================================================================
-# --deg2: full degree-2 box (29 unknowns) -- attempted with per-query
-#          timeouts; expect hours with sympy's Buchberger.
+# --deg2: full degree-2 box (29 unknowns) -- via jcqft.gb_backend
+#          (msolve/Singular; the sympy fallback needs hours).
 # ===========================================================================
 
-def run_deg2(budget):
-    print("\n== 6. (--deg2) full degree-2 box (EXPERIMENTAL) ==")
+def run_deg2(budget, backend="auto", workers=1):
+    from jcqft.gb_backend import available_backends, is_unit_ideal
+    print("\n== 6. (--deg2) full degree-2 box ==")
+    print(f"  GB backends available: {available_backends()} "
+          f"(using {backend!r})")
     MON2 = [u1, u2, u3, u1**2, u1 * u3, u3**2, u1 * u2, u2 * u3]
 
     def gpoly(name, monos):
@@ -425,14 +429,37 @@ def run_deg2(budget):
     keller_ = sp.Poly(N_, p, q).coeffs()
     print(f"  {len(unknowns_)} unknowns, {len(keller_)} Keller equations; "
           f"budget {budget} s per query")
-    for label, sys_ in mech_queries(A_, B_, C_, D_, E_, keller_).items():
-        ok, gbq = with_timeout(budget, sp.groebner, sys_,
-                               *(unknowns_ + [r_]), order="grevlex")
-        if not ok:
-            print(f"  [timeout] {label} (> {budget} s) -- UNRESOLVED")
-            continue
-        empty = list(gbq.exprs) == [1]
-        print(f"  {label}: {'EMPTY' if empty else 'NONEMPTY -- INSPECT!'}")
+    queries = mech_queries(A_, B_, C_, D_, E_, keller_)
+    # concurrency is MEMORY-bound: one of these GB runs over Q can exceed
+    # 10 GB, and more F4 threads enlarge the in-flight matrices.  Default
+    # is strictly sequential; the per-process cap in jcqft.gb_backend
+    # (JCQFT_GB_MEM_MB) turns a blow-up into a clean failure.
+    n_par = min(len(queries), workers)
+    t_each = max(1, (os.cpu_count() or 1) // (2 * n_par))
+    print(f"  running {len(queries)} queries concurrently "
+          f"({n_par} workers x {t_each} msolve threads)")
+    unresolved = 0
+    with ThreadPoolExecutor(max_workers=n_par) as pool:
+        futs = {label: pool.submit(is_unit_ideal, sys_, unknowns_ + [r_],
+                                   backend=backend, timeout=budget,
+                                   threads=t_each)
+                for label, sys_ in queries.items()}
+        for label, fut in futs.items():
+            try:
+                empty = fut.result()
+            except TimeoutError:
+                print(f"  [timeout] {label} (> {budget} s) -- UNRESOLVED")
+                unresolved += 1
+                continue
+            except RuntimeError as exc:
+                print(f"  [failed] {label} -- UNRESOLVED ({exc})")
+                unresolved += 1
+                continue
+            check(f"deg2 {label}: "
+                  f"{'EMPTY (ideal = (1))' if empty else '??'}", empty)
+    if unresolved == 0:
+        print("  DEG2 VERDICT: no 2:1/3:1 orbifold-mechanism counterexample"
+              "\n  in the FULL degree-2 box (29 unknowns), exact over Q.")
 
 
 if __name__ == "__main__":
@@ -440,12 +467,19 @@ if __name__ == "__main__":
     ap.add_argument("--full", action="store_true",
                     help="add the CE2-box mechanism no-go (~8 min)")
     ap.add_argument("--deg2", action="store_true",
-                    help="attempt the full degree-2 box (hours)")
+                    help="full degree-2 box (fast with msolve/Singular; "
+                         "hours with the sympy fallback)")
     ap.add_argument("--deg2-budget", type=int, default=3600,
                     help="per-query timeout for --deg2 (s)")
+    ap.add_argument("--gb-backend", default="auto",
+                    help="msolve | singular | sympy | auto | all")
+    ap.add_argument("--deg2-workers", type=int, default=1,
+                    help="concurrent --deg2 queries (memory-bound: one "
+                         "query can exceed 10 GB; keep at 1 unless you "
+                         "have RAM to spare)")
     args = ap.parse_args()
     if args.full:
         run_full()
     if args.deg2:
-        run_deg2(args.deg2_budget)
+        run_deg2(args.deg2_budget, args.gb_backend, args.deg2_workers)
     print(f"\nall checks passed in {time.time() - T0:.1f} s")
