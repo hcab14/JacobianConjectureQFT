@@ -1,0 +1,1181 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\val}{\operatorname{val}}
+\DeclareMathOperator{\antidiag}{antidiag}
+
+\emergencystretch=1.5em
+
+\title{Zero-dimensional QFT structure of the Alp\"oge--Mathew Jacobian
+counterexample and exact Keller classifications in the sibling weight
+systems $(1,-1,-3)$ and $(2,-1,-3)$}
+
+\author{Christoph Mayer\thanks{Independent researcher.
+Email: \texttt{hcab14@gmail.com}.}}
+
+\date{July 24, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The Alp\"oge--Mathew polynomial map $F:\C^3\to\C^3$ (announced July 19,
+2026) has constant Jacobian determinant $-2$ but is not injective,
+disproving the Jacobian Conjecture in dimensions $n\ge 3$. We study this
+map, and two neighbouring $\C^*$-equivariance classes, through the
+dictionary of zero-dimensional perturbative quantum field theory, in which
+$F(\varphi)=J$ is a classical field equation with external source and the
+Bass--Connell--Wright tree expansion is perturbation theory. Our results,
+all verified by exact symbolic computation in a public repository, are:
+(i) an explicit structure theorem for the observable algebra
+$\im F^*\subset\C[x,y,z]$ of the redefined field --- $\{1,x,x^2\}$ is a
+basis over $\Frac(\im F^*)$, membership is decided by a normal form, and
+$x$ is \emph{not integral} over $\im F^*$, with an exact escape-curve
+certificate equivalent to non-properness; (ii) an exact reduced Keller
+identity for the whole weight family $(1,-1,-m)$, reducing the
+three-dimensional Keller problem to two invariant variables; (iii) for
+the weight system $(2,-1,-3)$, whose invariant ring is an $A_1$ cone, a
+chart-based reduced Keller identity and a \emph{complete} classification
+of degree-$1$ equivariant Keller maps (all tame automorphisms), with both
+the $\Z_2$ and $\Z_3$ stabilizer-jump mechanisms provably empty in the
+searched boxes; (iv) for the weight system $(1,-1,-3)$, the nearest
+sibling of the Alp\"oge--Mathew system, a complete classification of the
+$v$-linear Keller class for \emph{all} $w$-degrees via a Wronskian
+stratification: every solution is a tame automorphism, the $3{:}1$
+orbifold mechanism is empty, and the Alp\"oge--Mathew mechanism is
+blocked at $m=3$ by an exact numerological obstruction --- not by a
+failure to search far enough. One stratum (non-squarefree $D_3'$) is
+closed only inside Gr\"obner boxes and is stated as an honest gap. The
+emerging picture is that the non-properness defect responsible for the
+counterexample is, so far, rigidly attached to the $m=2$ numerology.
+This is AI-assisted exploratory research and has not been peer reviewed;
+every claim is labelled exact, box-checked, or open, and each is
+reproducible from a cited script.
+\end{abstract}
+
+\tableofcontents
+
+%=====================================================================
+\section{Introduction}
+%=====================================================================
+
+\subsection{Background}
+
+The Jacobian Conjecture (Keller, 1939 \cite{Kel39}) asserted that every
+polynomial map $F:\C^n\to\C^n$ with constant nonzero Jacobian determinant
+(a \emph{Keller map}) is a polynomial automorphism. Despite the
+degree-reduction theory of Bass--Connell--Wright \cite{BCW82}, the formal
+tree-inversion formulas of Wright \cite{Wri87}, and decades of partial
+results collected in van den Essen's monograph \cite{vdE00}, the
+conjecture remained open in every dimension $n\ge 2$ until July 19, 2026,
+when Levent Alp\"oge announced (with Akhil Mathew; the map itself was
+produced by a large language model in response to Mathew's question) an
+explicit counterexample in dimension $3$ \cite{AM26}: the map
+\begin{equation}\label{eq:AM}
+F(x,y,z) \;=\; \bigl(\,(1+xy)^3 z + y^2(1+xy)(4+3xy),\;\;
+ y + 3x(1+xy)^2 z + 3xy^2(4+3xy),\;\;
+ 2x - 3x^2y - x^3 z\,\bigr)
+\end{equation}
+satisfies $\det DF \equiv -2$ yet identifies the three points
+$(0,0,-\tfrac14)$, $(1,-\tfrac32,\tfrac{13}{2})$,
+$(-1,\tfrac32,\tfrac{13}{2})$, all mapping to $(-\tfrac14,0,0)$. Hence
+the conjecture is false for all $n\ge 3$ (adjoin identity coordinates);
+the case $n=2$ remains open. The example was verified by the community
+and formalized in Lean~4; all claims about it in this paper are
+independently re-verified in the repository accompanying this paper
+(\texttt{scripts/verify\_counterexample.py}).
+
+The Jacobian Conjecture has a well-known reformulation in
+zero-dimensional perturbative quantum field theory, made precise by
+Abdesselam \cite{Abd03} on the basis of the tree formulas of
+\cite{BCW82,Wri87} and the constructive combinatorics of
+Abdesselam--Rivasseau \cite{AR95}: $F(\varphi)=J$ is the classical field
+equation of a three-component scalar model in $D=0$ spacetime dimensions
+with external source $J$; the linearization $DF(0)$ is the inverse
+propagator; the nonlinear monomials of $F$ are interaction vertices; and
+the perturbative inversion $\varphi(J)$ is exactly the sum over rooted
+tree Feynman graphs. Constant Jacobian determinant means all loop
+corrections are field-independent constants: the theory looks free at
+loop level. A genuine counterexample therefore provides, for the first
+time, an exactly solvable toy model in which perturbation theory is well
+defined at every order, loop corrections are trivial, and the theory
+still fails globally.
+
+\subsection{Contents and main results}
+
+This paper condenses, into a self-contained account, the exact-structure
+results obtained in the public repository
+\begin{center}
+\url{https://github.com/hcab14/JacobianConjectureQFT}
+\end{center}
+about the Alp\"oge--Mathew map and its two nearest
+$\C^*$-equivariance siblings. The main results are:
+
+\begin{itemize}
+\item \textbf{Section \ref{sec:qft}} sets up the $D=0$ QFT dictionary
+ for the map \eqref{eq:AM}: the first-order (conjugate-field) action,
+ the $\C^*$-grading with source weights $(1,-1,-2)$, the escape locus
+ $\{p=0\}$ (the non-properness set), and the reduction of $\det DF$ to
+ the two-dimensional invariant plane.
+\item \textbf{Section \ref{sec:obs}} gives the exact structure of the
+ observable algebra $\im F^*$: $\C(x,y,z)$ is free with basis
+ $\{1,x,x^2\}$ over the fraction field of $\im F^*$, every polynomial
+ observable has a unique computable normal form
+ $c_0(F)+c_1(F)x+c_2(F)x^2$, and $x$ is \emph{not integral} over
+ $\im F^*$ --- an exact escape-curve certificate showing that no
+ finite-module refinement is possible (Theorems \ref{thm:basis},
+ \ref{thm:nonintegral}).
+\item \textbf{Section \ref{sec:redw}} states the exact reduced Keller
+ identity for the whole weight family $(1,-1,-m)$:
+ $\det DF = \det M$ and $R^m \det M = J_2(PR^m, QR)$, reducing the 3D
+ Keller problem to two variables (Proposition \ref{prop:redw}).
+\item \textbf{Section \ref{sec:213}} treats the weight system
+ $(2,-1,-3)$, whose invariant ring is an $A_1$ quadric cone: a
+ chart-based reduced Keller identity, a complete classification of the
+ degree-$1$ Keller box (two families of tame automorphisms, Theorem
+ \ref{thm:213class}), provable emptiness of the $\Z_2$ and $\Z_3$
+ stabilizer-jump mechanisms in two boxes, and an honest account of the
+ computational wall met by the degree-$2$ box.
+\item \textbf{Section \ref{sec:113}} contains the main new theorem: for
+ the weight system $(1,-1,-3)$ the Keller condition in the $v$-linear
+ class is solved \emph{completely, for all $w$-degrees}, by a Wronskian
+ stratification (Theorem \ref{thm:113main}). Every Keller map in the
+ class is a tame automorphism; the $3{:}1$ orbifold mechanism is empty;
+ and the Alp\"oge--Mathew mechanism is obstructed at $m=3$ by an exact
+ numerological incompatibility between the polynomiality box and the
+ stratum equations (Section \ref{sec:numerology}). One substratum
+ ($D_3$ with non-squarefree data) is closed only inside Gr\"obner boxes
+ and is stated as a gap (Section \ref{sec:gap}).
+\item \textbf{Sections \ref{sec:qftread} and \ref{sec:outlook}} give the
+ QFT interpretation --- the non-properness defect appears rigidly
+ attached to the $m=2$ numerology; no new ($\Z_3$) anomaly class
+ materializes in either sibling --- and the outlook.
+\item \textbf{Section \ref{sec:repro}} tabulates the scripts that
+ machine-verify every claim, with runtimes.
+\end{itemize}
+
+\subsection{Provenance and verification}\label{sec:provenance}
+
+This paper reports \textbf{AI-assisted exploratory research}: it was
+produced in interactive sessions with AI coding agents (large language
+model agents wrote and ran the verification scripts), and it has
+\textbf{not been peer reviewed}. The counterexample itself is due to
+Alp\"oge and Mathew \cite{AM26}; this work only studies it. The claims
+should be read with the following calibration, which the text states
+case by case:
+
+\begin{itemize}
+\item \emph{Exact / symbolic results} (the bulk of the paper): every
+ displayed identity and every emptiness claim stated as proved is
+ verified by exact symbolic computation --- sympy \cite{sympy} over
+ $\Q$, and Gr\"obner-basis certificates computed with msolve
+ \cite{msolve} and Singular \cite{Singular} --- in the cited scripts of
+ the public repository. ``Verified'' means the script passes, within
+ the stated scope; the scope lines (often box- or chart-limited)
+ matter and are always given.
+\item \emph{Numerical results} (e.g.\ the $S_3$ monodromy of the three
+ sheets, rigidity continuation): labelled as evidence, not proof.
+\item \emph{Interpretation} (the QFT and anomaly readings): clearly
+ flagged as such.
+\end{itemize}
+
+Every theorem and proposition below cites the repository script that
+asserts it (for the main theorem this is
+\texttt{scripts/search\_113.py}); Section \ref{sec:repro} lists the
+commands and runtimes needed to reproduce all of them. Corrections and
+counter-arguments are welcome.
+
+\subsection{Notation}\label{sec:notation}
+
+Throughout, $F=(F_1,F_2,F_3):\C^3\to\C^3$ is a polynomial map in source
+coordinates $\varphi=(x,y,z)$ with target (source-of-the-QFT)
+coordinates $J=(a,b,c)$. $DF$ is the Jacobian matrix and a \emph{Keller
+map} has $\det DF \equiv \kappa \in \C^\times$. For a weight system
+$(1,-1,-m)$ we write
+\[
+w = xy, \qquad v = x^m z
+\]
+for the generators of the invariant ring, and
+\[
+J_2(A,B) \;=\; \partial_w A\,\partial_v B - \partial_v A\,\partial_w B
+\]
+for the Jacobian of two functions of $(w,v)$. Primes denote $d/dw$. For
+the weight system $(2,-1,-3)$ the invariants are $u_1=xy^2$,
+$u_2=x^2yz$, $u_3=x^3z^2$ with chart coordinates $(t,p,q)$ as in Section
+\ref{sec:213}. The polynomials
+\[
+p \;=\; 27a^2c^2 - 18abc + b^3c - b^2 + 16a, \qquad
+D_0 \;=\; 27ac^2 - 9bc + 8
+\]
+are the escape (non-properness) polynomial and the fiber-parametrization
+discriminant factor of the Alp\"oge--Mathew map (the symbol $p$ is also
+used for the chart coordinate $u_1$ in Section \ref{sec:213} and for
+lowercase coefficient functions $p_0,p_1$ in Section \ref{sec:113}; the
+context always disambiguates).
+
+%=====================================================================
+\section{The Alp\"oge--Mathew map as a zero-dimensional QFT}
+\label{sec:qft}
+%=====================================================================
+
+\subsection{The counterexample and the dictionary}
+
+Direct computation (\texttt{scripts/verify\_counterexample.py}) confirms
+$\det DF \equiv -2$ for the map \eqref{eq:AM} and the triple fiber over
+$(-\tfrac14,0,0)$. Note that all three colliding points are real: the
+restriction $F:\R^3\to\R^3$ is a real polynomial local diffeomorphism
+with \emph{constant} Jacobian that fails to be injective.
+
+One would like to write $F(\varphi)=J$ as the stationarity condition of
+an action $S(\varphi)$, but that is impossible: $F$ is a gradient iff
+$DF$ is symmetric, and here already
+$\partial F_1/\partial z|_0 = 1 \ne 2 = \partial F_3/\partial x|_0$.
+The standard remedy \cite{Abd03} is a conjugate (auxiliary) field
+$\bar\varphi=(\bar x,\bar y,\bar z)$ and the first-order action
+\[
+S(\bar\varphi,\varphi) = \bar\varphi\cdot\bigl(F(\varphi)-J\bigr),
+\qquad
+Z(J) = \int d^3\bar\varphi\, d^3\varphi\; e^{-S(\bar\varphi,\varphi)},
+\]
+where the $\bar\varphi$-integral localizes $Z(J)$ on
+$\delta^3(F(\varphi)-J)$. The ghost sector that would produce
+$\det DF(\varphi)$ is trivial here, contributing only the constant
+$-2$. Splitting $S = S_{\rm free} + S_{\rm int}$ with
+$S_{\rm free} = \bar\varphi\cdot L\varphi - \bar\varphi\cdot J$,
+$L = DF(0)$, the interaction consists of thirteen vertices, each with
+exactly one $\bar\varphi$-leg, from cubic ($\bar x\, y^2$, $\bar y\, xz$,
+$\bar z\, x^2y$) to octic ($\bar x\, x^3y^3z$). The one-point function
+$\langle\varphi\rangle = G(J)$ is the formal inverse of $F$: Wick
+contraction generates precisely the Bass--Connell--Wright--Wright sum
+over rooted trees \cite{BCW82,Wri87}, with no loop corrections beyond
+the constant $\det DF = -2$.
+
+Two facts about this expansion, established in the repository and used
+below only as context, are worth recording. First, the tree series
+\emph{converges}, with finite nonzero radius; it is the Taylor series of
+one branch of an explicit degree-3 algebraic function: Gr\"obner
+elimination (\texttt{scripts/branch\_locus.py}) shows that the
+$x$-coordinate of any preimage of $(a,b,c)$ satisfies the eliminant
+cubic
+\begin{equation}\label{eq:cubic}
+p\,x^3 + q\,x + r = 0,\qquad
+q = 4-3bc, \qquad r = -2c,
+\end{equation}
+with $p$ as in Section \ref{sec:notation}. Second, what fails is
+\emph{globality}, not summability: on $\{p=0\}$ the cubic drops degree
+and a solution sheet escapes to infinity in field space. The set
+$\{p=0\}$ is exactly the non-properness set of $F$ in the sense of
+Jelonek \cite{Jel93}, the perturbative vacuum $J=0$ lies \emph{on} it,
+and the two non-perturbative sheets over the vacuum sit at infinity,
+invisible to every order of perturbation theory. Off $\{p=0\}$ the map
+is a genuine 3-sheeted covering (being \'etale, sheets never merge at
+finite points); its geometric monodromy is the full $S_3$
+(\emph{numerical} evidence, two independent loops;
+\texttt{scripts/monodromy.py}).
+
+\subsection{\texorpdfstring{$\C^*$}{C*}-equivariance and reduction to
+the invariant plane}
+\label{sec:equivariance}
+
+The model is equivariant under the $\C^*$-action
+$\lambda.(x,y,z) = (\lambda x, \lambda^{-1}y, \lambda^{-2}z)$: the
+components of $F$ scale with weights $(-2,-1,1)$, so the sources
+$(a,b,c)$ carry weights $(-2,-1,1)$ and every term of the action has
+weight $0$. The invariant ring of the source action is the \emph{free}
+polynomial ring $\C[w,v]$ with $w=xy$, $v=x^2z$, and the
+Alp\"oge--Mathew map is exactly of the equivariant normal form
+\[
+F = \Bigl(\frac{P(w,v)}{x^{2}},\ \frac{Q(w,v)}{x},\ x\,R(w,v)\Bigr),
+\]
+with
+\[
+P_{\rm AM} = (1+w)^3 v + w^2(1+w)(4+3w),\quad
+Q_{\rm AM} = w + 3(1+w)^2 v + 3w^2(4+3w),\quad
+R_{\rm AM} = 2 - 3w - v .
+\]
+For such maps $\det DF$ descends to a polynomial in $(w,v)$ alone, so
+the 3D Keller condition is a 2D problem --- this is the special case
+$m=2$ of Proposition \ref{prop:redw} below, and it is the engine of the
+classification results in Sections \ref{sec:213} and \ref{sec:113}. The
+counterexample mechanism is a \emph{stabilizer jump}: the target
+$a$-axis (weight $-2$) has stabilizer $\Z_2$, so a free source orbit
+mapping into it (a common zero of $(Q,R)$ with $P\ne0$) is $2{:}1$
+--- realized for \eqref{eq:AM} along the explicit curve
+$\varphi(s) = (\pm s, \mp\tfrac{3}{2s}, \tfrac{13}{2s^2})$ with
+$F(\varphi(s)) = (-\tfrac{1}{4s^2},0,0)$.
+
+%=====================================================================
+\section{The exact structure of the observable algebra
+\texorpdfstring{$\im F^*$}{im F*}}
+\label{sec:obs}
+%=====================================================================
+
+The pullback $F^*:\C[a,b,c]\to\C[x,y,z]$, $F^*\mathcal{O} =
+\mathcal{O}\circ F$, is injective ($F$ is dominant) and not surjective
+($F$ is $3$-to-$1$): the polynomial observables of the ``redefined
+field'' $F(\varphi)$ form a proper subalgebra. This section makes the
+cokernel completely explicit. All statements are asserted exactly in
+\texttt{scripts/missing\_observables.py} ($\sim$15 s).
+
+\begin{theorem}[Field-level structure of $\im F^*$; verified]
+\label{thm:basis}
+Let $K = \C(a,b,c) \hookrightarrow L = \C(x,y,z)$ via $F^*$. Then:
+\begin{enumerate}
+\item $L = K(x)$: adjoining the single coordinate $x$ gives everything;
+ $y$ and $z$ are explicit $K$-rational expressions in $x$ with
+ denominators involving only $D_0(F)$ (the fiber parametrization of the
+ repository, read backwards).
+\item $[L:K]=3$ with basis $\{1,x,x^2\}$: $x$ satisfies the eliminant
+ cubic \eqref{eq:cubic} with coefficients evaluated at $F$, and the
+ cubic is irreducible over $K$.
+\item \emph{Normal form:} every polynomial observable
+ $\mathcal{O}(x,y,z)$ is uniquely
+ \[
+ \mathcal{O} \;=\; c_0(F) + c_1(F)\,x + c_2(F)\,x^2,
+ \qquad c_i \in \C(a,b,c),
+ \]
+ computable by one polynomial division (reduction mod the eliminant);
+ the denominators of the $c_i$ are powers of $D_0$ times powers of the
+ escape polynomial $p$.
+\item \emph{Membership criterion:} $\mathcal{O}$ is a function of the
+ redefined field alone iff $c_1 = c_2 = 0$. The missing observables
+ are, at field level, the free module generated by $\{x, x^2\}$ over
+ $\im F^*$ --- precisely the two sheet-separating degrees of freedom of
+ the degree-3 covering.
+\end{enumerate}
+\end{theorem}
+
+Worked examples (asserted): $F_1 \mapsto (a,0,0)$;
+$F_3^2 - 5F_2 \mapsto (c^2-5b,\,0,\,0)$; and
+\[
+y \;=\; \frac{81abc^2 - 72ac - 15b^2c + 16b}{2D_0}
+ \;+\; \frac{3p}{D_0}\,x
+ \;-\; \frac{3(9ac-b)\,p}{2D_0}\,x^2 ,
+\]
+with a similar expansion for $z$ whose separator coefficients also carry
+the factor $p$. The escape polynomial appears \emph{verbatim} in the
+separator coefficients: the amount by which a coordinate fails to be an
+observable of $F(\varphi)$ is proportional to the non-properness
+polynomial.
+
+\begin{theorem}[No finite-module version; exact escape certificate;
+verified]\label{thm:nonintegral}
+$x$ is not integral over $\im F^*$. Along the curve
+\[
+\varphi(T) \;=\; \Bigl(T,\; y_0,\; \frac{2T - 3T^2y_0 - c_3}{T^3}\Bigr),
+\]
+the source escapes ($x = T \to \infty$) while $F(\varphi(T))$ converges
+to the finite target
+$\bigl(y_0^2(1-c_3y_0),\; y_0(4-3c_3y_0),\; c_3\bigr)$, which lies
+exactly on the wall $\{p=0\}$ (this is a rational parametrization of the
+Jelonek set by $(y_0,c_3)$). An integral element must stay bounded when
+its coefficients do, so no monic relation for $x$ over $\C[a,b,c]$
+exists; in particular $\C[x,y,z]$ is not a finite module over
+$\im F^*$.
+\end{theorem}
+
+\begin{remark}
+This is the ring-theoretic face of non-properness: for these dominant
+Keller maps, finite module $\Leftrightarrow$ proper map, and a proper
+Keller map would be injective. Every counterexample to the Jacobian
+Conjecture must therefore exhibit this infinite-module pathology; the
+normal form of Theorem \ref{thm:basis} is the best possible structure
+statement.
+\end{remark}
+
+Membership can be decided cheaply: field-level membership by the normal
+form (one division); strict polynomial membership by the standard
+tag-variable Gr\"obner test; and for the coordinates themselves a single
+exact fiber computation suffices --- the fiber over $F(1,2,3)$ consists
+of three points whose $x$-, $y$- and $z$-coordinates are pairwise
+distinct (verified), and any element of $\im F^*$ is constant on fibers.
+
+\emph{QFT reading.} The observable algebra of the redefined field has
+corank $2$ as a module inside the full observable algebra, with explicit
+generators $x, x^2$ for the quotient: the operators that distinguish the
+three classical vacua over a source $J$. They are exactly the
+observables that perturbation theory around one vacuum constructs as
+algebraic functions of $J$ (branches of the cubic) and that no
+polynomial function of $J$ represents; they cease to exist as finite
+quantities exactly where $p = 0$. ``Which observables are missing'' and
+``where does the theory degenerate'' have the same answer.
+
+%=====================================================================
+\section{The reduced Keller identity for the family
+\texorpdfstring{$(1,-1,-m)$}{(1,-1,-m)}}
+\label{sec:redw}
+%=====================================================================
+
+The reduction used for the Alp\"oge--Mathew system in Section
+\ref{sec:equivariance} holds uniformly in the weight family
+$(1,-1,-m)$. It is proved as an identity of differential polynomials
+(sympy applied to undetermined functions --- not a spot check) in
+\texttt{scripts/reduction\_113.py}, module \texttt{jcqft/reduction\_w.py}.
+
+\begin{proposition}[Reduced Keller identity; verified for $m\le 4$,
+uniform proof]\label{prop:redw}
+Fix $m \ge 1$ and the source action
+$\lambda.(x,y,z) = (\lambda x, \lambda^{-1}y, \lambda^{-m}z)$, with free
+invariant ring $\C[w,v]$, $w = xy$, $v = x^m z$. Invertibility of
+$DF(0)$ forces the component weights of an equivariant $F$ to be a
+permutation of $(-m,-1,1)$; fixing the order,
+\[
+F \;=\; \Bigl(\frac{P(w,v)}{x^{m}},\ \frac{Q(w,v)}{x},\ x\,R(w,v)\Bigr).
+\]
+Then:
+\begin{enumerate}
+\item $F$ is a polynomial map iff every monomial $w^jv^k$ of $P$
+ satisfies $j + mk \ge m$ and every monomial of $Q$ satisfies
+ $j + mk \ge 1$ ($R$ is unconstrained);
+\item $\det DF$ is a function of $(w,v)$ alone:
+ \[
+ \det DF \;=\; \det M \;=\;
+ -m\,P\,J_2(Q,R) + Q\,J_2(P,R) + R\,J_2(P,Q),
+ \]
+ where $M$ is the $3\times3$ matrix with rows
+ $(d_iS_i,\ \partial_wS_i,\ \partial_vS_i)$,
+ $(S_1,S_2,S_3) = (P,Q,R)$, $d = (-m,-1,1)$;
+\item \emph{compact form:} $R^m \det M = J_2(P R^m,\, Q R)$
+ identically, so
+ \[
+ \det DF \equiv \kappa
+ \quad\Longleftrightarrow\quad
+ J_2(P R^m,\, Q R) = \kappa\, R^m .
+ \]
+\end{enumerate}
+The 3D Keller problem for this equivariance class is therefore a 2D
+problem, for every $m$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+In the coordinates $(x,w,v)$ one has
+$\det \partial(x,w,v)/\partial(x,y,z) = x^{m+1}$, and the equivariant
+form gives $\det DF = x^{\sum d_i + m + 1}\det M = \det M$ since
+$\sum d_i = -m$. The script proves the identity (and the compact form)
+with $P,Q,R$ undetermined functions for $m = 1,2,3,4$; the chain-rule
+computation is uniform in $m$. Consistency at $m=2$: the machinery
+reproduces the known reduction on the Alp\"oge--Mathew map, with
+residual $0$ at $\kappa = -2$. The polynomiality box is verified in both
+directions on exhaustive monomial boxes at $m=3$.
+\end{proof}
+
+Two gauge structures accompany the reduction and are used throughout
+Section \ref{sec:113}. First, $DF(0) = \antidiag(p_1(0), q_0'(0),
+r_0(0))$, where $p_1$ is the $v$-coefficient of $P$, etc.; target
+scalings normalize $p_1(0) = q_0'(0) = r_0(0) = 1$, hence (at $m=3$)
+$\kappa = \det DF(0) = -1$. Second, the source shears
+$z \mapsto z + y^m h(xy)$ act on the invariants as
+$v \mapsto v + w^m\,h(w)$ --- the box-preserving part of the full
+\emph{$v$-shear group} $v \mapsto v + h(w)$, $h \in \C[w]$ arbitrary,
+under which $\det M$ is exactly invariant (asserted). The full $v$-shear
+group is an analysis tool: one solves modulo shears first and imposes the
+polynomiality box last.
+
+%=====================================================================
+\section{The weight system \texorpdfstring{$(2,-1,-3)$}{(2,-1,-3)}:
+\texorpdfstring{$A_1$}{A1}-cone reduction and degree-1
+classification}\label{sec:213}
+%=====================================================================
+
+All claims in this section are proved by assertion in
+\texttt{scripts/search\_213.py} and its module
+\texttt{jcqft/reduction\_213.py}; the repository document
+\texttt{docs/SEARCH\_213.md} gives the full account.
+
+\subsection{Why this weight system}
+
+For $\lambda.(x,y,z) = (\lambda^2x, \lambda^{-1}y, \lambda^{-3}z)$ the
+orbit space has \emph{two} orbifold strata instead of the single one of
+the Alp\"oge--Mathew system: the target $x$-axis has stabilizer $\Z_2$
+(the same $2{:}1$ mechanism that powers the counterexample) and the
+target $z$-axis has stabilizer $\Z_3$ (a free orbit mapping into it
+would be $3{:}1$ --- cube-root escape and a $\Z_3$ monodromy class, a
+candidate for a different global-anomaly class). Unlike the
+$(1,-1,-m)$ family the invariant ring is not free, so the reduction of
+Proposition \ref{prop:redw} does not apply and was rebuilt.
+
+\subsection{Invariant theory and normal form (exact)}
+
+Monomials $x^iy^jz^k$ are invariant iff $2i - j - 3k = 0$; the invariant
+ring is the $A_1$ quadric cone
+\[
+R \;=\; \C[u_1,u_2,u_3]/(u_2^2 - u_1u_3),
+\qquad
+u_1 = xy^2,\quad u_2 = x^2yz,\quad u_3 = x^3z^2,
+\]
+verified through a unique normal form for invariant monomials
+(exhaustively for degree $\le 12$). The spaces of weight-$d$
+polynomials are $R$-modules with verified syzygy-free splittings, e.g.\
+$M_{-1} = yR \oplus xz\,\C[u_3]$ and $M_{-3} = zR \oplus y^3\C[u_1]$.
+Invertibility of $DF(0)$ forces the component weights to be a
+permutation of $(2,-1,-3)$, and every candidate has the normal form
+\[
+F \;=\; \bigl(\,x\,A(u),\ \ y\,B(u) + xz\,C(u_3),\ \
+ z\,D(u) + y^3E(u_1)\,\bigr),
+\qquad
+DF(0) = \mathrm{diag}\bigl(A(0), B(0), D(0)\bigr),
+\]
+with no polynomiality side conditions (every polynomial choice of
+$(A,B,C,D,E)$ assembles to a polynomial map).
+
+\subsection{Chart-based reduced Keller identity (exact)}
+
+The $\C^*$-action is free on $\{y\ne 0\}$, and on $\{x\ne0,\,y\ne0\}$
+the slice parametrization
+\[
+\Phi(t,p,q) \;=\; \Bigl(\frac{p}{t^2},\ t,\ \frac{q\,t^3}{p^2}\Bigr),
+\qquad t = y,\ p = u_1,\ q = u_2,
+\]
+pulls the invariants back to $(p, q, q^2/p)$ --- the cone in its chart
+$u_3 = u_2^2/u_1$. Writing $\tilde a = A(p,q,q^2/p)$,
+$\tilde b = B(\cdot) + \tfrac{q}{p}C(q^2/p)$,
+$\tilde e = \tfrac{q}{p^2}D(\cdot) + E(p)$, one gets
+$F\circ\Phi = (p\tilde a/t^2,\ t\tilde b,\ t^3\tilde e)$ and, by the
+chain rule,
+\begin{equation}\label{eq:213identity}
+\det DF \;=\; \Delta(p,q) \;=\;
+p^2\Bigl(2\,p\tilde a\,J_2(\tilde b,\tilde e)
+ + \tilde b\,J_2(p\tilde a,\tilde e)
+ - 3\,\tilde e\,J_2(p\tilde a,\tilde b)\Bigr),
+\end{equation}
+with $J_2$ the Jacobian in $(p,q)$: a rational function of the two
+invariant chart coordinates alone, with denominator a pure power of
+$p$. The identity is proved with undetermined functions and re-verified
+against the raw 3D determinant and against an intrinsic normal-form
+determinant on the cone. Since $\Phi$ parametrizes a dense open set,
+$\det DF \equiv \kappa$ iff
+$\operatorname{numer}(\Delta-\kappa) \equiv 0$ in $\C[p,q]$ --- a finite,
+\emph{trilinear} polynomial system (degree $\le 1$ in each of the blocks
+$A \mid B,C \mid D,E$). Gauge: target scalings set $A(0)=B(0)=D(0)=1$,
+$\kappa = 1$; the constant $xz$-shear sets $C(0)=0$ (box-preservingly);
+$E(0)$ cannot be gauged away and is kept as an unknown.
+
+The two stabilizer-jump mechanisms become pointwise conditions: a free
+orbit over $(p_0,q_0)$, $p_0\ne0$, maps $2{:}1$ onto the target
+$x$-axis iff $\tilde b = \tilde e = 0 \ne \tilde a$ there, and $3{:}1$
+onto the target $z$-axis iff $\tilde a = \tilde b = 0 \ne \tilde e$;
+analogous conditions cover the $y=0$ stratum, and the $x=0$ stratum
+supports no mechanism. Any Keller solution with such a witness would
+automatically be a counterexample.
+
+\subsection{The degree-1 box: complete classification}
+
+\begin{theorem}[Degree-1 classification; exact, box-complete]
+\label{thm:213class}
+In the box $A,B,D$ of degree $\le 1$ in $(u_1,u_2,u_3)$, $C = c_3u_3$,
+$E = e_0 + e_1u_1$ (canonical, syzygy-free), with the gauge above ---
+12 unknowns, 20 trilinear equations --- the Keller variety is
+2-dimensional and decomposes exactly (not just up to closure) as
+$V(I) = V_1 \cup V_2$:
+\begin{enumerate}
+\item $V_1$ (elementary $z$-shears):
+ $F = (x,\ y,\ z + y^3(e_0 + e_1u_1))$, i.e.\
+ $z \mapsto z + y^3h(xy^2)$;
+\item $V_2$ ($w$-shears): with $w = xz - \nu y$ and parameters
+ $(\lambda,\nu)$,
+ \[
+ F = \bigl(x,\ y + \lambda x w^3,\ z + \lambda\nu w^3\bigr),
+ \qquad w\circ F = w,
+ \]
+ an elementary shear in the coordinates $(x,w,z)$.
+\end{enumerate}
+Both families are tame automorphisms with explicit polynomial inverses
+(verified by composition) and generic fiber cardinality $1$. Moreover
+all six orbifold-mechanism systems ($2{:}1$ and $3{:}1$, at the
+torus-normalized witness points and on the $y=0$ stratum) are provably
+empty (Gr\"obner basis $=[1]$).
+\end{theorem}
+
+The completeness proof is exact: six relations have powers inside the
+ideal $I$ (Gr\"obner reduction certificates), so they vanish on the
+whole variety, and the ideal element $c_3e_1^3 \in I$ splits the variety
+into $\{c_3\ne0\}$ (pinned to $V_2$), $\{e_1\ne0\}$ (pinned to $V_1$)
+and $\{c_3 = e_1 = 0\}$ (pinned to $V_1$ again). The residual 2-torus
+acts freely on witness points and preserves box and gauge, so the
+pointwise mechanism checks exhaust all witnesses.
+
+In the enlarged \emph{CE2 box} ($C \in \mathrm{span}\{u_3,u_3^2\}$,
+$E \in \mathrm{span}\{1,u_1,u_1^2\}$; 14 unknowns, 34 equations) the six
+mechanism emptiness queries are again all empty (exact, over $\Q$;
+longest single Gr\"obner basis $\approx 5$ min). A full variety
+decomposition of CE2 was not attempted, so in that box only the
+stabilizer-jump mechanisms are excluded --- a Keller map could in
+principle identify two distinct free orbits; ruling that out needs the
+full decomposition, done only for the degree-1 box. (For
+Alp\"oge--Mathew the realized mechanism \emph{is} the stabilizer jump,
+which motivates prioritizing it.)
+
+\subsection{The degree-2 box: an honest wall}\label{sec:213wall}
+
+The full degree-2 box (29 unknowns, 57 Keller equations plus witness
+conditions) is \textbf{unresolved, not ruled out}, after a serious
+tooling campaign whose obstruction is now precisely mapped
+(\texttt{scripts/deg2\_213\_elim.py}):
+\begin{enumerate}
+\item sympy's Buchberger: no query finishes ($>25$ min each, also mod
+ $p$).
+\item msolve F4 \cite{msolve} (under a 16 GB address-space cap): all six
+ queries exceed the cap over $\Q$ --- and, decisively, also mod three
+ independent $\sim$30-bit primes, even after the exact reductions
+ below; the memory blow-up is intrinsic to F4 on this system, not a
+ coefficient-growth artifact.
+\item Exact structural reductions (all asserted): the 57 Keller
+ equations are triangular in the $A$-block with integer pivots in
+ $\{2,\dots,7\}$, so the $A$-block eliminates by a global polynomial
+ substitution valid over any field of characteristic $0$ or $p > 7$
+ (49 equations, 21 unknowns); the Rabinowitsch saturation variable is
+ unnecessary because $\Delta = \tilde aX + \tilde bY + \tilde eZ$
+ identically; witness equations eliminate 1--2 more unknowns. Net:
+ 19--20 unknowns per query --- still past the 16 GB cap for F4, even
+ mod $p$.
+\item Singular's truncated \texttt{std()} ladder \cite{Singular}
+ (degree bound; one-sided: finding $1$ below the bound is an exact
+ certificate): mod $p$, degree bounds 4 and 5 complete in under a
+ minute with no certificate; bounds 6 and 7 exceed 20-minute budgets.
+ Hence the unit certificate, if the ideal is the unit ideal, has
+ degree $\ge 6$.
+\end{enumerate}
+Plausible routes forward: much larger memory, further stratification,
+or numerical algebraic geometry (homotopy continuation) for discovery
+with exact certification of any find; see Section \ref{sec:outlook}.
+
+\subsection{Verdict}
+
+The weight system $(2,-1,-3)$ \emph{does} support nonlinear Keller maps
+--- two 2-parameter families --- but every Keller map in the degree-1 box
+is a tame automorphism, and both orbifold mechanisms are provably empty
+in the degree-1 and CE2 boxes. The $\Z_3$ stratum made this the most
+promising place to look for a new global-anomaly class; the answer in
+the searched boxes is a clean no-go. The contrast with $(1,-1,-2)$,
+where the Alp\"oge--Mathew defect exists already at low degree, suggests
+the defect needs the free invariant ring of the $(1,-1,-m)$ family, or
+larger boxes; the $A_1$ cone singularity appears to rigidify the
+low-degree Keller moduli. (Interpretation, clearly flagged as such.)
+
+%=====================================================================
+\section{The weight system \texorpdfstring{$(1,-1,-3)$}{(1,-1,-3)}:
+complete classification of the \texorpdfstring{$v$}{v}-linear
+class}\label{sec:113}
+%=====================================================================
+
+This is the main new result. Every identity and every emptiness claim
+is proved by assertion in \texttt{scripts/search\_113.py} (default run
+$\sim$20 min; \texttt{--full} $\sim$1 h adds larger Gr\"obner boxes);
+the reduction machinery is Proposition \ref{prop:redw} at $m=3$.
+
+\subsection{Setup: why \texorpdfstring{$(1,-1,-3)$}{(1,-1,-3)}, and the
+shape of the problem}
+
+For $\lambda.(x,y,z) = (\lambda x, \lambda^{-1}y, \lambda^{-3}z)$ the
+invariant ring is free --- $\C[w,v]$ with $w = xy$, $v = x^3z$ ---
+exactly as in the Alp\"oge--Mathew case $m=2$. The target coordinates
+carry weights $(-3,-1,1)$, so the target $a$-axis has stabilizer
+$\Z_3$: a free orbit mapping into it is $3{:}1$ (cube-root escape,
+$\Z_3$ monodromy). Moreover \emph{no $2{:}1$ mechanism exists at all}
+in this weight system: every other coordinate axis and every coordinate
+pair has trivial stabilizer, so the only stabilizer-jump
+non-injectivity available is the $3{:}1$ one. Since the
+Alp\"oge--Mathew counterexample is exactly a stabilizer-jump ($2{:}1$)
+map in the $m=2$ member of the same family, $(1,-1,-3)$ is the natural
+place to ask whether the mechanism \emph{transplants}, with the residual
+$\Z_2$ upgraded to $\Z_3$.
+
+By Proposition \ref{prop:redw}, every candidate is
+$F = (P/x^3,\ Q/x,\ xR)$ with polynomiality box $j + 3k \ge 3$ for the
+monomials $w^jv^k$ of $P$ and $j + 3k \ge 1$ for those of $Q$; the gauge
+$p_1(0) = q_0'(0) = r_0(0) = 1$ fixes $\kappa = -1$.
+
+The class searched is the \emph{$v$-linear class}: $P, Q, R$ of degree
+$\le 1$ in $v$ and \emph{arbitrary} degree in $w$,
+\[
+P = p_0(w) + p_1(w)\,v,\qquad
+Q = q_0(w) + q_1(w)\,v,\qquad
+R = r_0(w) + r_1(w)\,v,
+\]
+with box/invertibility constraints $p_0 \in w^3\C[w]$,
+$q_0 \in w\,\C[w]$, $p_1(0) = q_0'(0) = r_0(0) = 1$. This is the exact
+analogue of the class containing the Alp\"oge--Mathew map at $m=2$
+(whose $P,Q,R$ are all $v$-linear). Since $\det M + 1$ has $v$-degree
+$2$, the Keller condition is three ODE-type equations in $\C[w]$,
+\[
+E_2 = 0,\qquad E_1 = 0,\qquad E_0 = \kappa = -1,
+\]
+with (all asserted from $\det M$, not copied from $m=2$)
+\[
+E_2 = 2\bigl[\,q_1(p_1r_1)' - 2(p_1r_1)q_1'\,\bigr],
+\qquad
+E_0 = -3p_0(q_0'r_1 - q_1r_0') + q_0(p_0'r_1 - p_1r_0')
+ + r_0(p_0'q_1 - p_1q_0'),
+\]
+and $E_1$ the mixed analogue,
+\[
+E_1 = -3p_0[Q,R]_1 - 3p_1[Q,R]_0 + q_0[P,R]_1 + q_1[P,R]_0
+ + r_0[P,Q]_1 + r_1[P,Q]_0,
+\]
+where $[A,B]_i$ denotes the $v^i$-part of $J_2(A,B)$. Unlike the
+degree-boxed searches of Section \ref{sec:213}, the $w$-direction here
+is \emph{unbounded}: the classification below is a theorem for the whole
+class, not for a box --- with one precisely-mapped exception (Section
+\ref{sec:gap}).
+
+\subsection{The Wronskian stratification}
+
+\begin{lemma}[Integration certificate; asserted]\label{lem:wronskian}
+$\bigl(p_1r_1/q_1^2\bigr)' = E_2/(2q_1^3)$. Hence on
+$\{E_2 = 0,\ q_1p_1r_1 \ne 0\}$ the rational function $p_1r_1/q_1^2$ has
+vanishing derivative, so
+\[
+p_1 r_1 \;=\; c\,q_1^2, \qquad c \in \C^\times,
+\]
+exactly; and $q_1 = 0$ or $r_1 = 0$ satisfy $E_2$ identically.
+\end{lemma}
+
+Since $p_1(0)=1$ forces $p_1 \ne 0$, the $v$-linear Keller problem
+stratifies as follows. In stratum D, the UFD solution of
+$p_1r_1 = cq_1^2$ is $p_1 = as^2g$, $q_1 = stg$, $r_1 = bt^2g$ with
+$g = \gcd(p_1,r_1)$, $\gcd(s,t)=1$, $ab = c$; $E_0$ is linear in
+$(p_1,q_1,r_1)$ with no derivatives of them, so $g \mid E_0 = \kappa$
+and $g$ is a unit (absorbed).
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\hline
+stratum & definition & verdict at $m=3$ \\
+\hline
+A & $q_1 = r_1 = 0$ & tame family (all $w$-degrees) \\
+B & $r_1 = 0,\ q_1 \ne 0$ & tame family (all $w$-degrees) \\
+C & $q_1 = 0,\ r_1 \ne 0$ & empty (all $w$-degrees) \\
+D0 & $s,t$ const ($p_1,q_1,r_1$ const) & empty (all degrees) \\
+D1 & $t$ const, $s$ nonconst (\emph{the AM-analogue}) &
+ empty (all degrees) \\
+D2 & $s$ const, $t$ nonconst & empty (all degrees) \\
+D3 & $s,t$ nonconst, coprime, both squarefree & empty (all degrees) \\
+$D_3'$ & $s$ or $t$ non-squarefree ($\deg p_1 \ge 4$ or $\deg r_1\ge4$) &
+ empty in Gr\"obner boxes; open beyond \\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{Cross-check at $m=2$.} The same $E_2$-integration at $m=2$ gives
+$p_1^2r_1 = c\,q_1^3$, and the Alp\"oge--Mathew data satisfies it with
+$c = -1/27$: $p_1 = (1+w)^3 = s^3$, $q_1 = 3(1+w)^2 = 3s^2$, $r_1 = -1$
+(asserted). That is, the Alp\"oge--Mathew map lives in the $m=2$
+analogue of stratum D1 --- the stratum that is \emph{empty} at $m=3$.
+The machinery does not spuriously kill the known counterexample; the two
+weight systems genuinely differ.
+
+\subsection{The main theorem}
+
+\begin{theorem}[Complete classification of the $v$-linear class,
+$m=3$; exact, all $w$-degrees, modulo the $D_3'$ gap of Section
+\ref{sec:gap}]\label{thm:113main}
+In the gauge $p_1(0) = q_0'(0) = r_0(0) = 1$, $\kappa = -1$, the
+complete solution set of the Keller condition in the $v$-linear class
+is the one-function-plus-one-parameter family
+\[
+\boxed{\ P = p_0 + v,\qquad Q = w + b_0P,\qquad R = 1,\qquad
+p_0 \in w^3\,\C[w],\ \ b_0 \in \C .\ }
+\]
+Every member assembles to
+$F = \bigl(p_0(xy)/x^3 + z,\ \ y + b_0x^2F_1,\ \ x\bigr)$: an
+elementary $z$-shear followed by the target shear
+$b \mapsto b + b_0\,ac^2$ --- a \emph{tame automorphism}, with explicit
+polynomial inverse verified by composition and generic fiber
+cardinality $1$. Strata C, D0, D1, D2 and D3 (with $s,t$ squarefree)
+are empty for every $w$-degree.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+We go stratum by stratum. Each step combines an identity chain
+asserted in \texttt{scripts/search\_113.py} with a one-line
+divisibility argument in $\C[w]$ (a nonzero constant has no
+nonconstant divisors).
+
+\emph{A.} $E_1 \equiv 0$ and $E_0 = -p_1(q_0r_0)' = \kappa$, so
+$p_1 \mid \kappa$, giving $p_1 = 1$ (gauge); then $q_0r_0 = w$ with
+$q_0(0) = 0$, $r_0(0) = 1$ forces $r_0 = 1$, $q_0 = w$; $p_0 \in
+w^3\C[w]$ stays free.
+
+\emph{B.} $E_1$ integrates ($(p_1r_0^2/q_1)' = r_0E_1/q_1^2$, asserted)
+to $p_1r_0^2 = c\,q_1$; then
+$E_0 = p_1\bigl[(p_0r_0^3)/c - q_0r_0\bigr]'$, forcing $p_1 = 1$,
+$r_0 \mid w$ with $r_0(0)=1$ so $r_0 = 1$, and $q_0 = b_0p_0 + w$,
+$q_1 = b_0 = 1/c$. Together with A (the case $b_0 = 0$) this gives the
+boxed family.
+
+\emph{C.} $(p_1/(q_0^4r_1))' = E_1/(q_0^5r_1^2)$ (asserted), so
+$E_1 = 0$ forces $p_1 = c\,q_0^4r_1$ and hence $p_1(0) = 0$,
+contradicting $p_1(0) = 1$.
+
+\emph{D0} ($p_1,q_1,r_1$ nonzero constants $\alpha,\beta,\gamma$):
+$E_1$ integrates to a linear relation; substituting into $E_0$ gives an
+exact derivative $[-(2\alpha\gamma/\beta)V^2 - \alpha\delta V]' =
+\kappa$ with $V = q_0 - (\beta/\alpha)p_0$, $V(0)=0$, $V'(0)\ne0$. Then
+$V \mid \kappa w$ forces $V = \varepsilon w$, whose quadratic term
+forces $2\alpha\gamma/\beta = 0$: impossible.
+
+\emph{D1} ($p_1 = As^2$, $q_1 = Bs$, $r_1 = C$, $s$ nonconstant --- the
+Alp\"oge--Mathew slot): the $v$-shear $h = -r_0/C$ sets $r_0 \equiv 0$;
+then $E_1$ is a linear ODE for $p_0$ with particular solution
+$p_0^* = (2A/B)sq_0$ and homogeneous solutions satisfying
+$Y^2 = e\,s^3$ (nonzero only if $s$ is a constant times a square). If
+$s$ is not: $E_0(p_0^*) = (2AC/B)\,q_0(s'q_0 - 2sq_0') = \kappa$ forces
+$q_0 = n$ constant and $s$ linear. If $s = cd^2$: $E_0$ factors with a
+factor $d \mid \kappa$, which kills it. The surviving sheared family
+$(s, q_0, p_0, r_0) = (s_0 + s_1w,\ n,\ (2A/B)ns,\ 0)$ has
+$\kappa = (2AC/B)n^2s_1 \ne 0$, so $n \ne 0$; but \emph{un-shearing
+into the box} ($p_0(0) = q_0(0) = 0$) forces $n = 0$. Empty.
+
+\emph{D2} ($p_1 = A$ constant): the shear $h = -p_0/A$ sets
+$p_0 \equiv 0$; $E_0 = -A(q_0r_0)' = \kappa$ makes $q_0r_0$ exactly
+linear, so one factor is constant. If $q_0 = \gamma$: $E_1$ forces $t$
+linear and $r_0 = (2C\gamma/B)t$, but un-shearing needs
+$\val_w(p_0 = -Ah) \ge 3$, hence $h(0) = 0$, hence $q_0(0) = \gamma \ne
+0$: contradiction with $q_0(0)=0$. If $r_0 = \delta$: $E_1$ gives
+$t \mid \delta^2t'$, so $t' = 0$: contradiction.
+
+\emph{D3} ($s,t$ nonconstant, coprime, squarefree): pass to the
+shear-invariant combinations $G_1 = tp_0 - asq_0$,
+$G_2 = btq_0 - sr_0$. Asserted identities express $E_1$ and a
+combination of $E_0, E_1$ through $G_1, G_2$ and
+$G_3 = btG_1 + asG_2$; $G_1 = 0$ or $G_2 = 0$ contradict
+$\kappa \ne 0$. Squarefree divisibility gives $s \mid G_1$,
+$t \mid G_2$; writing $Z = a\bar g_2 - b\bar g_1$ and the Wronskian
+$W = s't - st'$, one finds $E_1 = st(WZ - 2stZ')$ and
+$(Z^2t/s)' \propto Z(2stZ' - WZ)$, forcing $Z^2t = es$ and hence
+$Z = 0$. The $\kappa$-equation then reads
+$g(2stg' - Wg) = -b\kappa/(2a)$, so $g$ is a constant $c$ and
+$\kappa = (2a/b)c^2W$: Keller solutions exist iff the Wronskian $W$ is
+a nonzero constant, and they form the single shear-orbit
+$p_0 = as(q_0 + c/b)/t$, $r_0 = t(bq_0 - c)/s$. But $tp_0 =
+as(q_0 + c/b)$ evaluated at $w=0$ gives $p_0(0)t(0) = a\,s(0)\,c/b \ne
+0$, while the box forces $p_0(0) = 0$: empty for every degree.
+\end{proof}
+
+\begin{remark}
+The $v$-shear moves (arbitrary $h \in \C[w]$) are \emph{not}
+box-preserving; the box is imposed at the end through the jet
+conditions at $w = 0$. This is exactly where the $m=3$ obstruction
+lives (Section \ref{sec:numerology}).
+\end{remark}
+
+\subsection{The gap: \texorpdfstring{$D_3'$}{D3'}, and its closure in
+boxes}\label{sec:gap}
+
+The two steps $s \mid s'G_1 \Rightarrow s \mid G_1$ and
+$t \mid t'G_2 \Rightarrow t \mid G_2$ in the D3 argument need $s,t$
+squarefree. A non-squarefree $s$ or $t$ requires $\deg p_1 = 2\deg s
+\ge 4$ or $\deg r_1 = 2\deg t \ge 4$. This corner is closed by exact
+in-box Gr\"obner certificates (msolve \cite{msolve}, over $\Q$, under a
+16 GB memory cap):
+\begin{enumerate}
+\item \emph{Default run:} Keller $+$ ($r_1$ has a nonzero coefficient)
+ is the unit ideal in the box
+ $\deg(p_0,p_1,q_0,q_1,r_0,r_1) \le (4,2,3,2,2,2)$ --- covering strata
+ C and D wholesale ($\sim$5 s per coefficient).
+\item \emph{\texttt{--full}:} the same in the medium box
+ $\le (5,3,4,3,3,3)$, plus the four targeted non-squarefree
+ parametrizations $s = (1+\rho w)^2$ / $t = (n_0 + n_1w)^2$ with the
+ partner of degree $\le 2$ and $\deg(p_0,q_0,r_0) \le (6,5,4)$, each a
+ direct emptiness query in 18--19 unknowns. Status (2026-07-24, 30 GB
+ machine): the $s$-square/$t$-linear query is \textbf{empty} (exact,
+ 649 s); the remaining three hit msolve's 16 GB F4 memory wall --- the
+ same wall as Section \ref{sec:213wall} --- and remain formally
+ unresolved in the large box. They \emph{are} covered by the
+ medium-box $r_1 \ne 0$ queries up to $\deg r_1 \le 3$, so only the
+ $\deg = 4$ corner is genuinely open.
+\end{enumerate}
+Beyond the boxes, $D_3'$ is \emph{open}, though unpromising: the
+squarefree D3 analysis shows the entire stratum's solution set is one
+shear-orbit killed by the origin jet, and the non-squarefree variant
+only tightens the divisibility constraints. Independently of the gap,
+the classification is corroborated in-box by nilpotency certificates:
+on the $r_1 = 0$ slice of the small box, powers of the relevant
+coefficient combinations all lie in the Keller ideal, pinning the
+in-box variety exactly to the gauged family of Theorem
+\ref{thm:113main} (with its box truncation).
+
+\subsection{The \texorpdfstring{$3{:}1$}{3:1} mechanism is empty; no
+\texorpdfstring{$2{:}1$}{2:1} exists}
+
+\begin{corollary}[Verified]\label{cor:31}
+A $3{:}1$ stabilizer-jump witness needs a point $(w_0,v_0)$ with
+$Q = R = 0 \ne P$ on a free orbit $\{x \ne 0\}$ (the $x=0$ plane
+supports no mechanism: $F_3 \equiv 0$ there and the induced 2D map is
+linear in its orbit parameter). By Theorem \ref{thm:113main} every
+$v$-linear Keller map has $R = 1$ in the gauge --- $R$ never vanishes,
+so no witness exists, for any $w$-degree. Independent pointwise
+Gr\"obner queries (the residual torus moves any witness to $(1,1)$,
+$(1,0)$ or $(0,1)$; $(0,0)$ is excluded by $R(0,0)=1$) confirm
+emptiness in the small box. By weight arithmetic there is no $2{:}1$
+mechanism anywhere in this weight system, so the $v$-linear class of
+$(1,-1,-3)$ admits no orbifold-type counterexample at all.
+\end{corollary}
+
+The family members survive the repository's non-properness prefilter
+only through its documented false-positive class of nonlinear
+automorphisms (module \texttt{jcqft/prefilter.py}), and injectivity is
+re-checked directly: explicit polynomial inverses by composition, and
+generic fiber cardinality $1$ on samples.
+
+\textbf{Headline: no counterexample.} Every Keller map of the
+$v$-linear class is a tame automorphism.
+
+\subsection{Why Alp\"oge--Mathew does not transplant: the exact
+numerology}\label{sec:numerology}
+
+At $m=2$ the Alp\"oge--Mathew map sits in stratum D1 of its own family:
+$p_1 = s^3$, $q_1 = 3s^2$, $r_1 = -1$, $s = 1+w$ --- the same
+``$t$ constant'' slot that at $m=3$ produces the sheared family
+$q_0 = n$, $p_0 = (2A/B)ns$. The $m=3$ box demands $\val_w p_0 \ge 3$
+(from $j + 3k \ge 3$), while the family jets force $p_0(0) \ne 0$
+unless $n = 0$, i.e.\ $\kappa = 0$. At $m=2$ the box demands only
+$\val_w p_0 \ge 2$, \emph{and} the corresponding equations carry a
+different derivative-weighting ($E_0^{m=2} = q_0p_0' - 2p_0q_0' +
+\dots$), which is exactly what lets
+$P_{\rm AM} = (1+w)\bigl(v(1+w)^2 + w^2(3w+4)\bigr)$ thread the needle.
+The obstruction at $m=3$ is \emph{numerological and exact} --- not a
+failure to search far enough.
+
+\subsection{Honest limitations}
+
+\begin{enumerate}
+\item \emph{$v$-degree.} The class searched is $v$-linear (the
+ AM-analogue class). Ans\"atze of $v$-degree $\ge 2$ are untouched;
+ for them the Keller condition has higher $v$-degree and the Wronskian
+ stratification does not directly apply. (At $m=2$ the known
+ counterexample is $v$-linear; a heuristic, not an argument, for
+ prioritizing the class.)
+\item \emph{The $D_3'$ gap} (Section \ref{sec:gap}): closed only in
+ Gr\"obner boxes; open beyond, with the $\deg = 4$ corner the
+ genuinely open part.
+\item \emph{Gauge bookkeeping.} The classification is stated in the
+ gauge $p_1(0)=q_0'(0)=r_0(0)=1$, $\kappa=-1$; un-gauged solutions are
+ recovered by target/torus scalings, which change neither tameness,
+ properness nor fiber counts.
+\end{enumerate}
+
+%=====================================================================
+\section{QFT interpretation}\label{sec:qftread}
+%=====================================================================
+
+This section is interpretation and is flagged as such; the underlying
+facts are the exact statements of Sections \ref{sec:obs}--\ref{sec:113}.
+
+\emph{The defect and its name.} In QFT language the Alp\"oge--Mathew
+phenomenon is a \emph{non-properness defect}: a global consistency
+condition --- properness of the classical field map, equivalently local
+constancy of the preimage count $N(J)$ --- that is strictly stronger
+than every local criterion (the nonvanishing, indeed constant, Jacobian)
+and that standard field-redefinition arguments implicitly assume. It is
+not an anomaly in the strict cohomological sense (no symmetry is broken,
+nothing is loop-generated), but it shares the defining pattern of global
+anomalies: a manipulation valid by every local criterion fails through
+the global structure of configuration space. Its closest relative is the
+modern notion of anomalies in parameter space: dialing the external
+source around a closed cycle permutes the solution branches (the $S_3$
+monodromy --- numerical evidence), mediated entirely through infinity in
+field space. The exact observable-algebra statement of Section
+\ref{sec:obs} is the algebraic face of the same defect: $F^*$ is a
+monomorphism but not an automorphism of the observable algebra, the two
+missing module generators $x, x^2$ are the vacuum separators, and their
+separator coefficients carry the escape polynomial $p$ verbatim.
+
+\emph{What the sibling searches say.} The $(1,-1,-3)$ grading was the
+closest sibling of the Alp\"oge--Mathew theory with a $\Z_3$ orbifold
+stratum in place of $\Z_2$ --- the candidate for a cube-root-escape
+global anomaly class. The verdict is a clean no-go in the AM-analogue
+class: the unit-determinant constraint is compatible with this grading
+only through shear-type field redefinitions; the theory admits no
+non-properness defect there and no $\Z_3$ vacuum-escape monodromy.
+Combined with the $(2,-1,-3)$ no-go of Section \ref{sec:213}, the
+pattern is that the Alp\"oge--Mathew defect is, so far, \emph{rigidly
+attached to the $m=2$ numerology}: neither enlarging the orbifold group
+($\Z_3$) nor deforming the invariant geometry (the $A_1$ cone)
+reproduces it, and at $m=3$ the failure is an exact arithmetic
+incompatibility (Section \ref{sec:numerology}), not a search horizon.
+Within the searched classes, the existence of the defect appears to be
+a delicate coincidence of the $(1,-1,-2)$ weight arithmetic --- the
+$\val_w \ge 2$ box meeting the $m=2$ derivative-weighting of the
+reduced Keller equations.
+
+%=====================================================================
+\section{Outlook}\label{sec:outlook}
+%=====================================================================
+
+The concrete next probes, in increasing order of expected effort:
+
+\begin{enumerate}
+\item \emph{The $v$-quadratic class of $(1,-1,-3)$.} The Wronskian
+ stratification used here exploits the $v$-degree-2 structure of
+ $\det M$ on $v$-linear data; extending it to $v$-degree $\ge 2$
+ ans\"atze is the nearest untouched territory.
+\item \emph{The family members $m \ge 4$.} The reduction machinery
+ (Proposition \ref{prop:redw}) applies verbatim for all $m$, and the
+ same stratification strategy can be run; the numerological
+ obstruction of Section \ref{sec:numerology} suggests examining how
+ the box valuation $\val_w p_0 \ge m$ interacts with the stratum jets
+ as $m$ grows.
+\item \emph{Four-field gradings.} Weight systems in four variables
+ admit richer stabilizer patterns (and richer orbifold strata) at the
+ price of a higher-dimensional invariant geometry.
+\item \emph{The degree-2 $(2,-1,-3)$ box.} The six mechanism queries
+ are beyond direct Gr\"obner methods on 30 GB hardware (Section
+ \ref{sec:213wall}); numerical homotopy continuation
+ (e.g.\ HomotopyContinuation.jl) could be used for \emph{discovery},
+ with exact certification of any find --- the certificates, not the
+ continuation, would carry the proof.
+\end{enumerate}
+
+%=====================================================================
+\section{Reproducibility}\label{sec:repro}
+%=====================================================================
+
+All scripts run from the repository root as
+\texttt{.venv/bin/python scripts/<name>.py}; every displayed identity
+is an \texttt{assert} in the cited script. Runtimes are indicative
+(single desktop machine, 30 GB RAM).
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\hline
+script & claim(s) verified & runtime \\
+\hline
+\texttt{verify\_counterexample.py} &
+ $\det DF \equiv -2$; triple fiber \eqref{eq:AM} & seconds \\
+\texttt{branch\_locus.py} &
+ eliminant cubic \eqref{eq:cubic}; wall $\{p=0\}$; exact fibers &
+ seconds \\
+\texttt{monodromy.py} &
+ $S_3$ sheet monodromy (\emph{numerical}) & minutes \\
+\texttt{missing\_observables.py} &
+ Theorems \ref{thm:basis}, \ref{thm:nonintegral} & $\sim$15 s \\
+\texttt{reduction\_113.py} &
+ Proposition \ref{prop:redw} ($m \le 4$; boxes at $m=3$) & $\sim$4 s \\
+\texttt{search\_213.py} &
+ Section \ref{sec:213}: identity \eqref{eq:213identity}; Theorem
+ \ref{thm:213class} & $\sim$40 s \\
+\texttt{search\_213.py --full} &
+ CE2-box mechanism emptiness & $\sim$8 min \\
+\texttt{deg2\_213\_elim.py} &
+ degree-2 box reductions and capped screens (Section
+ \ref{sec:213wall}) & minutes \\
+\texttt{search\_113.py} &
+ Section \ref{sec:113}: Lemma \ref{lem:wronskian}, Theorem
+ \ref{thm:113main}, Corollary \ref{cor:31} & $\sim$20 min \\
+\texttt{search\_113.py --full} &
+ medium-box and targeted $D_3'$ certificates (Section \ref{sec:gap}) &
+ $\sim$1 h \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Acknowledgements}
+
+The verification scripts and the analysis sessions behind this paper
+were written and run with AI coding agents, as described in Section
+\ref{sec:provenance}. The counterexample studied here is due to
+Alp\"oge and Mathew \cite{AM26}.
+
+%=====================================================================
+\begin{thebibliography}{99}
+%=====================================================================
+
+\bibitem{AM26}
+L.~Alp\"oge,
+announcement of a counterexample to the Jacobian Conjecture in
+dimension $3$ (with the question posed by A.~Mathew; the map produced
+by a large language model), public announcement on X
+(\texttt{@\_\_alpoge\_\_}), July 19, 2026.
+% NOTE (author to update): at the time of writing no arXiv preprint is
+% cited in the source repository; if/when the Alpöge–Mathew preprint
+% appears, replace this item with the arXiv reference.
+A Lean~4 formalization is available at
+\texttt{github.com/deancureton/jacobian}.
+
+\bibitem{Kel39}
+O.-H.~Keller,
+\emph{Ganze Cremona-Transformationen},
+Monatsh.\ Math.\ Phys.\ \textbf{47} (1939) 299--306.
+
+\bibitem{BCW82}
+H.~Bass, E.~H.~Connell, D.~Wright,
+\emph{The Jacobian conjecture: reduction of degree and formal expansion
+of the inverse},
+Bull.\ Amer.\ Math.\ Soc.\ (N.S.) \textbf{7} (1982) 287--330.
+
+\bibitem{Wri87}
+D.~Wright,
+\emph{Formal inverse expansion and the Jacobian conjecture},
+J.\ Pure Appl.\ Algebra \textbf{48} (1987) 199--219.
+
+\bibitem{vdE00}
+A.~van den Essen,
+\emph{Polynomial Automorphisms and the Jacobian Conjecture},
+Progress in Mathematics \textbf{190}, Birkh\"auser, Basel (2000).
+
+\bibitem{Abd03}
+A.~Abdesselam,
+\emph{The Jacobian conjecture as a problem of perturbative quantum
+field theory},
+Ann.\ Henri Poincar\'e \textbf{4} (2003) 199--215.
+arXiv:math/0208173.
+
+\bibitem{AR95}
+A.~Abdesselam, V.~Rivasseau,
+\emph{Trees, forests and jungles: a botanical garden for cluster
+expansions},
+in \emph{Constructive Physics}, Lecture Notes in Physics \textbf{446},
+Springer (1995) 7--36. arXiv:hep-th/9409094.
+
+\bibitem{Jel93}
+Z.~Jelonek,
+\emph{The set of points at which a polynomial map is not proper},
+Ann.\ Polon.\ Math.\ \textbf{58} (1993) 259--266.
+
+\bibitem{dBvdE05}
+M.~de Bondt, A.~van den Essen,
+\emph{A reduction of the Jacobian conjecture to the symmetric case},
+Proc.\ Amer.\ Math.\ Soc.\ \textbf{133} (2005) 2201--2205.
+
+\bibitem{msolve}
+J.~Berthomieu, C.~Eder, M.~Safey El Din,
+\emph{msolve: A library for solving polynomial systems},
+Proceedings of ISSAC 2021, ACM (2021) 51--58.
+
+\bibitem{Singular}
+W.~Decker, G.-M.~Greuel, G.~Pfister, H.~Sch\"onemann,
+\textsc{Singular} --- {A} computer algebra system for polynomial
+computations, \url{https://www.singular.uni-kl.de}.
+
+\bibitem{sympy}
+A.~Meurer et al.,
+\emph{SymPy: symbolic computing in Python},
+PeerJ Computer Science \textbf{3} (2017) e103.
+
+\end{thebibliography}
+
+\end{document}
