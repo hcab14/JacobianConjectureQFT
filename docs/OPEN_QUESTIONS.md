@@ -93,14 +93,18 @@ Enumerate weight systems (e.g. $(1,-1,-3)$, $(2,-1,-3)$, 4-field gradings),
 reduce each to a finite 2D Keller problem, search for residual-$\mathbb{Z}_3$
 orbits (3:1 non-injectivity, possible $\mathbb{Z}_3$ monodromy). Could
 produce the second-ever counterexample; could also legitimately come up
-empty. *(IN PROGRESS 2026-07-22/23: exact reduced Keller identity for the
-whole family $(1,-1,-m)$ — $J_2(PR^m, QR) = \kappa R^m$,
+empty. *(LARGELY RESOLVED 2026-07-22/24: exact reduced Keller identity
+for the whole family $(1,-1,-m)$ — $J_2(PR^m, QR) = \kappa R^m$,
 `jcqft/reduction_w.py` + `scripts/reduction_113.py`. **$(2,-1,-3)$
 RESOLVED at low degree**: complete degree-1 classification, all Keller
 maps tame automorphisms, $\mathbb{Z}_2$ AND $\mathbb{Z}_3$ mechanisms
-provably empty (`docs/SEARCH_213.md`) — the hoped-for $\mathbb{Z}_3$
-anomaly class does not materialize there. $(1,-1,-3)$ search still
-running.)*
+provably empty (`docs/SEARCH_213.md`). **$(1,-1,-3)$ RESOLVED in the
+v-linear class, all $w$-degrees**: Wronskian stratification, every
+Keller map a tame automorphism, the 3:1 mechanism empty, and the
+Alpöge–Mathew stratum shown to be numerologically obstructed at $m=3$
+(`docs/SEARCH_113.md`) — the hoped-for $\mathbb{Z}_3$ anomaly class does
+not materialize in either sibling. Remaining: $v$-degree $\ge 2$
+ansätze, $m \ge 4$, 4-field gradings.)*
 
 **B4. Exact Gröbner certification of local rigidity.**
 [`NEW_COUNTEREXAMPLES.md` §5 step 4, §3]

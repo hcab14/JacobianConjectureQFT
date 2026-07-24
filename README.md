@@ -87,6 +87,7 @@ runnable script in `scripts/`.
 | `scripts/missing_observables.py` | Exact structure of im F\*: basis {1,x,x²}, normal form and membership criterion, non-integrality escape certificate, fiber exhaustiveness (see `docs/MISSING_OBSERVABLES.md`) | ~15 s |
 | `scripts/reduction_113.py` | Exact reduced Keller identity for all weight systems (1,-1,-m): generic-function proof, compact form J₂(PRᵐ,QR)=κRᵐ, polynomiality boxes (module `jcqft/reduction_w.py`) | ~4 s |
 | `scripts/search_213.py` | Weight system (2,-1,-3): exact reduction on the A₁-cone quotient, complete degree-1 Keller classification (all tame automorphisms), Z₂ and Z₃ orbifold mechanisms provably empty (module `jcqft/reduction_213.py`, see `docs/SEARCH_213.md`) | ~40 s (`--full` ~8 min) |
+| `scripts/search_113.py` | Weight system (1,-1,-3): complete Keller classification of the v-linear class for ALL w-degrees (Wronskian stratification, all tame automorphisms), 3:1 orbifold mechanism empty, Alpöge–Mathew stratum numerologically obstructed at m=3 (see `docs/SEARCH_113.md`) | ~20 min (`--full` ~1 h) |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

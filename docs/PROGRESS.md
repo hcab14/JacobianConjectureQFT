@@ -632,3 +632,40 @@ mod-p and Singular degBound support; full account in
   every GB subprocess now runs under a hard address-space cap
   (`JCQFT_GB_MEM_MB`, default 16 GB) after an uncapped 6-way parallel
   run exhausted 30 GB and froze the machine. Lesson recorded.
+
+## 2026-07-24 — (1,-1,-3): complete v-linear classification, no counterexample, AM mechanism numerologically obstructed
+
+`scripts/search_113.py` (~10 min default, `--full` ~1 h); write-up
+`docs/SEARCH_113.md`. Executes OPEN_QUESTIONS B3 for the nearest sibling
+of the Alpöge–Mathew weight system — same free invariant ring
+$\mathbb{C}[w,v]$, $w = xy$, $v = x^3z$, with the $\mathbb{Z}_2$ orbifold
+axis replaced by $\mathbb{Z}_3$ (and *no* 2:1 mechanism anywhere, by
+weight arithmetic).
+
+- **A theorem, not a box search:** in the $v$-linear class (the class
+  containing Alpöge–Mathew at $m=2$) with *arbitrary* degree in $w$, the
+  Keller condition is solved completely. The $v^2$-coefficient is a
+  Wronskian identity integrating to $p_1r_1 = c\,q_1^2$, stratifying the
+  class into A/B/C/D; exact integration/divisibility chains empty every
+  stratum except the gauged family $P = p_0 + v$, $Q = w + b_0P$,
+  $R = 1$ — all **tame automorphisms** (explicit inverses verified).
+- **The AM stratum is empty at $m=3$ for an exact numerological reason:**
+  its would-be solutions force $p_0(0) \neq 0$ while the polynomiality
+  box demands $\mathrm{val}_w\,p_0 \ge 3$. At $m=2$ the box only demands
+  $\mathrm{val}_w \ge 2$ and the $E$-equations carry one extra
+  derivative weighting — exactly the needle Alpöge–Mathew threads. The
+  mechanism does not transplant; it is obstructed, not undiscovered.
+- **3:1 mechanism empty** (every Keller map has $R \equiv 1$, which
+  never vanishes), corroborated by independent in-box Gröbner
+  certificates; cross-check at $m=2$: the AM data satisfies its own
+  stratification identity $p_1^2r_1 = -q_1^3/27$ (stratum D1).
+- Honest gap: stratum D3 with non-squarefree $s$ or $t$ (needs
+  $\deg p_1 \ge 4$ or $\deg r_1 \ge 4$) is closed only in Gröbner boxes;
+  one `--full` gap query proved empty exactly (~11 min), three hit the
+  16 GB F4 wall. $v$-degree $\ge 2$ ansätze untouched.
+- **QFT reading:** combined with `SEARCH_213.md`, the Alpöge–Mathew
+  non-properness defect appears *rigidly attached to the $m=2$
+  numerology*: neither enlarging the orbifold group ($\mathbb{Z}_3$) nor
+  deforming the invariant geometry ($A_1$ cone) reproduces it. Next
+  probes: $v$-quadratic class, $m \ge 4$ (machinery applies verbatim),
+  4-field gradings.
