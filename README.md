@@ -4,7 +4,28 @@ Exploration of the 2026 Alpöge–Mathew counterexample to the Jacobian
 conjecture through the lens of zero-dimensional perturbative quantum field
 theory (tree-graph expansions, branch loci, monodromy, non-perturbative
 "vacua at infinity"), with an eye toward implications for mathematically
-rigorous QFT.
+rigorous QFT — especially **AQFT** and **pAQFT**.
+
+## Paper
+
+**Preprint (PDF):** [`paper/main.pdf`](paper/main.pdf)
+([LaTeX source](paper/main.tex))
+
+*A zero-dimensional calibration of field redefinitions for AQFT and pAQFT:
+the Alpöge–Mathew counterexample and uniqueness of its defect*
+(Christoph Mayer, July 2026).
+
+Headline results: exact structure of the observable algebra \(\mathrm{im}\,F^*\);
+calibration of the formal deferral in pAQFT; uniqueness of the
+non-properness defect in the equivariant family \((1,-1,-m)\) for
+\(m\ge 3\). Every exact claim is asserted by a reproducible script below.
+AI-assisted exploratory research — see provenance.
+
+Reproduce the uniqueness theorem in ~1 minute:
+
+```bash
+.venv/bin/python scripts/search_11m.py
+```
 
 ## Status and provenance
 
