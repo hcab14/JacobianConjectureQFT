@@ -266,6 +266,12 @@ precisely mapped.**
    degBound 6 and 7 exceed 20-minute budgets. The unit certificate (if
    the ideal is unit) has degree $\ge 6$, where the truncated basis is
    already past this machine's practical time budget.
+   *(Addendum 2026-07-25: a long-budget rerun of the `2:1 @ (p,q)=(1,1)`
+   query at degBound 6 mod the same ~30-bit prime, with a 6-hour
+   timeout, died after 7029 s against the 16 GB memory cap — at
+   degBound 6 the truncated basis hits the same memory wall as full F4,
+   not merely a time budget. The degree-6 rung is closed on this
+   hardware; the wall statement above is confirmed and sharpened.)*
 
 **Honest verdict.** The six degree-2 mechanism queries are beyond direct
 Gröbner methods on 30 GB hardware: F4 hits a memory wall (>16 GB even
