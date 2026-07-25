@@ -26,9 +26,9 @@
 
 \emergencystretch=1.5em
 
-\title{Zero-dimensional QFT structure of the Alp\"oge--Mathew Jacobian
-counterexample, and uniqueness of the defect in the equivariant family
-$(1,-1,-m)$}
+\title{A zero-dimensional calibration of field redefinitions for AQFT
+and pAQFT: the Alp\"oge--Mathew counterexample and uniqueness of its
+defect}
 
 \author{Christoph Mayer\thanks{Independent researcher.
 Email: \texttt{hcab14@gmail.com}.}}
@@ -40,44 +40,35 @@ Email: \texttt{hcab14@gmail.com}.}}
 \maketitle
 
 \begin{abstract}
-The Alp\"oge--Mathew polynomial map $F:\C^3\to\C^3$ (announced July 19,
-2026) has constant Jacobian determinant $-2$ but is not injective,
-disproving the Jacobian Conjecture in dimensions $n\ge 3$. We study this
-map, and two neighbouring $\C^*$-equivariance classes, through the
-dictionary of zero-dimensional perturbative quantum field theory, in which
-$F(\varphi)=J$ is a classical field equation with external source and the
-Bass--Connell--Wright tree expansion is perturbation theory. Our results,
-all verified by exact symbolic computation in a public repository, are:
-(i) an explicit structure theorem for the observable algebra
-$\im F^*\subset\C[x,y,z]$ of the redefined field --- $\{1,x,x^2\}$ is a
-basis over $\Frac(\im F^*)$, membership is decided by a normal form, and
-$x$ is \emph{not integral} over $\im F^*$, with an exact escape-curve
-certificate equivalent to non-properness; (ii) an exact reduced Keller
-identity for the whole weight family $(1,-1,-m)$, reducing the
-three-dimensional Keller problem to two invariant variables; (iii) for
-the weight system $(2,-1,-3)$, whose invariant ring is an $A_1$ cone, a
-chart-based reduced Keller identity and a \emph{complete} classification
-of degree-$1$ equivariant Keller maps (all tame automorphisms), with both
-the $\Z_2$ and $\Z_3$ stabilizer-jump mechanisms provably empty in the
-searched boxes; (iv) for the weight system $(1,-1,-3)$, the nearest
-sibling of the Alp\"oge--Mathew system, a complete classification of the
-$v$-linear Keller class for \emph{all} $w$-degrees via a Wronskian
-stratification: every solution is a tame automorphism, the $3{:}1$
-orbifold mechanism is empty, and the Alp\"oge--Mathew mechanism is
-blocked at $m=3$ by an exact numerological obstruction --- not by a
-failure to search far enough; (v) the uniqueness theorem for the whole
-family: for every $m\ge 3$, every Keller map in the $v$-linear class of
-$(1,-1,-m)$ is a tame automorphism, so the Alp\"oge--Mathew map is the
-\emph{unique} member of its equivariant family within that class. The
-integrated constraint is $p_1^2\,r_1^{m-1}=c\,q_1^{m+1}$; for $m\ge 4$
-the D-strata die by nonconstant factors of the constant $\kappa$ with
-\emph{no box needed}, and $m=2$ escapes exactly where the killing factor
-$u^{m-2}$ trivializes. One stratum (non-squarefree $D_3'$) is closed
-only inside Gr\"obner boxes ($m\le 5$) and is stated as an honest gap.
-The emerging picture is that the non-properness defect is rigidly
-attached to the $m=2$ numerology. This is AI-assisted exploratory
-research and has not been peer reviewed; every claim is labelled exact,
-box-checked, or open, and each is reproducible from a cited script.
+The Alp\"oge--Mathew map $F:\C^3\to\C^3$ (July 2026) has constant
+Jacobian determinant $-2$ but is not injective, disproving the Jacobian
+Conjecture for $n\ge 3$. Read as a zero-dimensional QFT ---
+$F(\varphi)=J$ a classical field equation, the Bass--Connell--Wright
+tree expansion its perturbation theory --- it is an exactly solvable
+toy model in which loops are trivial, the tree series \emph{converges},
+and the theory nevertheless fails globally: two of three solution
+sheets sit at infinity over the perturbative vacuum and are invisible
+to every order of perturbation theory. Our primary interest is what
+this calibrates for rigorous QFT, especially algebraic QFT (AQFT) and
+perturbative algebraic QFT (pAQFT). Exact results, verified in a public
+repository: (i)~the pullback $F^*$ is a monomorphism but not an
+automorphism of the polynomial observable algebra --- $\{1,x,x^2\}$ is
+a basis over $\Frac(\im F^*)$, and $x$ is not integral over $\im F^*$
+(escape-curve certificate $\Leftrightarrow$ non-properness), the
+cleanest 0D vindication of the Haag--Kastler preference for algebras
+over field coordinates; (ii)~this calibrates the formal deferral in
+pAQFT (Fredenhagen--Rejzner): ``upgrade formal to convergent'' is
+\emph{not} the missing step to a non-perturbative construction ---
+properness of the classical dynamics is; (iii)~an exact reduced Keller
+identity for the weight family $(1,-1,-m)$; (iv)--(v)~complete
+$v$-linear classifications in the sibling systems $(1,-1,-3)$ and
+$(2,-1,-3)$, culminating in a uniqueness theorem: for every $m\ge 3$
+the $v$-linear class of $(1,-1,-m)$ contains only tame automorphisms,
+so the defect is rigidly attached to the $m=2$ numerology. We state
+honestly what the model does \emph{not} imply (nothing about UV
+renormalization, Borel summability, or $D=4$ existence). AI-assisted
+exploratory research, not peer reviewed; every claim is labelled exact,
+box-checked, or open, and is reproducible from a cited script.
 \end{abstract}
 
 \tableofcontents
@@ -128,6 +119,28 @@ time, an exactly solvable toy model in which perturbation theory is well
 defined at every order, loop corrections are trivial, and the theory
 still fails globally.
 
+\emph{Why this matters for AQFT and pAQFT.} The motivation of the present
+paper is not primarily to enlarge the catalogue of Jacobian
+counterexamples, but to use this toy model as a \emph{calibration device}
+for rigorous QFT --- especially the algebraic tradition of
+Haag--Kastler \cite{HK64} and the perturbative algebraic QFT (pAQFT)
+framework of Fredenhagen--Rejzner \cite{FR12,FR16,Rej16}. Polynomial
+field redefinitions with $\det DF=\mathrm{const}\neq 0$ are used
+throughout renormalization theory; invertibility is usually established
+at the formal-power-series level, where it is automatic. The
+counterexample shows that, already with three field components, a
+polynomial redefinition with constant Jacobian need not be globally
+injective: the formal inverse exists, \emph{converges} near the vacuum,
+and is still only a local section of a 3-sheeted covering. The exact
+structure of the observable algebra $\im F^*$ (Section~\ref{sec:obs})
+turns the Haag--Kastler preference for algebras over field coordinates
+into a theorem-sized 0D fact; the pAQFT deferral of convergence and
+globality is calibrated rather than contradicted
+(Section~\ref{sec:qftread}). The sibling searches and the uniqueness
+theorem then ask how rigid this defect is: is it a generic feature of
+constant-Jacobian dynamics, or a delicate coincidence of the $m=2$
+weight arithmetic?
+
 \subsection{Contents and main results}
 
 This paper condenses, into a self-contained account, the exact-structure
@@ -136,7 +149,8 @@ results obtained in the public repository
 \url{https://github.com/hcab14/JacobianConjectureQFT}
 \end{center}
 about the Alp\"oge--Mathew map and its two nearest
-$\C^*$-equivariance siblings. The main results are:
+$\C^*$-equivariance siblings, with the QFT/AQFT/pAQFT reading as the
+primary interpretive frame. The main results are:
 
 \begin{itemize}
 \item \textbf{Section \ref{sec:qft}} sets up the $D=0$ QFT dictionary
@@ -176,11 +190,14 @@ $\C^*$-equivariance siblings. The main results are:
  box at all; Alp\"oge--Mathew survives at $m=2$ exactly where the
  killing factor $u^{m-2}$ trivializes
  (\texttt{scripts/search\_11m.py}, \texttt{docs/SEARCH\_11M.md}).
-\item \textbf{Sections \ref{sec:qftread} and \ref{sec:outlook}} give the
- QFT interpretation --- the defect is rigidly attached to the $m=2$
- numerology --- and the outlook.
-\item \textbf{Section \ref{sec:repro}} tabulates the scripts that
- machine-verify every claim, with runtimes.
+\item \textbf{Section \ref{sec:qftread}} is the interpretive core: what
+ the model calibrates for AQFT (Haag--Kastler), pAQFT
+ (Fredenhagen--Rejzner), and non-perturbative algebraic constructions
+ (Buchholz--Fredenhagen), together with an explicit ledger of what it
+ does \emph{not} imply; the uniqueness theorem is read as rigidity of
+ the non-properness defect.
+\item \textbf{Sections \ref{sec:outlook} and \ref{sec:repro}} give
+ QFT-oriented next probes and the reproducibility table.
 \end{itemize}
 
 \subsection{Provenance and verification}\label{sec:provenance}
@@ -419,15 +436,19 @@ exact fiber computation suffices --- the fiber over $F(1,2,3)$ consists
 of three points whose $x$-, $y$- and $z$-coordinates are pairwise
 distinct (verified), and any element of $\im F^*$ is constant on fibers.
 
-\emph{QFT reading.} The observable algebra of the redefined field has
-corank $2$ as a module inside the full observable algebra, with explicit
-generators $x, x^2$ for the quotient: the operators that distinguish the
-three classical vacua over a source $J$. They are exactly the
-observables that perturbation theory around one vacuum constructs as
-algebraic functions of $J$ (branches of the cubic) and that no
-polynomial function of $J$ represents; they cease to exist as finite
-quantities exactly where $p = 0$. ``Which observables are missing'' and
-``where does the theory degenerate'' have the same answer.
+\emph{QFT / AQFT reading.} The observable algebra of the redefined
+field has corank $2$ as a module inside the full observable algebra,
+with explicit generators $x, x^2$ for the quotient: the operators that
+distinguish the three classical vacua over a source $J$. They are
+exactly the observables that perturbation theory around one vacuum
+constructs as algebraic functions of $J$ (branches of the cubic) and
+that no polynomial function of $J$ represents; they cease to exist as
+finite quantities exactly where $p = 0$. ``Which observables are
+missing'' and ``where does the theory degenerate'' have the same
+answer. In the language of Section~\ref{sec:aqft}: $F^*$ is a
+monomorphism but not an automorphism of the observable algebra --- the
+0D fact that underwrites the Haag--Kastler preference for algebras
+over field coordinates.
 
 %=====================================================================
 \section{The reduced Keller identity for the family
@@ -1055,75 +1076,211 @@ $m=5$ gap query hit the 16 GB F4 wall; its sibling closed EMPTY
 exactly, and all eight $m=4/5$ medium-box queries closed EMPTY.
 
 %=====================================================================
-\section{QFT interpretation}\label{sec:qftread}
+\section{Implications for AQFT and pAQFT}\label{sec:qftread}
 %=====================================================================
 
-This section is interpretation and is flagged as such; the underlying
+This section is the interpretive core of the paper. The underlying
 facts are the exact statements of Sections
-\ref{sec:obs}--\ref{sec:11m}.
+\ref{sec:obs}--\ref{sec:11m}; the contact with AQFT/pAQFT is
+\emph{structural calibration}, not a theorem about $D\ge 1$ nets. We
+separate what can be said from what cannot, following the ledger of
+\texttt{docs/QFT\_IMPLICATIONS.md}.
 
-\emph{The defect and its name.} In QFT language the Alp\"oge--Mathew
-phenomenon is a \emph{non-properness defect}: a global consistency
-condition --- properness of the classical field map, equivalently local
-constancy of the preimage count $N(J)$ --- that is strictly stronger
-than every local criterion (the nonvanishing, indeed constant, Jacobian)
-and that standard field-redefinition arguments implicitly assume. It is
-not an anomaly in the strict cohomological sense (no symmetry is broken,
-nothing is loop-generated), but it shares the defining pattern of global
-anomalies: a manipulation valid by every local criterion fails through
-the global structure of configuration space. Its closest relative is the
-modern notion of anomalies in parameter space: dialing the external
-source around a closed cycle permutes the solution branches (the $S_3$
-monodromy --- numerical evidence), mediated entirely through infinity in
+\subsection{The defect and its name}
+
+In QFT language the Alp\"oge--Mathew phenomenon is a
+\emph{non-properness defect}: a global consistency condition ---
+properness of the classical field map, equivalently local constancy of
+the preimage count $N(J)$ --- that is strictly stronger than every
+local criterion (the nonvanishing, indeed constant, Jacobian) and that
+standard field-redefinition arguments implicitly assume. It is not an
+anomaly in the strict cohomological sense (no symmetry is broken,
+nothing is loop-generated), but it shares the defining pattern of
+global anomalies: a manipulation valid by every local criterion fails
+through the global structure of configuration space. Its closest
+relative is the modern notion of anomalies in parameter space: dialing
+the external source around a closed cycle permutes the solution
+branches (the $S_3$ monodromy --- numerical evidence,
+\texttt{scripts/monodromy.py}), mediated entirely through infinity in
 field space. The exact observable-algebra statement of Section
 \ref{sec:obs} is the algebraic face of the same defect: $F^*$ is a
-monomorphism but not an automorphism of the observable algebra, the two
-missing module generators $x, x^2$ are the vacuum separators, and their
-separator coefficients carry the escape polynomial $p$ verbatim.
+monomorphism but not an automorphism of the observable algebra; the
+two missing module generators $x,x^2$ are the vacuum separators; and
+their separator coefficients carry the escape polynomial $p$ verbatim.
 
-\emph{What the sibling searches say.} The $(1,-1,-3)$ grading was the
-closest sibling of the Alp\"oge--Mathew theory with a $\Z_3$ orbifold
-stratum in place of $\Z_2$ --- the candidate for a cube-root-escape
-global anomaly class. The verdict is a clean no-go in the AM-analogue
-class: the unit-determinant constraint is compatible with this grading
-only through shear-type field redefinitions; the theory admits no
-non-properness defect there and no $\Z_3$ vacuum-escape monodromy.
-Combined with the $(2,-1,-3)$ no-go of Section \ref{sec:213} and the
-uniqueness theorem of Section \ref{sec:11m}, the pattern is that the
-Alp\"oge--Mathew defect is \emph{rigidly attached to the $m=2$
-numerology}: neither enlarging the orbifold group, deforming the
-invariant geometry, nor moving to any other $m\ge 3$ reproduces it.
-For $m\ge 4$ the failure is an exact arithmetic incompatibility that
-needs no search box at all; $m=3$ is the boundary case. Within the
-$v$-linear class the defect is a delicate coincidence of the
-$(1,-1,-2)$ weight arithmetic --- the killing factor $u^{m-2}$
+A second, related lesson is about the \emph{kind} of non-perturbative
+effect at work. The standard catalogue centres on finite-action saddle
+points (instantons). Here the extra sectors are not saddles at finite
+field values: they live on the boundary at infinity of field space and
+communicate with the finite region only across the non-properness
+hypersurface $\{p=0\}$ --- transitions ``through infinity,'' realized
+exactly by the escape curve of Theorem~\ref{thm:nonintegral}. Whether
+an analogous boundary-of-field-space mechanism can survive in a genuine
+functional-integral setting is open; the example establishes that at
+the level of classical solution manifolds the mechanism exists and is
+compatible with completely trivial loop structure.
+
+\subsection{Haag--Kastler AQFT: algebras over field coordinates}
+\label{sec:aqft}
+
+Haag--Kastler AQFT \cite{HK64} takes the \emph{algebras of observables},
+not field coordinates, as the primary data; fields are regarded as
+interchangeable ``coordinates'' on the theory (Borchers classes). The
+counterexample turns this philosophical preference into a
+theorem-sized fact in the only setting we control completely. The
+pullback
+\[
+F^*:\ \C[a,b,c]\longrightarrow\C[x,y,z],\qquad
+F^*(\mathcal{O})=\mathcal{O}\circ F,
+\]
+is an injective algebra homomorphism that is \emph{not surjective}
+(Theorems~\ref{thm:basis},~\ref{thm:nonintegral}): the polynomial
+observables of the ``redefined field'' $F(\varphi)$ form a proper
+subalgebra of the observables of $\varphi$, of index measured by the
+degree-3 field extension with Galois closure group $S_3$. So: a
+polynomial field redefinition with invertible propagator and constant
+unit Jacobian can be a monomorphism, but not an automorphism, of the
+observable algebra. Any framework whose objects are algebras and whose
+morphisms must be checked for surjectivity is structurally protected
+against the mistake this example punishes; any framework that treats
+``invertible field redefinition'' as certified by the Jacobian is not.
+This is, we believe, the cleanest AQFT-flavoured lesson of the
+counterexample, and it is exact.
+
+\subsection{pAQFT (Fredenhagen--Rejzner): calibrating the deferral}
+\label{sec:paqft}
+
+In perturbative algebraic QFT \cite{FR12,FR16,Rej16} interacting
+observables are constructed from free ones by M{\o}ller-type maps built
+as formal power series in the coupling and $\hbar$; classical
+inversions of nonlinear field equations enter through the (classical)
+M{\o}ller map, and invertibility holds automatically at the
+formal-series level. Nothing in the counterexample exhibits an
+inconsistency in this: the constructions are internally coherent as
+formal deformation quantization, and their formal character is a
+\emph{stated feature} of the framework. What the counterexample adds
+is a calibration of the worst case of that deferral, sharper than
+previously available: the formal inverse here is not merely consistent
+but \emph{convergent}, analytic on a neighbourhood of the vacuum, and
+satisfies every identity perturbation theory can formulate --- and
+still describes only one of three solution sectors, the others being
+invisible at every order because they sit at infinite field strength.
+So ``upgrade formal to convergent'' is \emph{not} the missing step
+between pAQFT and a non-perturbative construction; the missing input
+is global (properness of the classical dynamics), and it must come
+from outside perturbation theory. Relatedly, statements of
+\emph{perturbative agreement} (independence of the split of the action
+into free and interacting parts \cite{HW05}) are
+field-redefinition-adjacent moves established as formal-series
+identities; the example is a reminder of exactly which global questions
+such identities do not decide.
+
+The same point bears on field redefinitions in renormalization theory
+more broadly. Arguments that treat a polynomial redefinition with
+$\det DF=\mathrm{const}$ as an exact change of variables in a
+functional integral or a lattice measure --- ``$\det DF=1$, so the
+measure is preserved'' --- use a false step: the pushforward under a
+non-injective $F$ overcounts sheets. Global injectivity is an honest
+hypothesis that must be verified, not read off from the Jacobian.
+Purely perturbative equivalence statements are untouched.
+
+\subsection{Non-perturbative algebraic constructions}
+\label{sec:bf}
+
+The Buchholz--Fredenhagen $C^*$-algebraic approach \cite{BF20} builds
+interacting dynamics from unitaries $S(f)$ subject to causal
+factorization relations, bypassing formal series altogether. Nothing
+in a 0D polynomial map bears on the correctness of that program. The
+counterexample instead supplies the minimal instance of a phenomenon
+any non-perturbative framework must \emph{represent} somewhere in its
+data: classical dynamics whose solution count jumps (here
+$1\leftrightarrow 3$) as an external source crosses an algebraic wall,
+with the extra solutions entering from infinity in field space and
+permuted by an $S_3$ monodromy under cycles of the source. A
+well-posed exercise --- open, and we claim nothing about its outcome
+--- is to formulate the 0D caricature of the $S(f)$ relations for this
+$F$ and see how the wall $\{p=0\}$ and the sheet structure are
+encoded.
+
+\subsection{Rigidity of the defect: what the sibling searches say}
+
+The $(1,-1,-3)$ grading was the closest sibling of the Alp\"oge--Mathew
+theory with a $\Z_3$ orbifold stratum in place of $\Z_2$ --- the
+candidate for a cube-root-escape global anomaly class. The verdict
+(Sections~\ref{sec:113},~\ref{sec:11m}) is a clean no-go in the
+AM-analogue class: the unit-determinant constraint is compatible with
+this grading only through shear-type field redefinitions; the theory
+admits no non-properness defect there and no $\Z_3$ vacuum-escape
+monodromy. Combined with the $(2,-1,-3)$ no-go of Section
+\ref{sec:213} and the uniqueness theorem of Section \ref{sec:11m}, the
+pattern is that the Alp\"oge--Mathew defect is \emph{rigidly attached
+to the $m=2$ numerology}: neither enlarging the orbifold group,
+deforming the invariant geometry, nor moving to any other $m\ge 3$
+reproduces it. For $m\ge 4$ the failure is an exact arithmetic
+incompatibility that needs no search box at all; $m=3$ is the boundary
+case. Within the $v$-linear class the defect is a delicate coincidence
+of the $(1,-1,-2)$ weight arithmetic --- the killing factor $u^{m-2}$
 trivializing together with the even-only homogeneous $E_1$-direction.
+
+For the QFT reading this is essential: it means the non-properness
+defect is \emph{not} a generic feature of every constant-Jacobian
+theory, but a rare, exactly characterisable pathology. Frameworks that
+check global invertibility of field redefinitions are not being asked
+to police an open dense set of pathologies; they are being asked to
+exclude a delicate coincidence that, in the equivariant family we can
+control, sits only at $m=2$.
+
+\subsection{What the model does not imply}
+
+Plainly, and to resist overstatement:
+
+\begin{itemize}
+\item \emph{Nothing about UV renormalization.} The model is
+ zero-dimensional; there are no short-distance singularities, no
+ counterterms, no running. The phenomenon is invariant under everything
+ renormalization theory cares about.
+\item \emph{Nothing about Borel summability} of $\phi^4_2$ or
+ $\phi^4_3$. Those are loop/large-order phenomena; our series is
+ convergent. The two situations are disjoint.
+\item \emph{Nothing about the core $D=4$ difficulties.} Suspected
+ triviality of $\phi^4_4$ and the Yang--Mills existence/mass-gap
+ problem are ultraviolet and measure-theoretic. The counterexample does
+ not bear on them.
+\item \emph{No spacetime, no net, no causality, no Hilbert space.}
+ Analogies between ``extra solution sheets'' and ``sectors'' are
+ structural motivation, not theorems about $D\ge 1$ AQFT.
+\end{itemize}
+
+The honest headline is narrower and still interesting:
+\emph{constant-Jacobian polynomial dynamics can hide non-perturbative
+sectors at infinity, and no amount of perturbative or even
+locally-analytic information detects them --- but in the equivariant
+family $(1,-1,-m)$ this pathology is unique to $m=2$.}
 
 %=====================================================================
 \section{Outlook}\label{sec:outlook}
 %=====================================================================
 
-The concrete next probes, in increasing order of expected effort:
+Next probes, ordered by expected leverage for the QFT reading:
 
 \begin{enumerate}
-\item \emph{The $v$-quadratic class of $(1,-1,-m)$.} The Wronskian
- stratification exploits the $v$-degree-2 structure of $\det M$ on
- $v$-linear data; extending it to $v$-degree $\ge 2$ ans\"atze is the
- nearest untouched territory (and the natural place to ask whether
- anything else lives near Alp\"oge--Mathew at $m=2$).
-\item \emph{Closing the $D_3'$ gap.} Non-squarefree $s$ or $t$ is
- closed only in Gr\"obner boxes for $m\le 5$; a structural argument
- removing the squarefree hypothesis would make Theorem \ref{thm:11m}
- fully gap-free.
-\item \emph{Four-field gradings.} Weight systems in four variables
- admit richer stabilizer patterns (and richer orbifold strata) at the
- price of a higher-dimensional invariant geometry.
-\item \emph{The degree-2 $(2,-1,-3)$ box.} The six mechanism queries
- remain beyond direct Gr\"obner methods on 30 GB hardware (Section
- \ref{sec:213wall}). A first homotopy-continuation attempt
- (\texttt{scripts/hc\_drive\_213.jl}) found mixed volumes already in
- the tens of millions --- past a laptop path budget --- so further
- stratification is needed before numerical discovery is practical.
+\item \emph{A 0D Buchholz--Fredenhagen caricature.} Formulate the
+ $S(f)$-type relations for this $F$ and ask how the wall $\{p=0\}$ and
+ the $S_3$ sheet structure are encoded --- the cleanest open exercise
+ suggested by Section~\ref{sec:bf}.
+\item \emph{The $v$-quadratic class of $(1,-1,-m)$.} Does anything else
+ live near Alp\"oge--Mathew at $m=2$, or is uniqueness stable under
+ raising the $v$-degree? Directly tests how rare the defect is.
+\item \emph{Closing the $D_3'$ gap.} A structural argument removing the
+ squarefree hypothesis would make Theorem~\ref{thm:11m} fully
+ gap-free, strengthening the uniqueness claim that underwrites the
+ ``rare pathology'' reading.
+\item \emph{Four-field gradings.} Richer stabilizer patterns and
+ orbifold strata; the natural place to look for a genuinely different
+ global-anomaly class once the three-field family is exhausted.
+\item \emph{The degree-2 $(2,-1,-3)$ box.} Still beyond direct Gr\"obner
+ methods on 30\,GB hardware (Section~\ref{sec:213wall}); further
+ stratification is needed before homotopy continuation is practical.
 \end{enumerate}
 
 %=====================================================================
@@ -1233,6 +1390,39 @@ A.~Abdesselam, V.~Rivasseau,
 expansions},
 in \emph{Constructive Physics}, Lecture Notes in Physics \textbf{446},
 Springer (1995) 7--36. arXiv:hep-th/9409094.
+
+\bibitem{HK64}
+R.~Haag, D.~Kastler,
+\emph{An algebraic approach to quantum field theory},
+J.\ Math.\ Phys.\ \textbf{5} (1964) 848--861.
+
+\bibitem{FR12}
+K.~Fredenhagen, K.~Rejzner,
+\emph{Perturbative algebraic quantum field theory},
+in \emph{Mathematical Aspects of Quantum Field Theories},
+Springer (2015) 17--55. arXiv:1208.1428.
+
+\bibitem{FR16}
+K.~Fredenhagen, K.~Rejzner,
+\emph{Quantum field theory on curved spacetimes: Axiomatic framework
+and examples},
+J.\ Math.\ Phys.\ \textbf{57} (2016) 031101. arXiv:1412.5125.
+
+\bibitem{Rej16}
+K.~Rejzner,
+\emph{Perturbative Algebraic Quantum Field Theory},
+Mathematical Physics Studies, Springer (2016).
+
+\bibitem{HW05}
+S.~Hollands, R.~M.~Wald,
+\emph{On the renormalization group in curved spacetime},
+Commun.\ Math.\ Phys.\ \textbf{237} (2003) 123--160.
+
+\bibitem{BF20}
+D.~Buchholz, K.~Fredenhagen,
+\emph{A $C^*$-algebraic approach to interacting quantum field theories},
+Commun.\ Math.\ Phys.\ \textbf{377} (2020) 947--969.
+arXiv:1902.06062.
 
 \bibitem{Jel93}
 Z.~Jelonek,
