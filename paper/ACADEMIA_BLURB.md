@@ -27,6 +27,7 @@ and pAQFT: the Alpöge–Mathew counterexample and uniqueness of its defect
 > machine-checked proofs:
 > https://github.com/hcab14/JacobianConjectureQFT
 > (paper PDF: paper/main.pdf).
+> Archived release with DOI: https://doi.org/10.5281/zenodo.21569062
 
 **Keywords / topics** (if the form asks):
 

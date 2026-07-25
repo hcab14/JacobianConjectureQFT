@@ -8,12 +8,19 @@ rigorous QFT — especially **AQFT** and **pAQFT**.
 
 ## Paper
 
+[![DOI](https://zenodo.org/badge/1306864803.svg)](https://doi.org/10.5281/zenodo.21569061)
+
 **Preprint (PDF):** [`paper/main.pdf`](paper/main.pdf)
 ([LaTeX source](paper/main.tex))
 
 *A zero-dimensional calibration of field redefinitions for AQFT and pAQFT:
 the Alpöge–Mathew counterexample and uniqueness of its defect*
 (Christoph Mayer, July 2026).
+
+**Cite this repository (Zenodo):**
+[https://doi.org/10.5281/zenodo.21569062](https://doi.org/10.5281/zenodo.21569062)
+(concept DOI → always the latest release). This version:
+[https://doi.org/10.5281/zenodo.21569061](https://doi.org/10.5281/zenodo.21569061).
 
 Headline results: exact structure of the observable algebra \(\mathrm{im}\,F^*\);
 calibration of the formal deferral in pAQFT; uniqueness of the
