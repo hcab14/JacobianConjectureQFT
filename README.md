@@ -117,6 +117,7 @@ runnable script in `scripts/`.
 | `scripts/search_213.py` | Weight system (2,-1,-3): exact reduction on the A₁-cone quotient, complete degree-1 Keller classification (all tame automorphisms), Z₂ and Z₃ orbifold mechanisms provably empty (module `jcqft/reduction_213.py`, see `docs/SEARCH_213.md`) | ~40 s (`--full` ~8 min) |
 | `scripts/search_113.py` | Weight system (1,-1,-3): complete Keller classification of the v-linear class for ALL w-degrees (Wronskian stratification, all tame automorphisms), 3:1 orbifold mechanism empty, Alpöge–Mathew stratum numerologically obstructed at m=3 (see `docs/SEARCH_113.md`) | ~20 min (`--full` ~1 h) |
 | `scripts/search_11m.py` | THE UNIQUENESS THEOREM: for every m ≥ 3, the v-linear class of (1,-1,-m) contains only tame automorphisms — Alpöge–Mathew is the unique member of its equivariant family. 78 assertions, m symbolic where possible, spot checks m = 2,3,4,5,7 (see `docs/SEARCH_11M.md`) | ~1 min (`--full` ~72 min) |
+| `scripts/witten_index.py` | The 0D Witten index: Brouwer degree = −N(J), jumps −1 ↔ −3 across the wall (exact non-properness certificate); Mathai–Quillen SUSY completion (no superpotential exists: DF ≠ DFᵀ), closed form and finiteness of Z_σ, localization numerics (see `docs/WITTEN_INDEX.md`) | ~9 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

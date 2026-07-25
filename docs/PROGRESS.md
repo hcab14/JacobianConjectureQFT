@@ -707,3 +707,39 @@ $m = 2, 3, 4, 5, 7$.
   query at the 16 GB F4 wall (its sibling closed EMPTY exactly; all
   eight $m = 4/5$ medium-box queries EMPTY).
 - Re-verified end-to-end on this machine: `all checks passed in 54 s`.
+
+## 2026-07-25 — The 0D Witten index: SUSY localization sees the wall
+
+`scripts/witten_index.py` (~9 s, all exact claims asserted); write-up
+`docs/WITTEN_INDEX.md`. Makes the SUSY/wall-crossing reading of the
+counterexample exact.
+
+- **Exact:** sign det DF = −1 at every real solution, so the Brouwer
+  degree is $\deg(F,J) = -N(J)$: **−1 on $\{p>0\}$, −3 on $\{p<0\}$**
+  (asserted via exact fibers, map-back verified by minimal-polynomial
+  reduction). For a proper map the degree is a single integer — the
+  jump is a second, independent exact certificate of non-properness
+  (alongside the escape curve of `missing_observables.py`).
+- **SUSY structure:** no Parisi–Sourlas superpotential exists —
+  $DF \neq DF^{\mathsf T}$ (exact, one line). The Mathai–Quillen
+  completion exists for arbitrary $F$: BRST charge $\delta^2 = 0$,
+  action $\delta$-exact, Berezin integrals verified in an explicit
+  6-generator Grassmann algebra. Its localized partition function is
+  the degree.
+- **Closed form + finiteness:** $Z_\sigma(J) = -\mathbb{E}[N(J+\sigma\xi)]$
+  — the Gaussian mollification of the index — hence
+  $-3 < Z_\sigma < -1$ finite unconditionally (wall and cusp included),
+  with a two-sided Gaussian decay bound; properness would make
+  $Z_\sigma$ exactly $\sigma$-independent, so the $\sigma$-dependence
+  *is* the wall.
+- **Numerics (labelled evidence):** direct $\phi$-space quadrature of
+  the MQ integral matches the closed form to $\le 5\times10^{-5}$;
+  localization $\to$ −1/−3 per chamber; fitted decay distances match
+  wall distances to ~2%; wall/vacuum limits −2, cusp −1 (over an
+  *empty* real fiber); near-wall crossover matches the flat-wall
+  profile.
+- **Interpretation (flagged):** two classical vacua escape through
+  infinity as $J$ crosses the wall — the 0D caricature of Witten-index
+  jumping via vacua at infinity and of wall-crossing. Complex contrast:
+  over $\mathbb{C}$ the count is constant (3); the wall is a real-locus
+  phenomenon.
