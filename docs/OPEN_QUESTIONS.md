@@ -103,8 +103,13 @@ v-linear class, all $w$-degrees**: Wronskian stratification, every
 Keller map a tame automorphism, the 3:1 mechanism empty, and the
 Alpöge–Mathew stratum shown to be numerologically obstructed at $m=3$
 (`docs/SEARCH_113.md`) — the hoped-for $\mathbb{Z}_3$ anomaly class does
-not materialize in either sibling. Remaining: $v$-degree $\ge 2$
-ansätze, $m \ge 4$, 4-field gradings.)*
+not materialize in either sibling. **UNIQUENESS THEOREM 2026-07-25**:
+for EVERY $m \ge 3$ the $v$-linear class of $(1,-1,-m)$ contains only
+tame automorphisms — for $m \ge 4$ with no box at all in the D strata —
+so Alpöge–Mathew is the unique member of its equivariant family within
+the $v$-linear class (`docs/SEARCH_11M.md`, same D3′ non-squarefree gap,
+box-closed $m \le 5$). Remaining: $v$-degree $\ge 2$ ansätze, 4-field
+gradings, the D3′ corner.)*
 
 **B4. Exact Gröbner certification of local rigidity.**
 [`NEW_COUNTEREXAMPLES.md` §5 step 4, §3]

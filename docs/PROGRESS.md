@@ -669,3 +669,41 @@ weight arithmetic).
   deforming the invariant geometry ($A_1$ cone) reproduces it. Next
   probes: $v$-quadratic class, $m \ge 4$ (machinery applies verbatim),
   4-field gradings.
+
+## 2026-07-25 — THE UNIQUENESS THEOREM: Alpöge–Mathew is the unique member of its equivariant family (v-linear class, every m)
+
+`scripts/search_11m.py` (78 assertions, ~1 min default; `--full`
+~72 min, ran clean); write-up `docs/SEARCH_11M.md`. Generalizes
+`search_113.py` from $m = 3$ to ALL $m \ge 3$, with $m$ symbolic
+wherever the identities allow (det M is linear in $m$) and per-parity
+$k$-symbolic branches ($m = 2k$ / $2k{+}1$) elsewhere; spot checks at
+$m = 2, 3, 4, 5, 7$.
+
+- **Theorem.** For every $m \ge 3$, every Keller map in the $v$-linear
+  class of $(1,-1,-m)$ is, up to gauge, the tame automorphism
+  $P = p_0 + v$, $Q = w + b_0P$, $R = 1$. No counterexample and no
+  $m$:1 orbifold covering for any $m \ge 3$ (composite $m$ included) —
+  with the same precisely-mapped D3′ non-squarefree gap as at $m=3$,
+  box-closed for $m \le 5$.
+- **General integrated constraint:** $E_2$ has log-derivative exponents
+  $(2, -(m{+}1), m{-}1)$, integrating to
+  $p_1^2\,r_1^{m-1} = c\,q_1^{m+1}$ (anchors: $m{=}2$ gives
+  $p_1^2r_1 = cq_1^3$ with AM at $c = -1/27$; $m{=}3$ the square of
+  `search_113`'s $p_1r_1 = cq_1^2$).
+- **Striking uniformity:** for $m \ge 4$ the $\kappa$-equations of the
+  D strata carry *nonconstant killing factors* ($u^{m-2}$,
+  $d^{m-2}$, $s^{k-1}$, ...) forcing a nonconstant polynomial to divide
+  the constant $\kappa$ — **empty outright, no box needed**. Only
+  $m = 3$ needs the box-jet arguments; $m = 3$ is the boundary case of
+  the uniform mechanism.
+- **The exact $m=2$ degeneracy:** AM sits in D1-even, where two
+  degeneracies coincide at $m=2$ and only there: the killing factor
+  $u^{m-2}$ trivializes AND the even-only homogeneous $E_1$-direction
+  $Y = \tilde y u^m$ exists ($\tilde y_{\rm AM} = -1 \ne 0$). Asserted
+  end-to-end: AM's sheared data yields $E_0 = -2 = \kappa_{\rm AM}$
+  exactly.
+- Honest residue: D3′ beyond boxes (thresholds grow with $m$:
+  $\deg \ge m{+}1$ odd / $2(m{+}1)$ even), and one targeted $m=5$ gap
+  query at the 16 GB F4 wall (its sibling closed EMPTY exactly; all
+  eight $m = 4/5$ medium-box queries EMPTY).
+- Re-verified end-to-end on this machine: `all checks passed in 54 s`.

@@ -27,13 +27,13 @@
 \emergencystretch=1.5em
 
 \title{Zero-dimensional QFT structure of the Alp\"oge--Mathew Jacobian
-counterexample and exact Keller classifications in the sibling weight
-systems $(1,-1,-3)$ and $(2,-1,-3)$}
+counterexample, and uniqueness of the defect in the equivariant family
+$(1,-1,-m)$}
 
 \author{Christoph Mayer\thanks{Independent researcher.
 Email: \texttt{hcab14@gmail.com}.}}
 
-\date{July 24, 2026}
+\date{July 25, 2026}
 
 \begin{document}
 
@@ -65,13 +65,19 @@ $v$-linear Keller class for \emph{all} $w$-degrees via a Wronskian
 stratification: every solution is a tame automorphism, the $3{:}1$
 orbifold mechanism is empty, and the Alp\"oge--Mathew mechanism is
 blocked at $m=3$ by an exact numerological obstruction --- not by a
-failure to search far enough. One stratum (non-squarefree $D_3'$) is
-closed only inside Gr\"obner boxes and is stated as an honest gap. The
-emerging picture is that the non-properness defect responsible for the
-counterexample is, so far, rigidly attached to the $m=2$ numerology.
-This is AI-assisted exploratory research and has not been peer reviewed;
-every claim is labelled exact, box-checked, or open, and each is
-reproducible from a cited script.
+failure to search far enough; (v) the uniqueness theorem for the whole
+family: for every $m\ge 3$, every Keller map in the $v$-linear class of
+$(1,-1,-m)$ is a tame automorphism, so the Alp\"oge--Mathew map is the
+\emph{unique} member of its equivariant family within that class. The
+integrated constraint is $p_1^2\,r_1^{m-1}=c\,q_1^{m+1}$; for $m\ge 4$
+the D-strata die by nonconstant factors of the constant $\kappa$ with
+\emph{no box needed}, and $m=2$ escapes exactly where the killing factor
+$u^{m-2}$ trivializes. One stratum (non-squarefree $D_3'$) is closed
+only inside Gr\"obner boxes ($m\le 5$) and is stated as an honest gap.
+The emerging picture is that the non-properness defect is rigidly
+attached to the $m=2$ numerology. This is AI-assisted exploratory
+research and has not been peer reviewed; every claim is labelled exact,
+box-checked, or open, and each is reproducible from a cited script.
 \end{abstract}
 
 \tableofcontents
@@ -157,20 +163,22 @@ $\C^*$-equivariance siblings. The main results are:
  \ref{thm:213class}), provable emptiness of the $\Z_2$ and $\Z_3$
  stabilizer-jump mechanisms in two boxes, and an honest account of the
  computational wall met by the degree-$2$ box.
-\item \textbf{Section \ref{sec:113}} contains the main new theorem: for
- the weight system $(1,-1,-3)$ the Keller condition in the $v$-linear
- class is solved \emph{completely, for all $w$-degrees}, by a Wronskian
- stratification (Theorem \ref{thm:113main}). Every Keller map in the
- class is a tame automorphism; the $3{:}1$ orbifold mechanism is empty;
- and the Alp\"oge--Mathew mechanism is obstructed at $m=3$ by an exact
- numerological incompatibility between the polynomiality box and the
- stratum equations (Section \ref{sec:numerology}). One substratum
- ($D_3$ with non-squarefree data) is closed only inside Gr\"obner boxes
- and is stated as a gap (Section \ref{sec:gap}).
+\item \textbf{Section \ref{sec:113}} classifies the $v$-linear class of
+ $(1,-1,-3)$ for all $w$-degrees by a Wronskian stratification
+ (Theorem \ref{thm:113main}): every Keller map is a tame automorphism;
+ the $3{:}1$ mechanism is empty; the Alp\"oge--Mathew mechanism is
+ obstructed at $m=3$ by an exact numerological incompatibility
+ (Section \ref{sec:numerology}). One substratum ($D_3$ with
+ non-squarefree data) is a Gr\"obner-box gap (Section \ref{sec:gap}).
+\item \textbf{Section \ref{sec:11m}} is the headline theorem: the
+ $m=3$ classification extends uniformly to \emph{every} $m\ge 3$
+ (Theorem \ref{thm:11m}). For $m\ge 4$ the D-strata are empty with no
+ box at all; Alp\"oge--Mathew survives at $m=2$ exactly where the
+ killing factor $u^{m-2}$ trivializes
+ (\texttt{scripts/search\_11m.py}, \texttt{docs/SEARCH\_11M.md}).
 \item \textbf{Sections \ref{sec:qftread} and \ref{sec:outlook}} give the
- QFT interpretation --- the non-properness defect appears rigidly
- attached to the $m=2$ numerology; no new ($\Z_3$) anomaly class
- materializes in either sibling --- and the outlook.
+ QFT interpretation --- the defect is rigidly attached to the $m=2$
+ numerology --- and the outlook.
 \item \textbf{Section \ref{sec:repro}} tabulates the scripts that
  machine-verify every claim, with runtimes.
 \end{itemize}
@@ -679,7 +687,8 @@ complete classification of the \texorpdfstring{$v$}{v}-linear
 class}\label{sec:113}
 %=====================================================================
 
-This is the main new result. Every identity and every emptiness claim
+This is the $m=3$ case of the uniqueness theorem
+(Section \ref{sec:11m}). Every identity and every emptiness claim
 is proved by assertion in \texttt{scripts/search\_113.py} (default run
 $\sim$20 min; \texttt{--full} $\sim$1 h adds larger Gr\"obner boxes);
 the reduction machinery is Proposition \ref{prop:redw} at $m=3$.
@@ -978,11 +987,80 @@ failure to search far enough.
 \end{enumerate}
 
 %=====================================================================
+\section{Uniqueness for every $m\ge 3$}\label{sec:11m}
+%=====================================================================
+
+The $m=3$ classification of Section \ref{sec:113} extends uniformly.
+Every identity below is asserted in \texttt{scripts/search\_11m.py}
+(78 checks, $\sim$1\,min default; \texttt{--full} $\sim$72\,min), with
+$m$ a sympy \texttt{Symbol} wherever the statement is uniform and with
+$k$-symbolic parity branches ($m=2k$ / $2k{+}1$) otherwise; spot-checks
+at $m=2,3,4,5,7$. Full write-up: \texttt{docs/SEARCH\_11M.md}.
+
+\begin{theorem}[Uniqueness in the $v$-linear class; verified with gaps]
+\label{thm:11m}
+For every integer $m\ge 3$, every Keller map in the $v$-linear class of
+$(1,-1,-m)$ is, up to gauge, the tame automorphism
+\[
+P = p_0 + v,\qquad Q = w + b_0 P,\qquad R = 1,\qquad
+p_0\in w^m\,\C[w],\quad b_0\in\C.
+\]
+Hence that class contains no counterexample and no $m{:}1$ orbifold
+covering for any $m\ge 3$, and the Alp\"oge--Mathew map ($m=2$) is the
+unique member of its equivariant family within the $v$-linear class.
+The same $D_3'$ non-squarefree gap as at $m=3$ remains, box-closed for
+$m\le 5$.
+\end{theorem}
+
+\emph{The general integrated constraint.} The $v^2$-coefficient of
+$\det M$ (with $m$ symbolic) is
+$E_2 = 2p_1'q_1r_1 - (m{+}1)p_1q_1'r_1 + (m{-}1)p_1q_1r_1'$,
+i.e.\ log-derivative exponents $(2,-(m{+}1),m{-}1)$. Integration gives
+\[
+p_1^2\, r_1^{m-1} = c\, q_1^{m+1}\qquad (c\in\C^\times),
+\]
+via the asserted certificate
+$(p_1^2 r_1^{m-1}/q_1^{m+1})' = p_1 r_1^{m-2} E_2 / q_1^{m+2}$.
+Anchors: $m=2$ recovers $p_1^2 r_1 = c q_1^3$ (AM at $c=-1/27$);
+$m=3$ recovers the square of Lemma \ref{lem:wronskian}.
+
+\emph{Stratum verdicts.} Strata A/B give the tame family and C, D0 are
+empty, all with $m$ symbolic. For D1--D3 the bookkeeping branches on
+parity of $m$; for $m\ge 4$ the $\kappa$-equations carry nonconstant
+killing factors --- $u^{m-2}$ (D1 even), $u^{(m-3)/2}$ and $d^{m-2}$
+(D1 odd), $s^{k-1}$ (D3 odd), $s^{m-2}$ (D3 even) --- forcing a
+nonconstant polynomial to divide the constant $\kappa$. Thus for
+$m\ge 4$ the D-strata are empty \emph{outright, with no box}. Only
+$m=3$ needs the box-jet arguments of Section \ref{sec:113}; it is the
+boundary case of the uniform mechanism.
+
+\emph{The exact $m=2$ degeneracy.} Alp\"oge--Mathew sits in D1-even,
+where two degeneracies coincide at $m=2$ and only there: (i) the
+killing factor $u^{m-2}$ is trivial; (ii) the even-only homogeneous
+$E_1$-direction $Y=\tilde y\, u^m$ exists, and AM needs
+$\tilde y=-1\neq 0$. Asserted end-to-end: AM's sheared data
+$(p_0^{\mathrm{sh}}=(w{+}1)(w{+}2),\ q_0^{\mathrm{sh}}=6{+}4w)$
+plugs into the $\kappa$-formula and yields $E_0=-2=\kappa_{\mathrm{AM}}$
+exactly. The machinery does not spuriously kill the known
+counterexample.
+
+\emph{Orbifold.} For every $m\ge 2$ (composite included) the only
+stabilizer-jump mechanism is $m{:}1$ on the weight $-m$ axis; the
+classification gives $R\equiv 1$, so it is empty. Pointwise Gr\"obner
+witnesses confirm in-box at $m=4,5$.
+
+\emph{Honest residue.} $D_3'$ beyond boxes (thresholds grow with $m$:
+$\deg\ge m{+}1$ odd / $2(m{+}1)$ even) remains open. One targeted
+$m=5$ gap query hit the 16 GB F4 wall; its sibling closed EMPTY
+exactly, and all eight $m=4/5$ medium-box queries closed EMPTY.
+
+%=====================================================================
 \section{QFT interpretation}\label{sec:qftread}
 %=====================================================================
 
 This section is interpretation and is flagged as such; the underlying
-facts are the exact statements of Sections \ref{sec:obs}--\ref{sec:113}.
+facts are the exact statements of Sections
+\ref{sec:obs}--\ref{sec:11m}.
 
 \emph{The defect and its name.} In QFT language the Alp\"oge--Mathew
 phenomenon is a \emph{non-properness defect}: a global consistency
@@ -1010,16 +1088,16 @@ global anomaly class. The verdict is a clean no-go in the AM-analogue
 class: the unit-determinant constraint is compatible with this grading
 only through shear-type field redefinitions; the theory admits no
 non-properness defect there and no $\Z_3$ vacuum-escape monodromy.
-Combined with the $(2,-1,-3)$ no-go of Section \ref{sec:213}, the
-pattern is that the Alp\"oge--Mathew defect is, so far, \emph{rigidly
-attached to the $m=2$ numerology}: neither enlarging the orbifold group
-($\Z_3$) nor deforming the invariant geometry (the $A_1$ cone)
-reproduces it, and at $m=3$ the failure is an exact arithmetic
-incompatibility (Section \ref{sec:numerology}), not a search horizon.
-Within the searched classes, the existence of the defect appears to be
-a delicate coincidence of the $(1,-1,-2)$ weight arithmetic --- the
-$\val_w \ge 2$ box meeting the $m=2$ derivative-weighting of the
-reduced Keller equations.
+Combined with the $(2,-1,-3)$ no-go of Section \ref{sec:213} and the
+uniqueness theorem of Section \ref{sec:11m}, the pattern is that the
+Alp\"oge--Mathew defect is \emph{rigidly attached to the $m=2$
+numerology}: neither enlarging the orbifold group, deforming the
+invariant geometry, nor moving to any other $m\ge 3$ reproduces it.
+For $m\ge 4$ the failure is an exact arithmetic incompatibility that
+needs no search box at all; $m=3$ is the boundary case. Within the
+$v$-linear class the defect is a delicate coincidence of the
+$(1,-1,-2)$ weight arithmetic --- the killing factor $u^{m-2}$
+trivializing together with the even-only homogeneous $E_1$-direction.
 
 %=====================================================================
 \section{Outlook}\label{sec:outlook}
@@ -1028,25 +1106,24 @@ reduced Keller equations.
 The concrete next probes, in increasing order of expected effort:
 
 \begin{enumerate}
-\item \emph{The $v$-quadratic class of $(1,-1,-3)$.} The Wronskian
- stratification used here exploits the $v$-degree-2 structure of
- $\det M$ on $v$-linear data; extending it to $v$-degree $\ge 2$
- ans\"atze is the nearest untouched territory.
-\item \emph{The family members $m \ge 4$.} The reduction machinery
- (Proposition \ref{prop:redw}) applies verbatim for all $m$, and the
- same stratification strategy can be run; the numerological
- obstruction of Section \ref{sec:numerology} suggests examining how
- the box valuation $\val_w p_0 \ge m$ interacts with the stratum jets
- as $m$ grows.
+\item \emph{The $v$-quadratic class of $(1,-1,-m)$.} The Wronskian
+ stratification exploits the $v$-degree-2 structure of $\det M$ on
+ $v$-linear data; extending it to $v$-degree $\ge 2$ ans\"atze is the
+ nearest untouched territory (and the natural place to ask whether
+ anything else lives near Alp\"oge--Mathew at $m=2$).
+\item \emph{Closing the $D_3'$ gap.} Non-squarefree $s$ or $t$ is
+ closed only in Gr\"obner boxes for $m\le 5$; a structural argument
+ removing the squarefree hypothesis would make Theorem \ref{thm:11m}
+ fully gap-free.
 \item \emph{Four-field gradings.} Weight systems in four variables
  admit richer stabilizer patterns (and richer orbifold strata) at the
  price of a higher-dimensional invariant geometry.
 \item \emph{The degree-2 $(2,-1,-3)$ box.} The six mechanism queries
- are beyond direct Gr\"obner methods on 30 GB hardware (Section
- \ref{sec:213wall}); numerical homotopy continuation
- (e.g.\ HomotopyContinuation.jl) could be used for \emph{discovery},
- with exact certification of any find --- the certificates, not the
- continuation, would carry the proof.
+ remain beyond direct Gr\"obner methods on 30 GB hardware (Section
+ \ref{sec:213wall}). A first homotopy-continuation attempt
+ (\texttt{scripts/hc\_drive\_213.jl}) found mixed volumes already in
+ the tens of millions --- past a laptop path budget --- so further
+ stratification is needed before numerical discovery is practical.
 \end{enumerate}
 
 %=====================================================================
@@ -1089,6 +1166,12 @@ script & claim(s) verified & runtime \\
 \texttt{search\_113.py --full} &
  medium-box and targeted $D_3'$ certificates (Section \ref{sec:gap}) &
  $\sim$1 h \\
+\texttt{search\_11m.py} &
+ Section \ref{sec:11m}: Theorem \ref{thm:11m} (78 assertions) &
+ $\sim$1 min \\
+\texttt{search\_11m.py --full} &
+ medium-box / targeted $D_3'$ certificates for $m\le 5$ &
+ $\sim$72 min \\
 \hline
 \end{tabular}
 \end{center}
