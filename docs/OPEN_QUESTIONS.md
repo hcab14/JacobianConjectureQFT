@@ -238,9 +238,15 @@ questions; they progress when the items above do.
 sharp yes/no questions Q1 (QM path measure) and Q2a/b (lattice +
 kinetics). Probe result: ultralocal product *tensors* the invariants;
 **linear kinetic mixing does not wash out non-properness** (equal-mode
-escape + leading-form prefilter). Still open: Q1 (true $D=1$ MQ index
-jump), full $N_\varepsilon$ chamber function off the diagonal, Q2b at
-$\varepsilon>0$, continuum PDE.
+escape + leading-form prefilter). **Q2a answered YES for the probed
+range** (`scripts/lattice_chamber.py` + `scripts/hc_lattice_chamber.jl`,
+certified reality): $N_\varepsilon$ is non-constant at every probed
+$\varepsilon\in[1/1000,4]$, with up to 57 of the 66 master solutions
+returning from infinity at $\varepsilon>0$ and escape-type $\pm1$ wall
+jumps bisected in $J$ (`CLASSICAL_MAP_INVARIANTS.md` §6.4). Still open:
+Q1 (true $D=1$ MQ index jump), a uniform $\varepsilon_*>0$ statement,
+$L>2$, Q2b at $\varepsilon>0$, signed counts for the non-Keller
+$F_\varepsilon$, continuum PDE.
 
 ---
 

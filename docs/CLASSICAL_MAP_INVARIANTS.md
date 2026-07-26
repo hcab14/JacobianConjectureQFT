@@ -588,12 +588,16 @@ For $L=2$, $n=3$, **linear** kinetic mixing, §6 answers the
 *properness half* of Q2a in the affirmative: leading forms are
 unchanged, `infinity_prefilter` still fires, and an equal-mode escape
 curve still hits a finite wall point
-(`scripts/classical_map_invariants_probe.py`). What remains open for
-Q2a is a full chamber-function computation for $F_\varepsilon$ off the
-equal-mode slice (does $N_\varepsilon$ stay non-constant as a function
-on $(\mathbb{R}^3)^2$?). Q2b at $\varepsilon=0$ reduces to the product
-of known 0D closed forms (`DAMPED_PARTITION.md`) — a **calibration** —
-and becomes interesting only for $\varepsilon>0$.
+(`scripts/classical_map_invariants_probe.py`). The remaining half —
+does $N_\varepsilon$ stay non-constant as a function on
+$(\mathbb{R}^3)^2$ off the equal-mode slice? — is now answered **YES
+(Numerical, certified reality)** for
+$\varepsilon\in\{1/100,1/10,1/4,1/2,1,2\}$ by the homotopy-continuation
+computation of §6.4 (`scripts/lattice_chamber.py` +
+`scripts/hc_lattice_chamber.jl`); open for all $\varepsilon$
+simultaneously and for $L>2$. Q2b at $\varepsilon=0$ reduces to the
+product of known 0D closed forms (`DAMPED_PARTITION.md`) — a
+**calibration** — and becomes interesting only for $\varepsilon>0$.
 
 ---
 
@@ -613,8 +617,10 @@ and becomes interesting only for $\varepsilon>0$.
 
 ## 6. Computational probe
 
-Runnable certificate: `scripts/classical_map_invariants_probe.py`
-(`.venv/bin/python`, 35 asserts, ~2 s).
+Runnable certificates: `scripts/classical_map_invariants_probe.py`
+(`.venv/bin/python`, 35 asserts, ~2 s; §§6.1–6.3) and
+`scripts/lattice_chamber.py` + `scripts/hc_lattice_chamber.jl`
+(HomotopyContinuation.jl, ~3.5 min; §6.4).
 
 ### 6.1 What it asserts
 
@@ -687,6 +693,127 @@ side-effect sense: product-fiber factorization is washed out by mode mixing.
 The primary defect proposed as Lagrangian data — the non-properness wall —
 is not washed out.
 
+### 6.4 Chamber function after mixing: Q2a answered for $L=2$
+
+*(2026-07-26. `scripts/lattice_chamber.py` (Python wrapper, exact
+$\varepsilon=0$ data + asserts) driving `scripts/hc_lattice_chamber.jl`
+(HomotopyContinuation.jl v2.21); ~3.5 min default, `--full` adds
+$\varepsilon\in\{1/1000,1/50,4\}$. Status: **Numerical with certified
+reality** — see the scope paragraph below.)*
+
+**Setting.** The §5.2 lattice map for $L=2$, $n=3$, in the §6.B
+convention $F_\varepsilon = F_M + K\cdot\phi$,
+$K=\varepsilon\begin{pmatrix}-I&I\\I&-I\end{pmatrix}$:
+$$
+F_\varepsilon(\phi_0,\phi_1)
+=\bigl(F(\phi_0)+\varepsilon(\phi_1-\phi_0),\;
+       F(\phi_1)+\varepsilon(\phi_0-\phi_1)\bigr),
+\qquad N_\varepsilon(J)=\#F_\varepsilon^{-1}(J)\cap(\mathbb{R}^3)^2 .
+$$
+Sample targets built from the `scripts/witten_index.py` rational chamber
+points: $T_1=((-1/4,0,0),(0,2,0))$ (both sites $N=3$),
+$T_2=((-1/4,0,0),(1,0,0))$ (mixed), $T_3=((1,0,0),(2,1,1))$ (both
+$N=1$). At $\varepsilon=0$: complex fiber $3\times3=9$, real fiber
+$N(J_a)N(J_b)=9/3/1$ (**Exact**, `jcqft.fibers.exact_fiber`, asserted by
+the wrapper).
+
+**Method (three mutually cross-checking engines).** (m) A *master*
+solution set over the joint parameter space $(\varepsilon,J)\in\mathbb{C}^7$:
+polyhedral solve at a generic complex point plus monodromy stabilization
+gives $D=66$ paths (stable under 20 no-progress monodromy loops and
+under transport to an independent generic point); each rational
+$(\varepsilon,J)$ is then reached by parameter homotopy along **three**
+independent routes (direct + via two random complex midpoints, unioned;
+deterministic per-point seeds) — this sees solutions invisible from
+$\varepsilon=0$. (a) Parameter
+homotopy in $\varepsilon$ from the 9 exact product solutions at
+$\varepsilon=0$ (complex detour); every finite endpoint must reappear in
+(m). (b) A fresh polyhedral solve at each fixed rational
+$(\varepsilon,J)$; any solution outside (m) would prove (m) incomplete
+(hard failure — never triggered). Reality and distinctness are
+**certified** (`HC.certify`, interval arithmetic) against the exact
+rational systems; conjugation parity of every fiber is asserted.
+
+**Results** (certified real count; in parentheses: certified distinct
+complex count $|$ number of real solutions descending from the
+$\varepsilon=0$ product fiber):
+
+| $\varepsilon$ | $T_1$ ($3\times3$) | $T_2$ ($3\times1$) | $T_3$ ($1\times1$) |
+|---|---|---|---|
+| $0$ (exact) | $9\;(9\,\vert\,9)$ | $3\;(9\,\vert\,3)$ | $1\;(9\,\vert\,1)$ |
+| $1/100$ | $20\;(52\,\vert\,9)$ | $12\;(54\,\vert\,3)$ | $8\;(66\,\vert\,1)$ |
+| $1/10$ | $16\;(54\,\vert\,4)$ | $4\;(54\,\vert\,1)$ | $10\;(66\,\vert\,1)$ |
+| $1/4$ | $12\;(52\,\vert\,3)$ | $4\;(54\,\vert\,1)$ | $6\;(66\,\vert\,1)$ |
+| $1/2$ | $14\;(46\,\vert\,4)$ | $8\;(40\,\vert\,1)$ | $6\;(60\,\vert\,1)$ |
+| $1$ | $12\;(54\,\vert\,3)$ | $10\;(54\,\vert\,2)$ | $8\;(56\,\vert\,3)$ |
+| $2$ | $10\;(50\,\vert\,2)$ | $8\;(44\,\vert\,1)$ | $17\;(61\,\vert\,5)$ |
+
+**Q2a verdict (probed range): YES.** $N_\varepsilon$ is non-constant on
+$(\mathbb{R}^3)^2$ at every probed $\varepsilon>0$ — wall-crossing
+survives kinetic mixing; the counts even differ more violently than at
+$\varepsilon=0$.
+
+**Findings around the verdict.**
+
+1. **$\varepsilon=0$ is a degenerate member of the family.** The joint
+   generic degree is $D=66$; at $\varepsilon=0$ only $9$ solutions are
+   finite (the product fiber), the rest sit at infinity. For any probed
+   $\varepsilon>0$ dozens return from infinity, many of them *real*:
+   at $(T_1,\varepsilon=1/100)$ the real count 20 = 9 continuations of
+   the product fiber + 11 solutions that came in from infinity.
+   Perturbing the kinetic term *on* rather than off is the singular
+   direction — the ultralocal theory understates the solution content
+   of its own neighborhood.
+2. **Complex non-constancy too.** At fixed $\varepsilon$ the certified
+   distinct complex count varies with $J$ (e.g. $52/54/66$ at
+   $\varepsilon=1/100$) — for a proper étale map it would be constant,
+   so (modulo numerical completeness) $F_\varepsilon$ stays non-proper
+   over $\mathbb{C}$ at finite $\varepsilon$, consistent with the exact
+   equal-mode escape certificate of §6.3. The missing paths diverge in
+   the tracker (evidence of escape, not certified).
+3. **$F_\varepsilon$ leaves the Keller class.** $\det DF_\varepsilon$ is
+   *not* constant for $\varepsilon>0$ (**Exact**, asserted at
+   $\varepsilon=1/4$: $7/4$ at the origin vs $23439371/4$ at an integer
+   point; at the origin
+   $\det DF_\varepsilon(0)=-2(1-2\varepsilon)(4\varepsilon^2-2)$, which
+   vanishes at $\varepsilon=1/2$). So real counts can change both by
+   escape through infinity *and* by finite fold bifurcations
+   $\{\det DF_\varepsilon=0\}$ — the parity of the real count is no
+   longer pinned to $N \bmod 2$ per chamber as in 0D, and the signed
+   (Witten) count need not equal $\pm N_\varepsilon$. The signed count
+   was not computed here.
+4. **Wall motion in $\varepsilon$ and $J$.** Counts move with
+   $\varepsilon$ at fixed $J$ (e.g. $T_1$: $20\to10$; $T_3$: $8\to17$,
+   overtaking $T_1$ at $\varepsilon=2$; with `--full`,
+   $\varepsilon=1/1000$ already gives $18/10/7$ and $\varepsilon=4$
+   gives $8/6/18$). At fixed $\varepsilon=1/4$, bisection along the
+   straight segment $T_1\to T_3$ finds certified real counts
+   $12\to13\to14\to8\to4\to2\to6$ — several walls — with the first
+   crossing bracketed at $t\in(27/512,\,7/128)$ (counts 12 vs 13). The
+   **odd** jumps $12\to13\to14$ cannot be fold bifurcations (folds
+   change the real count by $\pm2$): they are escape-type walls, i.e.
+   real solutions arriving from infinity at finite $\varepsilon$ —
+   the non-properness mechanism caught in the act.
+5. **Special $\varepsilon$ values.** *(Side observation, not asserted.)*
+   Spot checks at generic complex $J$ gave complex counts 66 at
+   $\varepsilon\in\{1/100,1/10,1/4\}$ but 60 at $\varepsilon=1/2$ and 56
+   at $\varepsilon=1$ — the generic fiber degree itself appears to drop
+   at special $\varepsilon$ (note $\det DF_\varepsilon(0)=0$ exactly at
+   $\varepsilon=1/2$).
+
+**Honest scope.** Certified: reality and distinctness of every reported
+solution, against exact rational input ($\varepsilon$, $J$, and the
+integer-coefficient map). Numerical (not certified): *completeness* of
+the solution lists — it rests on the monodromy-stabilized master set,
+all-paths transport along three independent routes, the fresh polyhedral
+cross-solves, and conjugation parity, but no interval certificate of
+exhaustiveness exists. Probed: $L=2$, $n=3$, six rational
+$\varepsilon\in[1/100,2]$ (nine with `--full`), three rational targets
+plus one bisection segment. Open: all $\varepsilon$ simultaneously
+(a uniform $\varepsilon_*>0$ statement), $L>2$, the continuum limit,
+signed/Witten counts for $F_\varepsilon$, and the exact discriminant of
+$F_\varepsilon$ (§7.2).
+
 ---
 
 ## 7. Open questions refined
@@ -696,10 +823,15 @@ is not washed out.
    leading-form argument covers any lower-order perturbation of a polynomial
    $F_M$; non-polynomial kinetics are open.
 
-2. **Chamber function after mixing.** For $F_M^K$, is there still a
-   wall-crossing formula for real fibers, or does mixing produce a more
-   complicated discriminant?  Exact eliminants for $M=2$ are in reach but
-   not computed here.
+2. **Chamber function after mixing.** *(Partially answered — §6.4.)*
+   The real chamber function of $F_M^K$ ($M=2$) is non-constant at every
+   probed $\varepsilon>0$, with rich wall structure (several walls on a
+   single $J$-segment, counts up to 20). What remains open: the *exact*
+   discriminant/eliminant of $F_\varepsilon$ for $M=2$ (in reach for
+   Gröbner/resultant methods but not computed), a wall-crossing
+   *formula*, and the fold-vs-escape decomposition of each wall
+   ($F_\varepsilon$ is no longer Keller: $\det DF_\varepsilon\neq$
+   const).
 
 3. **Monodromy lift.** Does the $S_3$ local system of AM extend as an
    $S_3^{\times N}$ (or braid quotient) for $F^{\times N}$, and how does
@@ -728,5 +860,6 @@ is not washed out.
 .venv/bin/python scripts/witten_index.py
 .venv/bin/python scripts/symmetric_search.py          # ~3.5 min; I8
 .venv/bin/python scripts/classical_map_invariants_probe.py   # ultralocal + kinetic
+.venv/bin/python scripts/lattice_chamber.py           # ~3.5 min; §6.4 Q2a (needs julia + HomotopyContinuation.jl)
 ```
 

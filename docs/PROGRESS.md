@@ -808,6 +808,49 @@ boxes and the $n=3$ degree-5 wall attempt); write-up
   product-fiber factorization breaks. Q1 and full $N_\varepsilon$ off
   the diagonal remain open (C7 / C9′).
 
+## 2026-07-26 — Q2a answered for L=2: wall-crossing survives kinetic mixing
+
+`scripts/lattice_chamber.py` (11 asserts, ~3.5 min) driving
+`scripts/hc_lattice_chamber.jl` (HomotopyContinuation.jl v2.21);
+write-up `docs/CLASSICAL_MAP_INVARIANTS.md` §6.4. Answers the
+chamber-function half of Q2a (§5.2) that the equal-mode escape probe
+left open: for the 2-site lattice deformation
+$F_\varepsilon(\phi_0,\phi_1) = (F(\phi_0)+\varepsilon(\phi_1-\phi_0),\,
+F(\phi_1)+\varepsilon(\phi_0-\phi_1))$, is $N_\varepsilon$ still
+non-constant on $(\mathbb{R}^3)^2$?
+
+- **Q2a verdict (probed range): YES.** At every probed
+  $\varepsilon\in\{1/100,1/10,1/4,1/2,1,2\}$ (plus $1/1000,1/50,4$ with
+  `--full`) the certified real counts differ across the three sample
+  targets (both-$N{=}3$ / mixed / both-$N{=}1$ per-site chambers): e.g.
+  $20/12/8$ at $\varepsilon=1/100$ vs the exact $9/3/1$ at
+  $\varepsilon=0$. Wall-crossing survives kinetic mixing — and gets
+  richer.
+- **Method:** master solution set over joint
+  $(\varepsilon,J)\in\mathbb{C}^7$ (polyhedral + monodromy, $D=66$,
+  transport-stable), three-route parameter homotopy to each rational
+  $(\varepsilon,J)$, cross-checked against $\varepsilon$-homotopy from
+  the 9 exact $\varepsilon=0$ product solutions (`jcqft.fibers`) and
+  fresh polyhedral solves; reality/distinctness **certified**
+  (`HC.certify`, exact rational input); completeness numerical.
+  Internal inconsistency ⇒ nonzero exit (never triggered in the final
+  runs).
+- **$\varepsilon=0$ is the degenerate member:** only 9 of the 66 master
+  solutions are finite there; at $\varepsilon>0$ up to 57 return from
+  infinity, many real (at $T_1$, $\varepsilon=1/100$: 20 real = 9
+  product continuations + 11 from infinity). Complex counts are also
+  $J$-dependent at fixed $\varepsilon$ (52/54/66) — non-properness
+  persists over $\mathbb{C}$.
+- **Not Keller anymore (exact):** $\det DF_\varepsilon$ is non-constant
+  for $\varepsilon>0$ ($-2(1-2\varepsilon)(4\varepsilon^2-2)$ at the
+  origin, field-dependent elsewhere), so walls can be fold-type as well
+  as escape-type. Bisection at $\varepsilon=1/4$ along $T_1\to T_3$:
+  counts $12\to13\to14\to8\to4\to2\to6$; the **odd** jumps are
+  escape-type (folds change counts by $\pm2$) — solutions from infinity
+  caught in the act; first crossing at $t\in(27/512, 7/128)$.
+- **Open:** uniform $\varepsilon_*>0$ statement, $L>2$, continuum,
+  signed/Witten counts for $F_\varepsilon$, exact discriminant (§7.2).
+
 ## 2026-07-26 — The 0D Buchholz–Fredenhagen S(J) caricature (B1 resolved, split verdict)
 
 `scripts/bf_caricature.py` (38 checks, ~4 s, monodromy section labelled
