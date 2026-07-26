@@ -20,6 +20,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\im}{\operatorname{im}}
+\newcommand{\E}{\mathbb{E}}
 \newcommand{\Frac}{\operatorname{Frac}}
 \newcommand{\val}{\operatorname{val}}
 \DeclareMathOperator{\antidiag}{antidiag}
@@ -33,7 +34,7 @@ defect}
 \author{Christoph Mayer\thanks{Independent researcher.
 Email: \texttt{hcab14@gmail.com}.}}
 
-\date{July 25, 2026}
+\date{July 26, 2026}
 
 \begin{document}
 
@@ -64,7 +65,15 @@ identity for the weight family $(1,-1,-m)$; (iv)--(v)~complete
 $v$-linear classifications in the sibling systems $(1,-1,-3)$ and
 $(2,-1,-3)$, culminating in a uniqueness theorem: for every $m\ge 3$
 the $v$-linear class of $(1,-1,-m)$ contains only tame automorphisms,
-so the defect is rigidly attached to the $m=2$ numerology. We state
+so the defect is rigidly attached to the $m=2$ numerology;
+(vi)~the 0D Witten index (an exact Mathai--Quillen localization)
+equals $-N(J)$ and jumps $-1\leftrightarrow-3$ across the wall ---
+index non-invariance is non-properness; (vii)~the theory admits no
+action in three fields in the strongest affine sense, yet its
+first-order action $W_6=\bar\varphi\cdot F(\varphi)$ is an
+\emph{explicit} symmetric (variational) Jacobian counterexample in
+dimension 6 --- to our knowledge the first written down --- and is
+necessarily non-coercive. We state
 honestly what the model does \emph{not} imply (nothing about UV
 renormalization, Borel summability, or $D=4$ existence). AI-assisted
 exploratory research, not peer reviewed; every claim is labelled exact,
@@ -190,6 +199,18 @@ primary interpretive frame. The main results are:
  box at all; Alp\"oge--Mathew survives at $m=2$ exactly where the
  killing factor $u^{m-2}$ trivializes
  (\texttt{scripts/search\_11m.py}, \texttt{docs/SEARCH\_11M.md}).
+\item \textbf{Section \ref{sec:susy}} adds the supersymmetric and
+ variational faces of the defect. The 0D Witten index (signed solution
+ count, realized by an exact Mathai--Quillen localization) equals
+ $-N(J)$ and \emph{jumps} $-1\leftrightarrow-3$ across the wall ---
+ index non-invariance is non-properness made quantitative. And the
+ variational question is settled constructively: the Alp\"oge--Mathew
+ defect is non-variational in dimension 3 in the strongest affine
+ sense, yet its cotangent lift $W_6=\bar\varphi\cdot F(\varphi)$ ---
+ the first-order action itself --- is an \emph{explicit} symmetric
+ Jacobian counterexample in dimension 6
+ ($\det\operatorname{Hess}W_6\equiv-4$, rational witnesses,
+ Theorem~\ref{thm:dim6}), necessarily non-coercive.
 \item \textbf{Section \ref{sec:qftread}} is the interpretive core: what
  the model calibrates for AQFT (Haag--Kastler), pAQFT
  (Fredenhagen--Rejzner), and non-perturbative algebraic constructions
@@ -275,7 +296,9 @@ with \emph{constant} Jacobian that fails to be injective.
 One would like to write $F(\varphi)=J$ as the stationarity condition of
 an action $S(\varphi)$, but that is impossible: $F$ is a gradient iff
 $DF$ is symmetric, and here already
-$\partial F_1/\partial z|_0 = 1 \ne 2 = \partial F_3/\partial x|_0$.
+$\partial F_1/\partial z|_0 = 1 \ne 2 = \partial F_3/\partial x|_0$
+(no affine reframing helps either; see
+Proposition~\ref{prop:nogradient}).
 The standard remedy \cite{Abd03} is a conjugate (auxiliary) field
 $\bar\varphi=(\bar x,\bar y,\bar z)$ and the first-order action
 \[
@@ -1076,6 +1099,154 @@ $m=5$ gap query hit the 16 GB F4 wall; its sibling closed EMPTY
 exactly, and all eight $m=4/5$ medium-box queries closed EMPTY.
 
 %=====================================================================
+\section{The 0D Witten index and the variational completion}
+\label{sec:susy}
+%=====================================================================
+
+The two remaining sections of results answer the two most natural
+QFT-side questions about the model: \emph{what does supersymmetric
+localization see?} (Section \ref{sec:witten}), and \emph{does the
+theory admit an action?} (Sections \ref{sec:nogo3}--\ref{sec:coercive}).
+Both answers sharpen the non-properness reading. All identities below
+are asserted in \texttt{scripts/witten\_index.py} and
+\texttt{scripts/symmetric\_search.py}; write-ups:
+\texttt{docs/WITTEN\_INDEX.md}, \texttt{docs/SYMMETRIC\_SEARCH.md}.
+
+\subsection{The Mathai--Quillen index jumps at the wall}
+\label{sec:witten}
+
+Since $\det DF\equiv-2$, the restriction $F:\R^3\to\R^3$ is an
+orientation-reversing local diffeomorphism, every $J$ is a regular
+value, and the signed solution count (the 0D Witten index
+\cite{Wit82}) is defined everywhere:
+\begin{equation}\label{eq:index}
+\deg(F,J) \;=\; \sum_{\phi\in F^{-1}(J)}\operatorname{sign}\det DF(\phi)
+\;=\; -N(J)\;=\;
+\begin{cases} -1, & p(J)>0,\\ -3, & p(J)<0.\end{cases}
+\end{equation}
+The jump is itself an exact certificate of non-properness, independent
+of the escape-curve certificate of Theorem~\ref{thm:nonintegral}: a
+proper map extends to the one-point compactifications $S^3\to S^3$ and
+its signed count at regular values is a single integer. Here the index
+changes chamber by chamber, which is possible only because vacua enter
+and leave through infinity in field space --- index non-invariance
+\emph{is} non-properness. Over $\C$, by contrast, the fiber count is
+$3$ for every $J$ off $\{p=0\}$: the wall is a real-locus phenomenon.
+
+The index has a genuine SUSY realization. Although no superpotential
+exists (Section \ref{sec:nogo3}), the Mathai--Quillen completion
+\cite{MQ86} does, for arbitrary $F$: a nilpotent BRST charge and a
+$Q$-exact action whose Berezin integral over the fermionic pair
+$(\bar\chi,\psi)$ produces $\det DF$, verified generator-by-generator
+in an explicit Grassmann algebra. Its bosonic form
+\[
+Z_\sigma(J)=(2\pi\sigma^2)^{-3/2}\!\int \det DF\;
+e^{-|F(\phi)-J|^2/2\sigma^2}\,d^3\phi
+\]
+has the exact closed form $Z_\sigma(J)=-\,\E\bigl[N(J+\sigma\xi)\bigr]$
+with $\xi\sim\mathcal N(0,\mathbf 1_3)$: the Gaussian mollification of
+the index, finite for all $J$ and $\sigma>0$, with
+$-3<Z_\sigma<-1$ and $Z_\sigma(J)\to\deg(F,J)$ off the wall at the
+exact rate $e^{-\mathrm{dist}(J,\{p=0\})^2/2\sigma^2}$. On the wall the
+limit is $-2$; at the empty-fiber cusp orbit it is $-1$ --- pure
+boundary-at-infinity contributions. (Direct quadrature matches the
+closed form to $\lesssim 5\times 10^{-5}$; labelled numerical.) In SUSY
+language: the localization computation is exact and still
+$J$-dependent, because the compactness hypothesis under which the
+Witten index is deformation-invariant fails in exactly the way the
+counterexample is built to violate.
+
+\subsection{No action in three fields: the gradient no-go}
+\label{sec:nogo3}
+
+Section \ref{sec:qft} noted $DF\ne DF^{\mathsf T}$: as given, $F$ is
+not a gradient. This is not an artifact of the chosen frame
+(\texttt{scripts/symmetric\_search.py}):
+
+\begin{proposition}[No affine frame makes $F$ variational; verified]
+\label{prop:nogradient}
+\[
+\bigl\{K\in\C^{3\times3}\ :\ K\,DF(u)\ \text{symmetric for all}\
+u\bigr\}=\{0\}.
+\]
+Consequently no invertible affine source/target change makes the
+Alp\"oge--Mathew map a gradient map. Moreover no affine normalization
+$x+H$ of $F$ has nilpotent $DH$ (the trace condition
+$\operatorname{tr}(C\,DF)=3$ is an inconsistent linear system).
+\end{proposition}
+
+The exclusion extends to the whole equivariant family: for every
+$m\ge2$, the only gradient Keller maps equivariant for $(1,-1,-m)$ are
+linear maps and the explicit tame shear family
+$W=\alpha x^2/2+\delta yz+\gamma y^{m+1}$ --- outright for every
+$m\ne3$ (weight branch table plus Wronskian/degree kills); at $m=3$
+the unique nontrivial branch $W=x^{-2}S(w,v)$ reduces to a rigid
+Monge--Amp\`ere-type PDE, empty outright for $\deg_v S\le2$, with
+symbolic rigidity lemmas for the top coefficient rows and Gr\"obner-box
+closure at $\deg_v=3,4$. At $m=2$ --- the Alp\"oge--Mathew weights ---
+the exclusion is complete: \emph{the defect is non-variational in
+dimension 3}. Direct searches agree: the midpoint identity
+$\nabla W(a)-\nabla W(b)=\operatorname{Hess}W(\tfrac{a+b}{2})(a-b)$
+kills $\deg W\le3$ in every dimension, and coefficient boxes are empty
+for $n=2$ through $\deg W=6$ and $n=3$ through $\deg W=4$ (full
+25-coefficient box, exact over $\Q$). The honest wall is $n=3$,
+$\deg W=5$: 50 unknowns, beyond the 16\,GB Gr\"obner cap even mod $p$.
+
+\subsection{Explicit variational counterexamples in dimension 6}
+\label{sec:dim6}
+
+De Bondt and van den Essen \cite{dBvdE05} reduced the Jacobian
+Conjecture to the symmetric case $F=\nabla W$ at the cost of doubling
+the dimension. Applying this to the Alp\"oge--Mathew map yields ---
+to our knowledge for the first time --- \emph{explicit} variational
+Jacobian counterexamples, in dimension 6
+(\texttt{scripts/symmetric\_search.py}, all identities and witnesses
+asserted):
+
+\begin{theorem}[Explicit symmetric counterexamples; verified]
+\label{thm:dim6}
+\emph{(i)} The cotangent lift
+$W_6(\varphi,\bar\varphi)=\bar\varphi\cdot F(\varphi)$ --- precisely
+the first-order action of Section \ref{sec:qft} at $J=0$ --- satisfies
+$\det\operatorname{Hess}W_6\equiv-4$ ($\deg W_6=8$, rational
+coefficients), and $\nabla W_6:\C^6\to\C^6$ is $3{:}1$ over a rational
+point, with three explicit rational witnesses mapping to
+$(\tfrac54,1,1,-\tfrac14,0,0)$.
+\emph{(ii)} The normalized twisted lift $\widetilde F=\mathrm{id}+\nabla
+f_H$ with $f_H(x,y)=-i\sum_j H_j(x+iy)\,y_j$, $H=L^{-1}F-\mathrm{id}$,
+$L=DF(0)$, satisfies $\det(I+\operatorname{Hess}f_H)\equiv1$ and has
+three explicit witnesses over $\Q(i)$ with common image
+$(0,0,-\tfrac14,0,0,0)$. In both cases non-injectivity transfers from
+$F$ by an exact block-determinant identity
+$\det(I+\operatorname{Hess}f_H)=\det(I+DH)^2$, re-proved from first
+principles in the script.
+\end{theorem}
+
+Part (i) deserves emphasis: the action that Section \ref{sec:qft}
+introduced as the standard remedy for $F$ not being a gradient is
+\emph{itself} a symmetric counterexample --- the auxiliary-field trick
+does not evade the defect, it inherits it, with the conjugate fields as
+cotangent directions. The minimal dimension of a symmetric
+counterexample is now pinned to $\{4,5,6\}$: dimension 3 is excluded in
+the controlled families and boxes above, and dimension 6 is achieved.
+
+\subsection{Why no \emph{good} action exists: coercivity}
+\label{sec:coercive}
+
+The variational completion cannot be made thermodynamically sensible.
+A coercive nondegenerate real potential attains a minimum, forcing
+$\det\operatorname{Hess}W=\kappa>0$; and $\det\operatorname{Hess}W=
+\mathrm{const}$ forces the Hessian of the leading form of $W$ to be
+identically singular, so the leading form is parabolic, never strictly
+convex. The explicit $W_6$ fails coercivity in every available way at
+once: $\kappa=-4<0$, and $W_6$ is affine in $\bar\varphi$, hence
+unbounded below along every conjugate direction. So the sharpened
+statement is: \emph{an action for the Alp\"oge--Mathew theory exists
+--- one cotangent doubling away --- but a coercive one does not}; the
+partition function $\int e^{-W}$ over the real slice can never be made
+absolutely convergent by choosing a better frame.
+
+%=====================================================================
 \section{Implications for AQFT and pAQFT}\label{sec:qftread}
 %=====================================================================
 
@@ -1281,6 +1452,12 @@ Next probes, ordered by expected leverage for the QFT reading:
 \item \emph{The degree-2 $(2,-1,-3)$ box.} Still beyond direct Gr\"obner
  methods on 30\,GB hardware (Section~\ref{sec:213wall}); further
  stratification is needed before homotopy continuation is practical.
+\item \emph{The minimal symmetric counterexample.} Theorem
+ \ref{thm:dim6} and the dimension-3 no-go of Section \ref{sec:nogo3}
+ pin the minimal dimension of a variational Jacobian counterexample to
+ $\{4,5,6\}$; the $n=3$, $\deg W=5$ box and the $n=4,5$ question are
+ the concrete open ends, along with a real (rather than $\Q(i)$) form
+ of the twisted lift.
 \end{enumerate}
 
 %=====================================================================
@@ -1294,7 +1471,7 @@ is an \texttt{assert} in the cited script. Runtimes are indicative
 
 \begin{center}
 \small
-\begin{tabular}{lll}
+\begin{tabular}{l p{6.4cm} l}
 \hline
 script & claim(s) verified & runtime \\
 \hline
@@ -1329,6 +1506,13 @@ script & claim(s) verified & runtime \\
 \texttt{search\_11m.py --full} &
  medium-box / targeted $D_3'$ certificates for $m\le 5$ &
  $\sim$72 min \\
+\texttt{witten\_index.py} &
+ Section \ref{sec:witten}: index \eqref{eq:index}, jump certificate,
+ MQ completion, closed form of $Z_\sigma$ & $\sim$10 s \\
+\texttt{symmetric\_search.py} &
+ Section \ref{sec:susy}: Proposition \ref{prop:nogradient}, Theorem
+ \ref{thm:dim6}, gradient no-go, boxes, coercivity (72 assertions) &
+ $\sim$3.5 min \\
 \hline
 \end{tabular}
 \end{center}
@@ -1440,6 +1624,17 @@ Ann.\ Polon.\ Math.\ \textbf{58} (1993) 259--266.
 M.~de Bondt, A.~van den Essen,
 \emph{A reduction of the Jacobian conjecture to the symmetric case},
 Proc.\ Amer.\ Math.\ Soc.\ \textbf{133} (2005) 2201--2205.
+
+\bibitem{Wit82}
+E.~Witten,
+\emph{Constraints on supersymmetry breaking},
+Nucl.\ Phys.\ B \textbf{202} (1982) 253--316.
+
+\bibitem{MQ86}
+V.~Mathai, D.~Quillen,
+\emph{Superconnections, Thom classes, and equivariant differential
+forms},
+Topology \textbf{25} (1986) 85--110.
 
 \bibitem{msolve}
 J.~Berthomieu, C.~Eder, M.~Safey El Din,

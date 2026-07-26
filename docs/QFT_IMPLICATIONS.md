@@ -482,12 +482,19 @@ Abdesselam–Rivasseau [AR95]. Two sharp versions of the question:
   $\hbar \ll \mathrm{dist}(J,\text{wall})^2$. Sheet resolution beyond total
   mass remains open.)*
 - Is there a *gradient* counterexample, i.e. a Keller map $F = \nabla S$
-  with symmetric $DF$ that is non-injective? By de Bondt–van den Essen
-  [dBvdE05], the Jacobian conjecture is equivalent to its symmetric
-  (Hessian) case, so counterexamples of gradient type must exist in some
-  dimension — but the reduction changes $n$, and no explicit one is known.
-  A gradient example would make the measure-theoretic questions direct,
-  with an honest action $S$.
+  with symmetric $DF$ that is non-injective? ✅ **Resolved 2026-07-25**
+  (`scripts/symmetric_search.py`; `docs/SYMMETRIC_SEARCH.md`): **yes,
+  explicitly, in dimension 6** — the cotangent lift
+  $W_6 = \bar\varphi\cdot F(\varphi)$ (the first-order action of §1.2
+  itself!) has $\det\operatorname{Hess}W_6 \equiv -4$ and $\nabla W_6$ is
+  3:1 with rational witnesses; a normalized dBvdE twisted lift over
+  $\mathbb{Q}(i)$ is also written down. Complement: in dimension 3 the AM
+  map is not a gradient in ANY affine frame ($K\,DF$ symmetric $\implies
+  K = 0$), and the $(1,-1,-m)$ gradient family contains only tame shears.
+  The measure-theoretic payoff is *conditional*, though: coercivity is
+  provably unreachable ($\kappa \le 0$ is forced, and $W_6$ is affine in
+  $\bar\varphi$), so the honest action exists but $\int e^{-W}$ is never
+  absolutely convergent. See `docs/SYMMETRIC_SEARCH.md` §7.
 
 ### 5.4 The $n=2$ case
 

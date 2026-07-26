@@ -743,3 +743,46 @@ counterexample exact.
   jumping via vacua at infinity and of wall-crossing. Complex contrast:
   over $\mathbb{C}$ the count is constant (3); the wall is a real-locus
   phenomenon.
+
+## 2026-07-25 — The symmetric (variational) problem: explicit dim-6 counterexamples, gradient no-go in dim 3
+
+`scripts/symmetric_search.py` (72 assertions, ~3.5 min default;
+`--full` adds brute-force $6\times6$ determinants, larger Gröbner
+boxes and the $n=3$ degree-5 wall attempt); write-up
+`docs/SYMMETRIC_SEARCH.md`. The "0D theory WITH an action" question
+(de Bondt–van den Essen symmetric reduction, Proc. AMS 133 (2005)
+2201–2205), settled constructively:
+
+- **Explicit variational counterexamples in dimension 6** — to our
+  knowledge the first written down. (i) The cotangent lift
+  $W_6 = \bar\varphi\cdot F(\varphi)$ (the first-order action of
+  `PROBLEM.md`): $\det\operatorname{Hess}W_6 \equiv -4$, degree 8,
+  $\nabla W_6$ 3:1 over a rational point with three explicit rational
+  witnesses. (ii) The dBvdE twisted lift $f_H = -i\sum_j H_j(x+iy)y_j$,
+  $H = L^{-1}F - \mathrm{id}$: $\widetilde F = \mathrm{id} + \nabla f_H$
+  with $\det(I + \operatorname{Hess}f_H) \equiv 1$ (proved via a
+  congruence identity + block-determinant lemma, no $6\times6$
+  brute force), witnesses over $\mathbb{Q}(i)$.
+- **Strongest 3D no-go for AM:** $\{K : K\,JF(u)$ symmetric
+  $\forall u\} = \{0\}$ — the AM map is not affinely equivalent to ANY
+  gradient map; and no affine normalization has nilpotent $JH$
+  ($\operatorname{tr}(C\,JF) = 3$ is an inconsistent linear system).
+- **Gradient no-go theorem, $(1,-1,-m)$ family, every $m \ge 2$:** the
+  only equivariant gradient Keller maps are linear maps and the tame
+  shear family $W = \alpha x^2/2 + \delta yz + \gamma y^{m+1}$ —
+  outright for $m \neq 3$ (weight branch table + Wronskian/degree
+  kills); at $m = 3$ the potential slice $W = x^{-2}S(w,v)$ reduces to
+  a rigid Monge–Ampère-type PDE: $\deg_v S \le 2$ empty outright,
+  symbolic-$K$ rigidity lemmas L1–L3 for the top rows, in-box Gröbner
+  closure at $\deg_v = 3, 4$. At $m = 2$ the exclusion is complete:
+  **the AM defect is non-variational in dimension 3.**
+- **Direct boxes:** midpoint identity kills $\deg W \le 3$ in every
+  dimension; $n = 2$ empty through $\deg W = 6$ (with controls);
+  $n = 3$ empty through $\deg W = 4$ (full 25-coefficient box, msolve
+  exact). Honest wall: $n = 3$, $\deg W = 5$ (50 unknowns).
+- **Coercivity synthesis:** coercive nondegenerate $W$ forces
+  $\kappa > 0$ ($W_6$ has $\kappa = -4$, and is affine in
+  $\bar\varphi$); $\det\operatorname{Hess}W$ = const forces the leading
+  form's Hessian to be identically singular. A variational
+  counterexample exists, a coercive one cannot: the paper's coercivity
+  screen stands.

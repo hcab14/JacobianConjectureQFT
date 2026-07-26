@@ -180,11 +180,20 @@ reduction makes the bookkeeping serious. High interpretive value for QFT
 (BRST-like triangular vertex structure).
 
 **C6. Explicit gradient (Hessian) counterexample — "the biggest prize".**
-[`QFT_IMPLICATIONS.md` §5.3; `SEARCH_STRATEGIES.md` §2 item 1]
-A non-injective Keller map $F = \nabla S$ would make partition functions,
-Lefschetz thimbles, and resurgence directly well-posed. Must exist in some
-dimension (de Bondt–van den Essen), but the symmetric reduction changes $n$
-and no explicit example is known. Hard; enormous payoff.
+✅ **Resolved 2026-07-25** (`scripts/symmetric_search.py`;
+`docs/SYMMETRIC_SEARCH.md`). Two explicit variational counterexamples in
+dimension 6, both built from Alpöge–Mathew: the cotangent lift
+$W_6 = \bar\varphi\cdot F(\varphi)$ ($\det\operatorname{Hess}W_6 \equiv -4$,
+three rational witnesses) and the de Bondt–van den Essen twisted lift
+$\widetilde F = \mathrm{id} + \nabla f_H$ (normalized Keller, witnesses over
+$\mathbb{Q}(i)$). Complement: in dimension 3 the defect is provably
+**non-variational** — no matrix $K$ makes $K\,DF$ symmetric, and the
+$(1,-1,-m)$ gradient family contains only tame shears (complete for
+$m \neq 3$; $m = 3$ box-closed). Coercivity remains provably out of reach
+($\kappa \le 0$ forced), so the partition-function payoff is *conditional*:
+an action exists, a good (coercive) action does not. **Remaining open:**
+minimal dimension of a symmetric counterexample (4, 5, or 6); the $n = 3$
+degree-5 box (16 GB F4 wall); the $m = 3$ slice beyond $\deg_v = 4$.
 
 **C7. Vacua at infinity in a genuine functional integral ($D \ge 1$).**
 [`QFT_IMPLICATIONS.md` §4.1(iii); `AMPLITUDES_CONNECTION.md` §1.3]
