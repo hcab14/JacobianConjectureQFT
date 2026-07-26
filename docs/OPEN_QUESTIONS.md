@@ -209,11 +209,22 @@ sprint target.
 
 **C9. Programmatic umbrellas.**
 Classification of low-degree $n=3$ counterexamples
-[`QFT_IMPLICATIONS.md` §5.2] (advanced by A4/B3/B4/C1/C4); classical-map
-invariants as Lagrangian data in $D \ge 1$ [`AMPLITUDES_CONNECTION.md` §1.1];
-the model as a laboratory for second-type Landau singularities
+[`QFT_IMPLICATIONS.md` §5.2] (advanced by A4/B3/B4/C1/C4); the model as
+a laboratory for second-type Landau singularities
 [`AMPLITUDES_CONNECTION.md` §2.2]. These are directions, not single
 questions; they progress when the items above do.
+
+**C9′. Classical-map invariants as Lagrangian data in $D\ge 1$.**
+◐ **Opened / partially resolved 2026-07-26**
+(`docs/CLASSICAL_MAP_INVARIANTS.md`;
+`scripts/classical_map_invariants_probe.py`). Packaged the 0D dictionary
+(I1–I8) as axiomatic Lagrangian data; ranked $D\ge 1$ model classes with
+sharp yes/no questions Q1 (QM path measure) and Q2a/b (lattice +
+kinetics). Probe result: ultralocal product *tensors* the invariants;
+**linear kinetic mixing does not wash out non-properness** (equal-mode
+escape + leading-form prefilter). Still open: Q1 (true $D=1$ MQ index
+jump), full $N_\varepsilon$ chamber function off the diagonal, Q2b at
+$\varepsilon>0$, continuum PDE.
 
 ---
 

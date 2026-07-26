@@ -786,3 +786,24 @@ boxes and the $n=3$ degree-5 wall attempt); write-up
   form's Hessian to be identically singular. A variational
   counterexample exists, a coercive one cannot: the paper's coercivity
   screen stands.
+
+## 2026-07-26 — Classical-map invariants as Lagrangian data ($D\ge 1$ posing)
+
+`docs/CLASSICAL_MAP_INVARIANTS.md`; probe
+`scripts/classical_map_invariants_probe.py` (35 assertions, ~2 s).
+
+- **0D dictionary I1–I8** packaged as axiomatic Lagrangian data (fiber
+  degree, Galois/monodromy, Jelonek divisor, chamber $N(J)$, Witten
+  index, observable defect, $\mathbb{C}^*$ weights, variationality),
+  with Exact/Numerical/Interpretive tags and honest gaps (geometric
+  monodromy still Numerical; chamber formula on the wall).
+- **$D\ge 1$ model-class ranking** (proposals, no continuum claims):
+  (1) multi-component QM with Keller force map — sharp Q1 on MQ index
+  jump; (2) ultralocal lattice + kinetic $\varepsilon$ — Q2a/b;
+  elliptic PDE and pAQFT/Møller lower; YM Gribov and naive $W_6$+kinetic
+  rejected as primary classes.
+- **Probe verdict:** ultralocal $F^{\times N}$ *tensors* the invariants;
+  linear kinetic mixing does **not** wash out non-properness (leading
+  forms unchanged; equal-mode escape still hits the wall). Side effect:
+  product-fiber factorization breaks. Q1 and full $N_\varepsilon$ off
+  the diagonal remain open (C7 / C9′).
