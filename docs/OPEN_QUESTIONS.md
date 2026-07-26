@@ -65,12 +65,28 @@ evidence; exact certification remains B4.)
 ## Tier B — days-to-weeks; realistic chance of publishable-grade progress
 
 **B1. The Buchholz–Fredenhagen $S(f)$ caricature in 0D.**
-[`QFT_IMPLICATIONS.md` §4.3(c)]
-Formulate the 0D analogue of the causal-factorization relations for this $F$
-and locate where the wall $\{p=0\}$, the $1\leftrightarrow 3$ sheet count,
-and the $S_3$ monodromy enter the algebraic data. Pure structure, no heavy
-computation; the risk is conceptual (the caricature may trivialize), which is
-itself a documentable outcome.
+✅ **Resolved 2026-07-26 (split verdict)** (`scripts/bf_caricature.py`;
+`docs/BF_CARICATURE.md`). The *causal-factorization* half trivializes,
+provably: on a one-point spacetime causal disjointness forces
+$\mathrm{supp}\,f=\emptyset$ or $\mathrm{supp}\,h=\emptyset$ and every
+allowed instance of $S(f{+}g{+}h)=S(f{+}g)S(g)^{-1}S(g{+}h)$ is a
+tautology (formalized + asserted). The *dynamical* half survives and is
+nontrivial: with the antifield transcription (forced by I8 — no potential
+in $n=3$), the relation lands every S-datum in the fiber algebra
+$A_J=\mathbb{C}[x,y,z]/(F-J)$, and the invariants occupy precise slots —
+the wall $\{p=0\}$ is the rank-jump locus $\dim A_J = 3\to1\to0$ of the
+(non-locally-free) fiber-algebra bundle AND the pole divisor of
+single-valued sector data (separators carry $p$ verbatim); the
+$1\leftrightarrow3$ count is the number of characters of the real
+C\*-fiber $\mathbb{C}^{N(J)}$; $S_3$ is the transport holonomy (wall
+meridians = transpositions, cusp loop = order-3 Coxeter element), with
+provably NO global deck action ($\mathrm{Aut}(L/K)=1$ — the cover is
+non-Galois, so the "deck action" formulation fails). Obstruction
+dichotomy: any BF-style $J\mapsto S(J)$ resolving sectors is multi-valued
+or singular on $\{p=0\}$; anything single-valued and pole-free is blind
+to sectors. Collapse control: for proper Keller maps the construction is
+the trivial rank-1 bundle. Captures I1–I4, I6; misses I5, I7; I8 enters
+as construction input.
 
 **B2. Canonical form for the wall complement + $S_3$ local system.**
 ✅ **Resolved 2026-07-21** (`scripts/wall_braid.py`;

@@ -807,3 +807,53 @@ boxes and the $n=3$ degree-5 wall attempt); write-up
   forms unchanged; equal-mode escape still hits the wall). Side effect:
   product-fiber factorization breaks. Q1 and full $N_\varepsilon$ off
   the diagonal remain open (C7 / C9′).
+
+## 2026-07-26 — The 0D Buchholz–Fredenhagen S(J) caricature (B1 resolved, split verdict)
+
+`scripts/bf_caricature.py` (38 checks, ~4 s, monodromy section labelled
+Numerical); write-up `docs/BF_CARICATURE.md`. Resolves OPEN_QUESTIONS
+**B1** — the repository's most AQFT-flavoured deliverable.
+
+- **Causal factorization trivializes in 0D, provably** (formalized +
+  asserted): on a one-point spacetime, causal disjointness of supports
+  forces $\mathrm{supp}\,f=\emptyset$ or $\mathrm{supp}\,h=\emptyset$,
+  and every allowed instance of the BF relation
+  $S(f{+}g{+}h)=S(f{+}g)S(g)^{-1}S(g{+}h)$ is a group-theoretic
+  tautology; the only instance with content is the one 0D causality
+  excludes.
+- **The dynamical relation survives and forces the fiber algebra.**
+  I8 gate ($DF\neq DF^{\mathsf T}$): the only Lagrangian is the
+  first-order $L=\bar\phi\cdot(F(\phi)-J)$; antifield shifts give
+  $\delta L(\beta)=\beta\cdot(F-J)$ *exactly* (affine in $\bar\phi$ —
+  no $\hbar$ corrections), and pure-state (multiplicative) evaluations
+  compatible with the relation = characters of
+  $A_J=\mathbb{C}[x,y,z]/(F-J)$ = fiber points. The surviving BF-datum
+  is the bundle of fiber algebras + its parallel transport.
+- **Invariant slots (the B1 question):** wall $\{p=0\}$ = rank-jump
+  locus of the bundle ($\dim A_J = 3\to1\to0$; cusp orbit: the ZERO
+  ring, no states) **and** pole divisor of single-valued sector data
+  ($\mathrm{coeff}_x(B)=-6p$ etc. — separators carry $p$ verbatim);
+  $1\leftrightarrow3$ = character count of the real C\*-fiber
+  $\mathbb{C}^{N(J)}$; $S_3$ = transport holonomy (wall meridians =
+  transpositions generating order 6, $D_0$-meridian trivial, cusp loop
+  = order-3 Coxeter element, $U^3=\mathbf 1\neq U$ — Numerical).
+  Provably **no deck action**: eliminant irreducible,
+  $\mathrm{disc}=-4D_0^2p$ with $p$ irreducible $\Rightarrow$ Galois
+  $S_3$ $\Rightarrow$ $\mathrm{Aut}(L/K)=1$ — the "deck/monodromy
+  action" formulation (a) fails; the transfer-operator formulation (b)
+  is the invariant (trace) part only, not multiplicative.
+- **Obstruction dichotomy (sharpest statement):** any BF-style
+  $J\mapsto S(J)$ resolving the classical sectors is multi-valued
+  (transitive $S_3$ holonomy; no rational section — Exact) or singular
+  on $\{p=0\}$ (single-valued $\Rightarrow$ trace subalgebra
+  $\Rightarrow$ $p$-poles — Exact). Collapse control: for a proper
+  Keller map (tame shear) the same construction is the trivial rank-1
+  bundle with polynomial section — the caricature is nontrivial *iff*
+  the map is non-proper.
+- **Scorecard:** captures I1 (rank 3), I2 (holonomy/Galois), I3 (jump
+  locus + pole divisor, equation $p$ verbatim), I4 (character count),
+  I6 (the bundle *is* $\mathrm{im}F^*$ globalized); misses I5
+  (unoriented algebra — needs the MQ volume datum) and I7 (grading not
+  encoded); I8 enters at the construction step. Standard disclaimer:
+  0D degeneration of the axioms, no bearing on the $D\ge1$ [BF20]
+  program.
