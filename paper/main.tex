@@ -34,7 +34,7 @@ defect}
 \author{Christoph Mayer\thanks{Independent researcher.
 Email: \texttt{hcab14@gmail.com}.}}
 
-\date{July 26, 2026}
+\date{July 28, 2026}
 
 \begin{document}
 
@@ -73,7 +73,21 @@ action in three fields in the strongest affine sense, yet its
 first-order action $W_6=\bar\varphi\cdot F(\varphi)$ is an
 \emph{explicit} symmetric (variational) Jacobian counterexample in
 dimension 6 --- to our knowledge the first written down --- and is
-necessarily non-coercive. We state
+necessarily non-coercive; (viii)~the global data are packaged as a
+finite dictionary of \emph{classical-map invariants}, which tensor
+exactly under ultralocal products, and a certified
+homotopy-continuation computation shows that the real chamber
+function of the two-site lattice deformation remains non-constant at
+every probed kinetic coupling --- wall-crossing survives kinetic
+mixing, with escape real but pointwise on the probed segment and all
+chamber walls fold-type (exact) --- and in the
+finite-mode $D=1$ Mathai--Quillen model the index jump survives the
+path measure exactly (the mode determinant is a positive spectator);
+(ix)~the 0D
+Buchholz--Fredenhagen caricature is carried out (split verdict):
+causal factorization is provably vacuous, but the dynamical relation
+forces the bundle of fiber algebras in which wall, sheet count, and
+$S_3$ holonomy have exact algebraic addresses. We state
 honestly what the model does \emph{not} imply (nothing about UV
 renormalization, Borel summability, or $D=4$ existence). AI-assisted
 exploratory research, not peer reviewed; every claim is labelled exact,
@@ -211,6 +225,32 @@ primary interpretive frame. The main results are:
  Jacobian counterexample in dimension 6
  ($\det\operatorname{Hess}W_6\equiv-4$, rational witnesses,
  Theorem~\ref{thm:dim6}), necessarily non-coercive.
+\item \textbf{Section \ref{sec:invariants}} packages the results as a
+ finite dictionary of \emph{classical-map invariants} (I1--I8:
+ fiber degree, monodromy, Jelonek divisor, chamber function, signed
+ index, observable defect, torus weights, variationality) and takes
+ the first step off $D=0$: the invariants tensor exactly under
+ ultralocal products, linear kinetic mixing provably does not restore
+ properness, and a certified homotopy-continuation computation shows
+ the real chamber function of the two-site lattice deformation stays
+ \emph{non-constant} at every probed coupling --- wall-crossing
+ survives kinetic mixing, with real solutions arriving from infinity
+ at finite coupling. Exact walls on the probed segment
+ (Section~\ref{sec:lattice}): all chamber walls are fold-type, escape
+ is pointwise; the HC ``odd jumps'' were completeness artifacts. In
+ the finite-mode $D=1$ Mathai--Quillen model
+ the index jump survives the path measure: the mode fluctuation
+ determinant at every equilibrium is an exactly positive,
+ $J$-independent spectator (Section \ref{sec:d1index}).
+\item \textbf{Section \ref{sec:bfcar}} carries out the 0D
+ Buchholz--Fredenhagen caricature (split verdict): causal
+ factorization is provably vacuous on a point, but the dynamical
+ relation survives and forces the bundle of fiber algebras
+ $A_J=\C[x,y,z]/(F-J)$, in which the wall is the rank-jump locus and
+ pole divisor, the $1\leftrightarrow3$ count is the character count,
+ and $S_3$ is the transport holonomy (with provably \emph{no} deck
+ action); any sector-resolving $S(J)$ is multi-valued or singular on
+ the wall.
 \item \textbf{Section \ref{sec:qftread}} is the interpretive core: what
  the model calibrates for AQFT (Haag--Kastler), pAQFT
  (Fredenhagen--Rejzner), and non-perturbative algebraic constructions
@@ -1247,6 +1287,284 @@ partition function $\int e^{-W}$ over the real slice can never be made
 absolutely convergent by choosing a better frame.
 
 %=====================================================================
+\section{Classical-map invariants as Lagrangian data, and the first
+lattice lift}\label{sec:invariants}
+%=====================================================================
+
+The results so far attach to one map a list of global invariants that
+no local or perturbative diagnostic sees. This section packages that
+list as \emph{Lagrangian data} — invariants of a theory on the same
+footing as anomaly coefficients — and reports the first step off
+$D=0$: an exact ultralocal/Galerkin probe and a certified
+homotopy-continuation computation showing that \emph{wall-crossing
+survives kinetic mixing}. Scripts:
+\texttt{scripts/classical\_map\_invariants\_probe.py} (35 assertions),
+\texttt{scripts/lattice\_chamber.py} with the Julia driver
+\texttt{scripts/hc\_lattice\_chamber.jl} \cite{HCjl}; write-up
+\texttt{docs/CLASSICAL\_MAP\_INVARIANTS.md}.
+
+\subsection{The 0D dictionary}\label{sec:dictionary}
+
+To a polynomial classical field map $F:\mathbb{A}^n_{\rm fields}\to
+\mathbb{A}^n_{\rm sources}$ we attach the package (AM values in
+brackets; tags per Section \ref{sec:provenance}):
+
+\begin{itemize}
+\item[I1.] generic fiber degree [$3$; exact];
+\item[I2.] Galois group of the eliminant / geometric monodromy
+ [$S_3$ exact / $S_3$ numerical --- kept as separate slots];
+\item[I3.] non-properness (Jelonek) divisor [$\{p=0\}$; exact];
+\item[I4.] real chamber function $N(J)$ [$3/1$ by $\operatorname{sign}
+ p$; exact off the wall];
+\item[I5.] signed Brouwer/Witten index [$-N(J)$; exact; needs
+ orientation];
+\item[I6.] observable-algebra defect: is $F^*$ an automorphism; module
+ generators of the cokernel [$\{x,x^2\}$ missing; exact];
+\item[I7.] torus weight system, if equivariant [$(1,-1,-2)$; exact];
+\item[I8.] variationality flag: $\exists W$ with $F=\nabla W$, in some
+ affine frame; coercivity of $W$ [no in $n=3$, Proposition
+ \ref{prop:nogradient}; exact].
+\end{itemize}
+
+I1--I3 and I6 are complex-algebraic; I4--I5 need the real structure
+(and I5 an orientation); I8 is the gate between Sections
+\ref{sec:nogo3} and \ref{sec:dim6}. For the Alp\"oge--Mathew map every
+slot is computed. The programmatic claim of
+\texttt{docs/AMPLITUDES\_CONNECTION.md} \S1.1 — treat these as
+computable invariants of a Lagrangian — is thereby made concrete: the
+package is finite, machine-checkable, and (next subsections) stable
+under the smallest honest lifts toward $D\ge 1$.
+
+\subsection{Ultralocal tensoring and the kinetic probe (exact)}
+\label{sec:ultralocal}
+
+Two exact stability statements
+(\texttt{scripts/classical\_map\_invariants\_probe.py}):
+
+\emph{(i) The invariants tensor under sites.} For the ultralocal
+product $F^{\times N}:(\R^3)^N\to(\R^3)^N$ (independent copies; $N=2,3$
+asserted): $\det D(F^{\times N})=(-2)^N$, real fibers multiply
+($N_{\rm tot}=\prod_i N(J_i)$), the non-properness set is the union of
+per-site walls, and the signed index is the product
+$\prod_i(-N(J_i))$. Adding sites does not lose the Lagrangian data.
+
+\emph{(ii) Linear kinetic mixing does not restore properness.} Let
+$F_\varepsilon(\phi_0,\phi_1)=\bigl(F(\phi_0)+\varepsilon(\phi_1-\phi_0),\,
+F(\phi_1)+\varepsilon(\phi_0-\phi_1)\bigr)$ — two sites coupled by a
+discrete Laplacian, equivalently the two-mode Galerkin truncation of a
+$0{+}1$ theory with ultralocal potential. The leading forms of
+$F_\varepsilon$ are unchanged (the mixing is linear), and on the
+equal-mode slice the kinetic term vanishes identically, so the AM
+escape curve — a curve in the full $(\R^3)^2$ — still goes to infinity
+with finite image: \emph{$F_\varepsilon$ is non-proper for every
+$\varepsilon$} (exact). The product-fiber factorization, by contrast,
+is broken by mixing: a side effect, not a wash-out of the defect.
+
+\subsection{The lattice chamber function: wall-crossing survives
+kinetic mixing}\label{sec:lattice}
+
+The sharper question is whether the real chamber function
+$N_\varepsilon(J)=\#F_\varepsilon^{-1}(J)\cap(\R^3)^2$ remains
+non-constant at $\varepsilon>0$ — whether the walls survive as walls.
+This was computed by homotopy continuation \cite{HCjl} with three
+mutually cross-checking engines (a monodromy-stabilized master set
+over the joint parameter space, parameter homotopy from the nine exact
+$\varepsilon=0$ product solutions, and fresh polyhedral solves), with
+reality and distinctness of every reported solution \emph{certified}
+by interval arithmetic against exact rational input; completeness of
+the lists is numerical --- and, as the exact computation of the next
+paragraph shows, incomplete at some points. Sample
+targets: $T_1$ (both sites in the $N{=}3$ chamber), $T_2$ (mixed),
+$T_3$ (both $N{=}1$). Certified real counts (complex counts in
+parentheses; dagger $=$ HC lower bound, corrected exactly below):
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\hline
+$\varepsilon$ & $T_1$ ($3\times3$) & $T_2$ ($3\times1$) & $T_3$
+($1\times1$) \\
+\hline
+$0$ (exact) & $9\;(9)$ & $3\;(9)$ & $1\;(9)$ \\
+$1/100$ & $20\;(52)$ & $12\;(54)$ & $8\;(66)$ \\
+$1/10$ & $16\;(54)$ & $4\;(54)$ & $10\;(66)$ \\
+$1/4$ & $12^\dagger\;(52^\dagger)$ & $4\;(54)$ & $6\;(66)$ \\
+$1/2$ & $14\;(46)$ & $8\;(40)$ & $6\;(60)$ \\
+$1$ & $12\;(54)$ & $10\;(54)$ & $8\;(56)$ \\
+$2$ & $10\;(50)$ & $8\;(44)$ & $17\;(61)$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{Verdict (probed range): the chamber function is non-constant at
+every probed $\varepsilon>0$.} Structural findings:
+
+\begin{enumerate}
+\item \emph{The ultralocal theory is the degenerate member of its own
+ family.} The generic fiber degree over the joint parameter space is
+ $66$; at $\varepsilon=0$ only $9$ solutions are finite. Turning the
+ kinetic coupling \emph{on} brings dozens of solutions in from
+ infinity, many real. Kinetic coupling does not suppress the
+ boundary-of-field-space sector; it amplifies it.
+\item \emph{$F_\varepsilon$ leaves the Keller class} (exact):
+ $\det DF_\varepsilon$ is non-constant for $\varepsilon>0$
+ ($-2(1-2\varepsilon)(4\varepsilon^2-2)$ at the origin,
+ field-dependent elsewhere). Lattice walls therefore mix fold-type
+ (finite bifurcations) and escape-type (from infinity).
+\item \emph{Exact walls on the probed segment}
+ (\texttt{scripts/lattice\_discriminant.py}, 35 assertions; msolve
+ eliminants over $\Q$). At $\varepsilon=1/4$ on the line
+ $J(t)=(1-t)T_1+t\,T_3$, the fold system
+ $\{F_\varepsilon(\phi)=J(t),\ \det DF_\varepsilon(\phi)=0\}$ has
+ exact eliminant $f(t)\in\Z[t]$ of degree $516$ (squarefree,
+ irreducible over $\Q$, $14$ real roots in $(0,1)$), and the escape
+ locus is the degree-$11$ polynomial
+ $e(t)=t(13t-1)(3t+1)q_y(t)q_x(t)$. Exact chamber counts
+ interleaving the fold roots:
+ \[
+ N:\ 18\to16\to14\to16\to14\to12\to10\to8\to6\to8\to6\to4\to2\to4\to6
+ \]
+ --- every jump $\pm2$, every jump a fold. Escape is real but
+ \emph{pointwise}: $N(1/13)=13$ between plateaus of $16$, and the
+ endpoint $T_1$ itself is an escape point ($N(0)=14$ vs $N(0^+)=18$;
+ exact fiber degree $54<66$). The HC ``odd jumps'' $12\to13\to14$ of
+ the previous paragraph --- including the certified bracket
+ $t\in(27/512,7/128)$ --- were completeness artifacts: neither $f$
+ nor $e$ has a root there, and the ideal degree inside the bracket is
+ the generic $66$. Structural contrast (exact): at $\varepsilon=0$ all
+ segment walls are escape-type; at $\varepsilon=1/4$ all chamber walls
+ are fold-type and escape only dips the count --- kinetic mixing
+ exchanges the wall mechanism.
+\end{enumerate}
+
+Open, and stated as such: a uniform $\varepsilon_*>0$ statement, more
+than two sites, the continuum limit, signed counts for the
+non-Keller $F_\varepsilon$, the fold hypersurface over a frozen source
+block (16\,GB F4 wall), and $z$-completeness of $e(t)$.
+
+\subsection{The $D=1$ Mathai--Quillen index: the jump survives the
+path measure}\label{sec:d1index}
+
+The sharpest form of the ``vacua at infinity vs.\ measure
+suppression'' question (open question C7 of the repository) asks
+whether a genuine $D=1$ path measure kills the escaping equilibria
+that drive the 0D index jump of Section \ref{sec:witten}. In the
+finite-mode (Fourier) truncation the answer is now known
+(\texttt{scripts/d1\_index\_modes.py}, 37 assertions;
+\texttt{docs/D1\_INDEX.md}): \emph{the jump survives}.
+
+Take periodic paths $q:[0,\beta]\to\R^3$ truncated to $M$ Fourier
+modes, the first-order flow $\dot q+F(q)-J$ as Nicolai map $G$ on the
+$3(2M{+}1)$-dimensional mode space, and
+$Z_\sigma=(2\pi\sigma^2)^{-n/2}\int\det DG\;e^{-|G|^2/2\sigma^2}$. Two
+exact statements (symbolic asserts):
+
+\begin{itemize}
+\item \emph{$M=0$ reduction:} the constant-path sector reproduces the
+ 0D Mathai--Quillen integral exactly, with effective coupling
+ $\sigma_{\rm eff}=\sigma/\sqrt\beta$ — the kinetic normalization
+ only rescales the coupling.
+\item \emph{Saddle factorization:} at a constant-path zero $q^*$ (an
+ equilibrium $F(q^*)=J$), $DG$ is block-diagonal over modes with
+ $k$-block $\bigl(\begin{smallmatrix}A&\omega_k I\\ -\omega_k I&A
+ \end{smallmatrix}\bigr)$, $A=DF(q^*)$, whose determinant is
+ $\det(A^2+\omega_k^2 I)=\lvert\det(A+i\omega_k I)\rvert^2\ge 0$.
+ The mode fluctuation determinant is therefore a $J$-independent
+ \emph{positive} spectator factor, $\operatorname{sign}\det DG(u^*) =
+ \operatorname{sign}\det DF(q^*)$, and the $\sigma\to0$ saddle sum is
+ $\deg(F,J)=-N(J)$, \emph{independent of $M$ and $\beta$} (spectral
+ proviso $\pm i\omega_k\notin\operatorname{spec}DF(q^*)$ verified with
+ gap $3.14$ at every probed point).
+\end{itemize}
+
+Monte-Carlo integration (seeded, with error bars; proper-map controls
+give $-1.000\pm0.009$) confirms the exact prediction: at
+$\sigma=0.025$ the chamber ratio
+$\bar Z(N{=}3)/\bar Z(N{=}1)=2.998$--$3.006\pm0.009$ for all probed
+$(M,\beta)\in\{1,2\}\times\{0.5,1,2\}$, and the near-wall crossover
+matches the 0D profile at $\sigma_{\rm eff}$ while the escaping pair
+sits at field strength $x^*=8$. Honest gaps, stated as such:
+nonconstant periodic zeros of the flow are excluded \emph{exactly}
+only for gradient force maps (for AM a 3840-start Newton probe finds
+none — a probe, not a proof); the mass from infinity in mode space is
+probed ($\le3\%$, zero in the genuinely $D=1$ channels at MC
+resolution), not bounded; and the $M\to\infty$/continuum order of
+limits is untouched. Within the truncation, the verdict stands: the
+path measure does not suppress the vacua at infinity — the kinetic
+term contributes only a positive spectator determinant. Together with
+Section \ref{sec:lattice}, both halves of the smallest honest
+$D\ge 1$ lift (classical solution structure, and now the localized
+partition function) preserve the 0D defect.
+
+%=====================================================================
+\section{The 0D Buchholz--Fredenhagen caricature: the dynamical
+relation sees the wall}\label{sec:bfcar}
+%=====================================================================
+
+Section \ref{sec:bf} poses the exercise of formulating the 0D
+caricature of the Buchholz--Fredenhagen $S(f)$ relations \cite{BF20}
+for this $F$. It is now carried out
+(\texttt{scripts/bf\_caricature.py}, 38 assertions;
+\texttt{docs/BF\_CARICATURE.md}), with a split verdict.
+
+\emph{The causal half trivializes, provably.} On a one-point spacetime
+causal disjointness of supports forces one of the two outer supports
+to be empty, and every allowed instance of the factorization relation
+$S(f{+}g{+}h)=S(f{+}g)S(g)^{-1}S(g{+}h)$ is a group-theoretic
+tautology; the only instance with content is exactly the one 0D
+causality excludes. This was the anticipated risk — it is now a
+verified statement rather than a suspicion, and it isolates what the
+0D model can and cannot probe of \cite{BF20}.
+
+\emph{The dynamical half survives and is nontrivial.} Because no
+potential exists in three fields (I8, Proposition
+\ref{prop:nogradient}), the only Lagrangian implementing $F(\phi)=J$
+is the first-order $L=\bar\phi\cdot(F(\phi)-J)$; the BF field-shift
+relation applied to the antifield $\bar\phi$ gives
+$\delta L(\beta)=\beta\cdot(F(\phi)-J)$ \emph{exactly} ($L$ is affine
+in $\bar\phi$ — no higher corrections), and multiplicative
+(pure-state) evaluations compatible with the relation are precisely
+the characters of the \emph{fiber algebra}
+\[
+A_J \;=\; \C[x,y,z]\,/\,(F-J).
+\]
+The surviving BF-datum in 0D is the bundle of fiber algebras over
+source space together with its parallel transport, and the invariants
+of Section \ref{sec:dictionary} occupy precise slots in it:
+
+\begin{itemize}
+\item the \textbf{wall} $\{p=0\}$ is the rank-jump locus of the bundle
+ ($\dim_\C A_J = 3\to1\to0$, the zero ring at the empty-fiber cusp
+ orbit) \emph{and} the pole divisor of every single-valued
+ sheet-separating datum (the separator coefficients of Section
+ \ref{sec:obs} carry the factor $p$ verbatim);
+\item the \textbf{$1\leftrightarrow3$ count} is the number of
+ characters of the real $C^*$-fiber $\C^{N(J)}$;
+\item \textbf{$S_3$} is the holonomy of the parallel transport: wall
+ meridians act by transpositions, the cusp loop by the order-3
+ Coxeter element (numerical, as always for the geometric monodromy);
+ and there is provably \emph{no global deck action} — the eliminant
+ is irreducible with $S_3$ Galois group, so the degree-3 extension is
+ non-normal and $\mathrm{Aut}(L/K)=1$ (exact). ``Deck
+ transformation'' formulations of the sheet symmetry are therefore
+ wrong for this map; only transport holonomy survives.
+\end{itemize}
+
+The sharpest statement is an \emph{obstruction dichotomy} (exact):
+any BF-style assignment $J\mapsto S(J)$ satisfying the 0D dynamical
+relation and resolving the classical sectors is multi-valued (the
+holonomy is transitive; no rational section of the cover exists) or
+singular on $\{p=0\}$ (single-valued data factor through the trace
+subalgebra, whose sheet-separating elements have poles exactly on the
+wall). Conversely, everything single-valued and pole-free is a
+pullback through $F^*$ and is blind to the sectors. And the
+construction \emph{collapses correctly}: for a proper Keller map (a
+tame automorphism control) it yields the trivial rank-1 bundle —
+trivial holonomy, no wall — so the caricature re-expresses
+non-properness as (rank jump, holonomy, pole divisor) of algebraic
+$S$-data rather than presupposing it.
+
+%=====================================================================
 \section{Implications for AQFT and pAQFT}\label{sec:qftread}
 %=====================================================================
 
@@ -1367,11 +1685,12 @@ any non-perturbative framework must \emph{represent} somewhere in its
 data: classical dynamics whose solution count jumps (here
 $1\leftrightarrow 3$) as an external source crosses an algebraic wall,
 with the extra solutions entering from infinity in field space and
-permuted by an $S_3$ monodromy under cycles of the source. A
-well-posed exercise --- open, and we claim nothing about its outcome
---- is to formulate the 0D caricature of the $S(f)$ relations for this
-$F$ and see how the wall $\{p=0\}$ and the sheet structure are
-encoded.
+permuted by an $S_3$ monodromy under cycles of the source. The
+well-posed exercise of formulating the 0D caricature of the $S(f)$
+relations for this $F$ is carried out in Section \ref{sec:bfcar}: the
+causal half trivializes (provably), while the dynamical half forces
+the bundle of fiber algebras in which the wall, the sheet count, and
+the $S_3$ holonomy all acquire exact algebraic addresses.
 
 \subsection{Rigidity of the defect: what the sibling searches say}
 
@@ -1435,10 +1754,18 @@ family $(1,-1,-m)$ this pathology is unique to $m=2$.}
 Next probes, ordered by expected leverage for the QFT reading:
 
 \begin{enumerate}
-\item \emph{A 0D Buchholz--Fredenhagen caricature.} Formulate the
- $S(f)$-type relations for this $F$ and ask how the wall $\{p=0\}$ and
- the $S_3$ sheet structure are encoded --- the cleanest open exercise
- suggested by Section~\ref{sec:bf}.
+\item \emph{The continuum $D=1$ index.} Section \ref{sec:d1index}
+ settles the finite-mode truncation (the jump survives, with the mode
+ determinant an exact positive spectator); the remaining question is
+ the $M\to\infty$/continuum order of limits, and an exact exclusion
+ of nonconstant periodic flow zeros for non-gradient force maps.
+\item \emph{Exact lattice walls.} Section \ref{sec:lattice} computes
+ the exact fold and escape polynomials of $F_\varepsilon$ on the
+ probed segment at $\varepsilon=1/4$ (degree-$516$ irreducible fold
+ eliminant; all chamber walls fold-type; escape pointwise). Still
+ open: the fold hypersurface over a frozen source block, a
+ wall-crossing sign formula, other $\varepsilon$/segments, and
+ $z$-completeness of the escape factor list.
 \item \emph{The $v$-quadratic class of $(1,-1,-m)$.} Does anything else
  live near Alp\"oge--Mathew at $m=2$, or is uniqueness stable under
  raising the $v$-degree? Directly tests how rare the defect is.
@@ -1513,6 +1840,23 @@ script & claim(s) verified & runtime \\
  Section \ref{sec:susy}: Proposition \ref{prop:nogradient}, Theorem
  \ref{thm:dim6}, gradient no-go, boxes, coercivity (72 assertions) &
  $\sim$3.5 min \\
+\texttt{classical\_map\_invariants\_probe.py} &
+ Section \ref{sec:ultralocal}: ultralocal tensoring;
+ $F_\varepsilon$ non-proper for every $\varepsilon$ (35 assertions) &
+ $\sim$2 s \\
+\texttt{lattice\_chamber.py} &
+ Section \ref{sec:lattice}: certified lattice chamber counts (needs
+ Julia + \cite{HCjl}) & $\sim$3.5 min \\
+\texttt{lattice\_discriminant.py} &
+ Section \ref{sec:lattice}: exact fold/escape polys on the probed
+ segment (35 assertions; needs msolve) & $\sim$6 min \\
+\texttt{d1\_index\_modes.py} &
+ Section \ref{sec:d1index}: $M{=}0$ reduction, saddle factorization,
+ MC jump ratio (37 assertions) & $\sim$4.5 min \\
+\texttt{bf\_caricature.py} &
+ Section \ref{sec:bfcar}: vacuity of causal factorization,
+ fiber-algebra bundle, obstruction dichotomy (38 assertions) &
+ $\sim$4 s \\
 \hline
 \end{tabular}
 \end{center}
@@ -1640,6 +1984,12 @@ Topology \textbf{25} (1986) 85--110.
 J.~Berthomieu, C.~Eder, M.~Safey El Din,
 \emph{msolve: A library for solving polynomial systems},
 Proceedings of ISSAC 2021, ACM (2021) 51--58.
+
+\bibitem{HCjl}
+P.~Breiding, S.~Timme,
+\emph{HomotopyContinuation.jl: A package for homotopy continuation in
+Julia}, Mathematical Software -- ICMS 2018, Springer LNCS
+\textbf{10931} (2018) 458--465.
 
 \bibitem{Singular}
 W.~Decker, G.-M.~Greuel, G.~Pfister, H.~Sch\"onemann,

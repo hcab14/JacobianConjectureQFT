@@ -242,11 +242,20 @@ escape + leading-form prefilter). **Q2a answered YES for the probed
 range** (`scripts/lattice_chamber.py` + `scripts/hc_lattice_chamber.jl`,
 certified reality): $N_\varepsilon$ is non-constant at every probed
 $\varepsilon\in[1/1000,4]$, with up to 57 of the 66 master solutions
-returning from infinity at $\varepsilon>0$ and escape-type $\pm1$ wall
-jumps bisected in $J$ (`CLASSICAL_MAP_INVARIANTS.md` §6.4). Still open:
-Q1 (true $D=1$ MQ index jump), a uniform $\varepsilon_*>0$ statement,
-$L>2$, Q2b at $\varepsilon>0$, signed counts for the non-Keller
-$F_\varepsilon$, continuum PDE.
+returning from infinity at $\varepsilon>0$. **Exact walls on the
+probed segment** (`scripts/lattice_discriminant.py`,
+`CLASSICAL_MAP_INVARIANTS.md` §6.5): at $\varepsilon=1/4$ the fold
+eliminant $f(t)$ has degree 516 with 14 real roots in $(0,1)$ = all
+chamber walls (counts $18\ldots6$, every jump $\pm2$); escape
+$e(t)=t(13t-1)(3t+1)q_y q_x$ only dips the count pointwise
+($N(1/13)=13$; $T_1$ itself has 4 real solutions at infinity). The
+§6.4 HC ``odd $\pm1$ escape jumps'' were completeness artifacts.
+**Q1 answered YES for the finite-mode truncation**
+(`scripts/d1_index_modes.py`; `docs/D1_INDEX.md`): the MQ index jump
+survives the path measure (exact saddle factorization). Still open:
+a uniform $\varepsilon_*>0$ statement, $L>2$, Q2b at $\varepsilon>0$,
+signed counts for the non-Keller $F_\varepsilon$, fold hypersurface,
+continuum $M\to\infty$ order of limits.
 
 ---
 

@@ -989,6 +989,7 @@ $\mathbb{Q}$, 16 GB cap via `jcqft.gb_backend`) and Singular.
   $9\to3\to1$); at $\varepsilon=1/4$ all chamber walls are fold-type
   and escape acts pointwise — kinetic mixing exchanges the wall
   mechanism.
-- **Open:** fold hypersurface $W(a,b,c)$ over a frozen block exact over
-  $\mathbb{Q}$ (mod-p prescreen behind `--full`), wall-crossing sign
-  formula, other $\varepsilon$/segments, $z$-completeness of $e(t)$.
+- **Open:** fold hypersurface $W(a,b,c)$ over a frozen block (even the
+  mod-p prescreen behind `--full` dies at the 16 GB cap after ~12 min
+  of F4 — honest wall), wall-crossing sign formula, other
+  $\varepsilon$/segments, $z$-completeness of $e(t)$.

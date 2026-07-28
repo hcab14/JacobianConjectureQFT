@@ -954,11 +954,12 @@ this segment are fold-type and escape only dips.
 
 **Open after this computation** (moved from §7.2): the fold
 *hypersurface* $W(a,b,c)$ in one source block ($J_1$ frozen at
-$(2,1,1)$): the mod-$p$ elimination prescreen is behind `--full`; the
-exact surface over $\mathbb{Q}$ was not obtained. A wall-crossing
-*formula* (predicting the $\pm$ sign of each fold jump from local data)
-also remains open; the present result is the exact wall *list*, not yet
-a formula.
+$(2,1,1)$): even the mod-$p$ elimination prescreen (behind `--full`)
+dies at the 16 GB `gb_backend` memory cap after ~12 min of F4 — the
+exact surface is out of reach for this toolchain and stays open. A
+wall-crossing *formula* (predicting the $\pm$ sign of each fold jump
+from local data) also remains open; the present result is the exact
+wall *list* on the segment, not yet a formula.
 
 ---
 
@@ -980,11 +981,11 @@ a formula.
    $e(t)=t(13t-1)(3t+1)q_yq_x$ of degree 11 (escape dips the count
    pointwise, never shifts a chamber; $T_1$ itself is an escape point).
    Still open: the fold *hypersurface* $W(a,b,c)$ over a frozen source
-   block (exact over-$\mathbb{Q}$ elimination out of reach; mod-$p$
-   prescreen behind `--full`), a wall-crossing *formula* (sign of each
-   fold jump from local data), the analogous exact structure at other
-   $\varepsilon$ and on other segments, and the $z$-direction
-   completeness certificate for $e(t)$ (§6.5 honest scope).
+   block (even the mod-$p$ prescreen behind `--full` dies at the 16 GB
+   cap), a wall-crossing *formula* (sign of each fold jump from local
+   data), the analogous exact structure at other $\varepsilon$ and on
+   other segments, and the $z$-direction completeness certificate for
+   $e(t)$ (§6.5 honest scope).
 
 3. **Monodromy lift.** Does the $S_3$ local system of AM extend as an
    $S_3^{\times N}$ (or braid quotient) for $F^{\times N}$, and how does
