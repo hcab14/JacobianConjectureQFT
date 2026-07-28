@@ -497,7 +497,26 @@ All of these pass for AM in 0D; none detects $N:1\leftrightarrow 3$.
   still a theorem-shaped outcome, and it calibrates how $D=0$
   overstates the continuum.
 
-**Non-claim.** Neither answer is computed in this repository.
+**Status (2026-07-28) — answered for the finite-mode truncation:
+SURVIVE.** `scripts/d1_index_modes.py` (37 checks, ~4.5 min; write-up
+`docs/D1_INDEX.md`) computes $Z_\sigma(J; M, \beta)$ for periodic
+Fourier-truncated paths (modes $\le M$, $n = 3(2M{+}1)$ real
+dimensions). Exact anchors: $M=0$ reduces *exactly* to the 0D MQ
+integral with $\sigma_{\rm eff} = \sigma/\sqrt\beta$ (symbolic assert),
+and at any constant-path saddle the mode determinant factorizes exactly
+as $\det DF(q^*)\cdot\prod_{k\le M}\lvert\det(DF(q^*) + i\omega_k
+I)\rvert^2$ — a $J$-independent *positive* factor — so the $\sigma\to0$
+saddle sum is $\deg(F,J) = -N(J)$ independent of $M$ and $\beta$.
+Numerics (MC with error bars, seeds fixed): $M\in\{1,2\}$,
+$\beta\in\{0.5,1,2\}$, $\sigma\downarrow0.05$ give $Z\to-N(J)$ per
+chamber with jump ratio $\to3$ within $0.5\%$, tracking the 0D crossover
+at the wall; the far-mass probes see no new escape channel in the
+nonconstant modes. Honest gaps: nonconstant truncated-flow zeros are
+excluded *exactly* only on the gradient branch (a 1920-start Newton
+probe finds none for AM); mass from infinity in mode space is probed,
+not bounded; and the order of limits $M\to\infty$ vs $\sigma\to0$ is
+untouched. So the truncated model takes the **"yes (survive)"** branch
+of Q1; the continuum Q1 remains open and is **not** claimed.
 
 ---
 
@@ -618,9 +637,11 @@ product of known 0D closed forms (`DAMPED_PARTITION.md`) — a
 ## 6. Computational probe
 
 Runnable certificates: `scripts/classical_map_invariants_probe.py`
-(`.venv/bin/python`, 35 asserts, ~2 s; §§6.1–6.3) and
+(`.venv/bin/python`, 35 asserts, ~2 s; §§6.1–6.3),
 `scripts/lattice_chamber.py` + `scripts/hc_lattice_chamber.jl`
-(HomotopyContinuation.jl, ~3.5 min; §6.4).
+(HomotopyContinuation.jl, ~3.5 min; §6.4), and
+`scripts/lattice_discriminant.py` (msolve exact Gröbner/eliminants,
+~6 min; §6.5).
 
 ### 6.1 What it asserts
 
@@ -794,6 +815,14 @@ $\varepsilon=0$.
    change the real count by $\pm2$): they are escape-type walls, i.e.
    real solutions arriving from infinity at finite $\varepsilon$ —
    the non-properness mechanism caught in the act.
+   **⚠ Corrected by the exact computation of §6.5:** on this segment
+   the HC counts were incomplete lower bounds at several points (exact
+   $t=0$ fiber: $14$ real / $54$ complex-distinct, not $12/52$); the
+   *exact* count sequence is $18\,16\,14\,16\,14\,12\,10\,8\,6\,8\,6\,
+   4\,2\,4\,6$, every jump is $\pm2$ and fold-type, and the "odd jumps"
+   (in particular the $12\to13$ bracket at $t\in(27/512,7/128)$) were
+   completeness artifacts, not walls. Escape is real on the segment,
+   but pointwise: see §6.5.
 5. **Special $\varepsilon$ values.** *(Side observation, not asserted.)*
    Spot checks at generic complex $J$ gave complex counts 66 at
    $\varepsilon\in\{1/100,1/10,1/4\}$ but 60 at $\varepsilon=1/2$ and 56
@@ -807,12 +836,129 @@ integer-coefficient map). Numerical (not certified): *completeness* of
 the solution lists — it rests on the monodromy-stabilized master set,
 all-paths transport along three independent routes, the fresh polyhedral
 cross-solves, and conjugation parity, but no interval certificate of
-exhaustiveness exists. Probed: $L=2$, $n=3$, six rational
+exhaustiveness exists. **The completeness caveat is not hypothetical:**
+the exact Gröbner computation of §6.5 shows the HC counts on the
+$T_1\to T_3$ segment at $\varepsilon=1/4$ undercounted at several points
+(e.g. $T_1$ itself: exact $14$ real / $54$ complex vs HC $12/52$; $T_3$
+and $T_2$ were exact). Probed: $L=2$, $n=3$, six rational
 $\varepsilon\in[1/100,2]$ (nine with `--full`), three rational targets
 plus one bisection segment. Open: all $\varepsilon$ simultaneously
 (a uniform $\varepsilon_*>0$ statement), $L>2$, the continuum limit,
-signed/Witten counts for $F_\varepsilon$, and the exact discriminant of
-$F_\varepsilon$ (§7.2).
+signed/Witten counts for $F_\varepsilon$. The exact wall structure on
+the probed segment is now computed — §6.5.
+
+### 6.5 Exact walls on the probed segment: fold polynomial, escape polynomial
+
+*(2026-07-28. `scripts/lattice_discriminant.py` (35 checks, ~6 min
+default, `--full` adds the mod-p completeness rerun and the §7.2
+fold-surface prescreen). Engines: msolve (`jcqft.gb_backend`, 16 GB
+memory cap) for exact Gröbner bases, eliminants, rational
+parametrizations and certified real-root isolation over $\mathbb{Q}$;
+Singular for mod-$p$ factor patterns. Status: **Exact** unless labelled.
+Resolves the "exact discriminant / wall-crossing / fold-vs-escape" item
+of §7.2 for the probed segment.)*
+
+**Setting.** $\varepsilon=1/4$ exactly; the segment
+$J(t)=(1-t)\,T_1+t\,T_3$, $t\in[0,1]$, in the 6-dimensional source
+space, with $T_1, T_3$ as in §6.4. Two exact univariate polynomials
+control the walls:
+
+**Fold polynomial $f(t)$.** The fold system
+$\{F_\varepsilon(\phi)=J(t),\ \det DF_\varepsilon(\phi)=0\}$ — 7
+polynomial equations in $(\phi,t)\in\mathbb{C}^7$, with
+$\det DF_\varepsilon$ of total degree 19 (953 terms, computed via the
+block identity
+$\det\begin{pmatrix}A-\varepsilon&\varepsilon\\\varepsilon&B-\varepsilon\end{pmatrix}
+=\det\bigl((A-\varepsilon)(B-\varepsilon)-\varepsilon^2\bigr)$) — is
+0-dimensional of degree **516**, and $t$ is a separating element: the
+exact eliminant $f(t)\in\mathbb{Z}[t]$ (msolve rational parametrization
+over $\mathbb{Q}$, cross-checked against an independent mod-$p$
+elimination-order Gröbner basis) has
+
+- degree $516$, primitive, coefficient height $\le 742$ digits (full
+  coefficient list regenerated by the script into
+  `/tmp/lattice_discriminant/fold_poly_f_t.txt`);
+- **squarefree** (gcd$(f,f')=1$ mod a good prime) and **irreducible
+  over $\mathbb{Q}$** (factor patterns mod 4 primes, e.g. $31+485$ mod
+  $268435367$, have common subset-sums $\{0,516\}$ only);
+- exactly $50$ real roots, of which **14 lie in $(0,1)$** — and since
+  $t$ is separating with a rational parametrization over $\mathbb{Q}$,
+  every real root carries a *real* fold witness $\phi$:
+
+$$t \approx 0.000435,\ 0.001873,\ 0.057820,\ 0.082786,\ 0.087906,\
+0.105876,\ 0.110984,$$
+$$0.121133,\ 0.124557,\ 0.126780,\ 0.156577,\ 0.300560,\ 0.511438,\
+0.560931.$$
+
+**Exact chamber counts.** msolve real-root isolation at 15 rational
+sample points strictly interleaving the 14 fold roots (plus the
+endpoints) gives the exact real chamber sequence at $\varepsilon=1/4$:
+
+$$N:\quad 18 \to 16 \to 14 \to 16 \to 14 \to 12 \to 10 \to 8 \to 6 \to
+8 \to 6 \to 4 \to 2 \to 4 \to 6 ,$$
+
+with $N(1)=6$ at $T_3$ (agreeing with §6.4) and $N(0)=14$ *at* $T_1$.
+Every jump is $\pm2$ and brackets exactly one fold root; conversely
+every fold root in $(0,1)$ produces a jump. **On this segment every
+real chamber wall is fold-type.**
+
+**Escape polynomial $e(t)$.** The escape values (fiber degree of the
+specialized ideal drops below the generic $66$) are the roots of
+$$e(t) = t\,(13t-1)\,(3t+1)\,q_y(t)\,q_x(t),$$
+$$q_y = 29823777\,t^4 + 5199180\,t^3 + 713782\,t^2 - 246740\,t + 12337
+\quad(\text{irreducible, no real roots}),$$
+$$q_x = 2841875\,t^4 + 125650\,t^3 - 1157957\,t^2 + 512672\,t - 54016
+\quad(\text{irreducible, real roots}\approx -0.83010,\ 0.15629).$$
+Per-factor certificates are **Exact over $\mathbb{Q}$**: ideal degree
+$54<66$ at $t=0$, $53<66$ at $t=1/13$, $65<66$ at $t=-1/3$, and
+$260<264=4\times66$ with either irreducible quartic adjoined (control
+quartic $t^4+t+1$: exactly $264$). *Completeness* of the factor list is
+certified mod $p$ for two independent 30-bit primes via the
+$x_0/y_0$-eliminant leading coefficients (`--full` recomputes; the
+recorded $x_1/y_1$ eliminants give the same factors); the
+$z$-coordinate and generic-linear-form eliminations did not finish
+within the compute budget (mod-$p$ F4, killed after $>1$ h / $>40$ min
+without output — the honest wall), so a $z$-only escape channel with
+additional roots cannot be excluded, though every certified escape
+value above already appears in the $x/y$ directions.
+
+**Fold-vs-escape decomposition (the §6.4 sequence corrected).**
+
+- All 14 real chamber walls are **folds** ($\pm2$ jumps at roots of
+  $f$).
+- **Escape is pointwise on the reals**: at an escape value the count
+  *dips at the point without changing the adjacent chambers* — exact
+  examples $N(1/13)=13$ (odd!) between plateaus of $16$ ($3$ real
+  solutions escape exactly at $t=1/13$, ideal degree $53$), and
+  $N(0)=14$ vs $N(0^+)=18$: the endpoint $T_1$ *is* an escape point
+  with $12$ of $66$ solutions at infinity, $4$ of them real. This is
+  the non-properness mechanism caught exactly — but it is invisible to
+  chamber counting off a measure-zero set of $t$.
+- The §6.4 HC "odd jumps" $12\to13\to14$ (first crossing
+  $t\in(27/512,7/128)$) were **completeness artifacts**: neither
+  $f(t)$ nor $e(t)$ has a root in $(27/512,\,7/128)$, and the exact
+  ideal degree at $t=109/2048$ inside the bracket is the generic $66$
+  with $N=14$. The certified-lower-bound counts simply missed
+  solutions there; the first genuine wall is the fold at
+  $t\approx0.057820\in(29/512,\,15/256)$.
+
+**$\varepsilon=0$ anchors (exact).** $\det DF_0\equiv 4$ (fold ideal
+empty — folds are a strictly-$\varepsilon>0$ phenomenon), and the
+$\varepsilon=0$ escape locus on the segment is
+$p(J_0(t))\,p(J_1(t))=0$ with $p(J_0(t))=4(5t-1)$ and
+$p(J_1(t))=107t^4+42t^3-85t^2+44t-4$ (one real root each in $(0,1)$:
+$t=1/5$ and $t\in(29/256,30/256)$), reproducing the product chamber
+sequence $9\to3\to1$. Note the contrast: at $\varepsilon=0$ all walls
+are escape-type (Keller), at $\varepsilon=1/4$ all *chamber* walls on
+this segment are fold-type and escape only dips.
+
+**Open after this computation** (moved from §7.2): the fold
+*hypersurface* $W(a,b,c)$ in one source block ($J_1$ frozen at
+$(2,1,1)$): the mod-$p$ elimination prescreen is behind `--full`; the
+exact surface over $\mathbb{Q}$ was not obtained. A wall-crossing
+*formula* (predicting the $\pm$ sign of each fold jump from local data)
+also remains open; the present result is the exact wall *list*, not yet
+a formula.
 
 ---
 
@@ -823,15 +969,22 @@ $F_\varepsilon$ (§7.2).
    leading-form argument covers any lower-order perturbation of a polynomial
    $F_M$; non-polynomial kinetics are open.
 
-2. **Chamber function after mixing.** *(Partially answered — §6.4.)*
-   The real chamber function of $F_M^K$ ($M=2$) is non-constant at every
-   probed $\varepsilon>0$, with rich wall structure (several walls on a
-   single $J$-segment, counts up to 20). What remains open: the *exact*
-   discriminant/eliminant of $F_\varepsilon$ for $M=2$ (in reach for
-   Gröbner/resultant methods but not computed), a wall-crossing
-   *formula*, and the fold-vs-escape decomposition of each wall
-   ($F_\varepsilon$ is no longer Keller: $\det DF_\varepsilon\neq$
-   const).
+2. **Chamber function after mixing.** *(Answered on the probed segment —
+   §§6.4–6.5.)* The real chamber function of $F_M^K$ ($M=2$) is
+   non-constant at every probed $\varepsilon>0$ (§6.4), and on the
+   $T_1\to T_3$ segment at $\varepsilon=1/4$ the exact
+   discriminant/eliminant *is now computed* (§6.5,
+   `scripts/lattice_discriminant.py`): fold polynomial $f(t)$ of degree
+   516 (irreducible, squarefree, 14 real roots in $(0,1)$ = the 14
+   chamber walls, all $\pm2$ fold jumps), escape polynomial
+   $e(t)=t(13t-1)(3t+1)q_yq_x$ of degree 11 (escape dips the count
+   pointwise, never shifts a chamber; $T_1$ itself is an escape point).
+   Still open: the fold *hypersurface* $W(a,b,c)$ over a frozen source
+   block (exact over-$\mathbb{Q}$ elimination out of reach; mod-$p$
+   prescreen behind `--full`), a wall-crossing *formula* (sign of each
+   fold jump from local data), the analogous exact structure at other
+   $\varepsilon$ and on other segments, and the $z$-direction
+   completeness certificate for $e(t)$ (§6.5 honest scope).
 
 3. **Monodromy lift.** Does the $S_3$ local system of AM extend as an
    $S_3^{\times N}$ (or braid quotient) for $F^{\times N}$, and how does
@@ -861,5 +1014,7 @@ $F_\varepsilon$ (§7.2).
 .venv/bin/python scripts/symmetric_search.py          # ~3.5 min; I8
 .venv/bin/python scripts/classical_map_invariants_probe.py   # ultralocal + kinetic
 .venv/bin/python scripts/lattice_chamber.py           # ~3.5 min; §6.4 Q2a (needs julia + HomotopyContinuation.jl)
+.venv/bin/python scripts/d1_index_modes.py            # ~4.5 min; §5.1 Q1, finite-mode truncation
+.venv/bin/python scripts/lattice_discriminant.py      # ~6 min; §6.5 exact walls (needs external/msolve)
 ```
 

@@ -900,3 +900,95 @@ Numerical); write-up `docs/BF_CARICATURE.md`. Resolves OPEN_QUESTIONS
   encoded); I8 enters at the construction step. Standard disclaimer:
   0D degeneration of the axioms, no bearing on the $D\ge1$ [BF20]
   program.
+
+## 2026-07-28 — Q1 answered for the finite-mode truncation: the D=1 MQ index jump survives
+
+`scripts/d1_index_modes.py` (37 checks, ~4.5 min; `--full` ~25 min);
+write-up `docs/D1_INDEX.md`. Attacks Q1 of
+`docs/CLASSICAL_MAP_INVARIANTS.md` §5.1 in its smallest honest setting:
+periodic paths $q:[0,\beta]\to\mathbb{R}^3$ truncated to Fourier modes
+$\le M$, truncated Nicolai map $G(u) = $ mode coefficients of
+$P_M[\dot q + F(q) - J]$, and the finite-dimensional MQ integral
+$Z_\sigma(J;M,\beta) = (2\pi\sigma^2)^{-n/2}\int\det DG\,
+e^{-|G|^2/2\sigma^2}$, $n = 3(2M{+}1)$.
+
+- **Exact ($M=0$ reduction):** constant paths reproduce the 0D MQ
+  integral *exactly* with $\sigma_{\rm eff} = \sigma/\sqrt\beta$
+  (symbolic assert); the 0D jump $-1\leftrightarrow-3$ is the baseline.
+- **Exact (saddle factorization, the theorem-shaped core):** at a
+  constant-path zero ($F(q^*)=J$), $DG$ is block-diagonal over modes and
+  $\det[[A,\omega I],[-\omega I,A]] = \det(A^2+\omega^2 I) =
+  |\det(A+i\omega I)|^2 \ge 0$ (generic $3\times3$ $A$, symbolic), so
+  the mode fluctuation determinant is a $J$-independent positive factor
+  and the $\sigma\to0$ saddle sum is $\deg(F,J) = -N(J)$, independent of
+  $M,\beta$ — modulo three provisos: spectral gap (checked, $3.14$),
+  nonconstant zeros (P1), mass from infinity (P2).
+- **Exact (gradient rigidity) + AM loophole:** at any zero of $G$,
+  $\|\dot q\|^2 = -\langle\dot q, F(q)\rangle$; for gradient $F$ this
+  forces constant paths for every $M,\beta$ (asserted for the tame
+  shear, $M=1$ generic); for AM the cross term is $75\pi/16\neq0$ on an
+  explicit witness loop — P1 open exactly, probed: 1920 Newton starts,
+  every converged zero is a constant equilibrium.
+- **Numerical (MC, tube+wide+broad importance mixture, seeds fixed,
+  error bars):** $M\in\{1,2\}$, $\beta\in\{0.5,1,2\}$,
+  $\sigma\in\{0.5,0.25,0.1,0.05\}$ at the four witten_index chamber
+  points: $Z\to-N(J)$, jump ratio $\to3$ within $0.5\%$ at
+  $\sigma=0.05$; proper controls (linear, tame shear) pin $Z\equiv-1$;
+  wall approach $J=(a,0,0)$, $a\to0^-$ tracks the 0D crossover with no
+  new escape channel in nonconstant modes (far-mass probes at MC zero).
+  One genuine $M$-dependent finite-$\sigma$ transient found and
+  documented (double-seeded): $J=(2,1,1)$, $M=2$, $\sigma=0.1$ dips to
+  $-0.96$, back to $-1.00$ by $\sigma=0.07$.
+- **Verdict (truncated Q1): SURVIVE** — the finite-mode path measure
+  does not kill the vacua at infinity; the kinetic term only rescales
+  the coupling. The $M\to\infty$ / continuum order of limits is
+  explicitly left open; no continuum claim.
+
+## 2026-07-28 — Exact wall structure of the 2-site lattice map on the probed segment (§7.2 item resolved)
+
+`scripts/lattice_discriminant.py` (35 checks, ~6 min; `--full` adds the
+mod-p completeness rerun and the fold-surface prescreen); write-up
+`docs/CLASSICAL_MAP_INVARIANTS.md` §6.5. Computes the EXACT
+discriminant of $F_\varepsilon$ ($M=2$, $\varepsilon=1/4$) on the
+$T_1\to T_3$ segment $J(t)=(1-t)T_1+tT_3$ — the open item of §7.2 —
+with msolve (Gröbner/eliminant/rational parametrization over
+$\mathbb{Q}$, 16 GB cap via `jcqft.gb_backend`) and Singular.
+
+- **Fold polynomial (Exact):** the fold system $\{F_\varepsilon(\phi)=
+  J(t),\ \det DF_\varepsilon(\phi)=0\}$ (7 eqs, $\det$ of degree 19,
+  953 terms) is 0-dimensional of degree 516 with $t$ separating; its
+  exact eliminant $f(t)\in\mathbb{Z}[t]$ has degree 516, height ≤ 742
+  digits, is squarefree and irreducible over $\mathbb{Q}$ (multi-prime
+  factor-pattern certificate), and has exactly 14 real roots in
+  $(0,1)$, each with a real fold witness.
+- **Exact chamber counts (msolve real-root isolation at 15 interleaved
+  rational $t$):** $18\,16\,14\,16\,14\,12\,10\,8\,6\,8\,6\,4\,2\,4\,6$
+  — every jump $\pm2$, every jump bracketed by exactly one fold root:
+  ALL real chamber walls on the segment are FOLD-type.
+- **Escape polynomial (Exact per factor):** $e(t)=t(13t-1)(3t+1)
+  q_y(t)q_x(t)$ with $q_y=29823777t^4+5199180t^3+713782t^2-246740t+
+  12337$ (no real roots), $q_x=2841875t^4+125650t^3-1157957t^2+
+  512672t-54016$ (real roots $\approx-0.830,\ 0.1563$); certificates =
+  exact fiber-degree drops ($66\to54$ at $t=0$, $66\to53$ at $t=1/13$,
+  $260<264$ with either quartic adjoined; control quartic gives 264).
+  Escape shifts NO chamber: the count dips only AT the value
+  ($N(1/13)=13$ between plateaus of 16; endpoint $T_1$: $N(0)=14$ vs
+  $N(0^+)=18$ — 4 real solutions at infinity over $T_1$ itself).
+  Completeness of the factor list: mod-p certified (2 primes) in the
+  $x/y$ directions; $z$-direction eliminations exceeded budget
+  (documented wall).
+- **§6.4 corrected:** the HC counts $12\to13\to14\ldots$ were
+  incomplete lower bounds ($T_1$ exact fiber is 14 real / 54 complex,
+  not 12/52); the "odd escape jumps", including the certified first
+  crossing $t\in(27/512,7/128)$, were completeness artifacts — neither
+  $f$ nor $e$ has a root there and the ideal degree inside the bracket
+  is the generic 66. First genuine wall: fold at $t\approx0.05782$.
+- **Structural contrast (Exact):** at $\varepsilon=0$ all segment walls
+  are escape-type ($\det DF_0\equiv4$, fold ideal empty; walls
+  $p(J_0(t))=4(5t-1)$, $p(J_1(t))=107t^4+42t^3-85t^2+44t-4$, counts
+  $9\to3\to1$); at $\varepsilon=1/4$ all chamber walls are fold-type
+  and escape acts pointwise — kinetic mixing exchanges the wall
+  mechanism.
+- **Open:** fold hypersurface $W(a,b,c)$ over a frozen block exact over
+  $\mathbb{Q}$ (mod-p prescreen behind `--full`), wall-crossing sign
+  formula, other $\varepsilon$/segments, $z$-completeness of $e(t)$.
