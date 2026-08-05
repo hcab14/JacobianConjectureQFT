@@ -81,7 +81,7 @@ from the horizon class.
 
 **Exact inputs.** No potential in $n=3$: $\{K:K\,DF\text{ symmetric}\}=\{0\}$
 (`scripts/symmetric_search.py`; `SYMMETRIC_SEARCH.md`). Cotangent lift
-$W_6=\bar\varphi\cdot F(\varphi)$ has $\det\operatorname{Hess}W_6\equiv-4$
+$W_6=\bar\varphi\cdot F(\varphi)$ has $\det\mathrm{Hess}W_6\equiv-4$
 and is 3:1 (`SYMMETRIC_SEARCH.md` §3.1). First-order Lagrangian
 $L=\bar\phi\cdot(F(\phi)-J)$ is the only honest implementation of
 $F(\phi)=J$ in three fields (`BF_CARICATURE.md` §3; [Abd03]). Coercivity
@@ -168,7 +168,7 @@ ultralocal (ε=0)  →  kinetic lattice (ε>0, L finite)  →  continuum (L→�
    quantization of the Keller force map. The Exact $M=0$ reduction says
    the transfer-matrix ground-sector localization *contains* the 0D
    index; the saddle factorization says higher Matsubara modes cannot
-   flip $\operatorname{sign}\det DG$ at equilibria. Promoting this to a
+   flip $\mathrm{sign}\det DG$ at equilibria. Promoting this to a
    continuum theorem (no nonconstant zeros; dominated convergence
    $M\to\infty$) would be the first Exact $D=1$ statement beyond
    truncation — listed in §8.

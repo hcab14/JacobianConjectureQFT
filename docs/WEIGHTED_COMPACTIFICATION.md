@@ -66,9 +66,9 @@ $\mathbb{A}^3\setminus\{0\}$. The correct coarse geometric object is a
 
 ### 2.1 Charts
 
-- **Affine chart** $U_0=\operatorname{Spec}\mathbb{C}[x,y,z]$ — ordinary
+- **Affine chart** $U_0=\mathrm{Spec}\mathbb{C}[x,y,z]$ — ordinary
   field space.
-- **Escape chart** $U_\infty=\operatorname{Spec}\mathbb{C}[s,y,\gamma]$ with
+- **Escape chart** $U_\infty=\mathrm{Spec}\mathbb{C}[s,y,\gamma]$ with
   transition on $\{x\neq 0\}=\{s\neq 0\}$
   $$
   s=\frac1x,\qquad
@@ -179,7 +179,7 @@ image equal to the non-properness hypersurface $\{p=0\}$:
   $a=\overline{F}_1|_{s=0}$, $b=\overline{F}_2|_{s=0}$,
   $c=\overline{F}_3|_{s=0}$ recovers the ideal $(p)$ up to the expected
   leading-coefficient factor $c$ of the eliminant (asserted:
-  $\operatorname{Resultant}_y=c\cdot p$).
+  $\mathrm{Resultant}_y=c\cdot p$).
 
 **Compactified-fiber reading (exact + numerical cross-check).** Off the
 wall, $F\colon\mathbb{A}^3\to\mathbb{A}^3$ is a degree-$3$ étale cover. At a

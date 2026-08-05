@@ -174,7 +174,7 @@ averages the *two-sided* chamber structure:
 $$
 h(J_{\mathrm{wall}}, \hbar) = 1 + c_1 \sqrt{\hbar} + O(\hbar),
 \qquad
-c_1 = -\frac{\operatorname{div}\bigl(\nabla p / |\nabla p|\bigr)}
+c_1 = -\frac{\mathrm{div}\bigl(\nabla p / |\nabla p|\bigr)}
             {2\sqrt{2\pi}}
 $$
 
@@ -204,9 +204,9 @@ $$
 
   where $\varphi_{V}$ is the centered normal density of variance $V$, and
   the constants are the exact covariances of the source fluctuation in cusp
-  coordinates at $J_c = (4/27, 4/3, 1)$: $\operatorname{Var}(\delta w) =
-  \tfrac{25}{9}$, $\operatorname{Var}(v) = \tfrac{826}{729}$,
-  $\operatorname{Cov}(v, \delta w) = -\tfrac{43}{81}$ (all per unit
+  coordinates at $J_c = (4/27, 4/3, 1)$: $\mathrm{Var}(\delta w) =
+  \tfrac{25}{9}$, $\mathrm{Var}(v) = \tfrac{826}{729}$,
+  $\mathrm{Cov}(v, \delta w) = -\tfrac{43}{81}$ (all per unit
   $\hbar$). Measured: $(h - \tfrac12)/\hbar^{1/4} = 0.12444$ at
   $\hbar = 10^{-8}$, matching to $< 1\%$. So the limit value $\tfrac12$
   equals the one-finite-sheet value even though $N(J_c) = 0$ — **the
@@ -300,7 +300,7 @@ in $\log\hbar$; $h$ is monotone through the crossing.
   exact horn model
 
 $$
-\hbar^* = \frac{\varepsilon^3/27}{\operatorname{Var}(v)\,\Phi^{-1}(7/8)^2}
+\hbar^* = \frac{\varepsilon^3/27}{\mathrm{Var}(v)\,\Phi^{-1}(7/8)^2}
         = \frac{27\,\varepsilon^3}{826\,\Phi^{-1}(7/8)^2}
         = 0.024697\,\varepsilon^3
 $$

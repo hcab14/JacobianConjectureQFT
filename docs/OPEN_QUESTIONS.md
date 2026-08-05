@@ -158,7 +158,7 @@ Sheet resolution beyond total mass remains open.
 **B6. Certified monodromy.**
 ✅ **Resolved 2026-08-05** (`scripts/certified_monodromy.py`;
 `docs/MONODROMY.md`). Algebraic route (no interval tracking): irreducible
-eliminant + $\operatorname{disc}_X=-4D_0^2 p$ not a square $\Rightarrow$
+eliminant + $\mathrm{disc}_X=-4D_0^2 p$ not a square $\Rightarrow$
 $\mathrm{Gal}=S_3$; Exact Puiseux at the smooth wall point $(0,1,1)$
 (transverse line $J(t)=(t,1,1)$) proves wall meridians act by
 transpositions $\Rightarrow$ geometric $\mathrm{Mon}=S_3$; affine $A_2$
@@ -210,7 +210,7 @@ reduction makes the bookkeeping serious. High interpretive value for QFT
 ✅ **Resolved 2026-07-25** (`scripts/symmetric_search.py`;
 `docs/SYMMETRIC_SEARCH.md`). Two explicit variational counterexamples in
 dimension 6, both built from Alpöge–Mathew: the cotangent lift
-$W_6 = \bar\varphi\cdot F(\varphi)$ ($\det\operatorname{Hess}W_6 \equiv -4$,
+$W_6 = \bar\varphi\cdot F(\varphi)$ ($\det\mathrm{Hess}W_6 \equiv -4$,
 three rational witnesses) and the de Bondt–van den Essen twisted lift
 $\widetilde F = \mathrm{id} + \nabla f_H$ (normalized Keller, witnesses over
 $\mathbb{Q}(i)$). Complement: in dimension 3 the defect is provably

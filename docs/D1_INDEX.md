@@ -30,9 +30,9 @@ $n = 3(2M{+}1)$ mode coordinates. We determine it:
    = \det(A^2 + \omega^2 I) = \bigl|\det(A + i\omega I)\bigr|^2 \;>\; 0$$
    (generic $3\times3$ $A$, real-$A$ positivity, both symbolic). Hence
    the mode fluctuation determinant is a **$J$-independent positive
-   factor**: $\operatorname{sign}\det DG(u^*) = \operatorname{sign}\det
+   factor**: $\mathrm{sign}\det DG(u^*) = \mathrm{sign}\det
    DF(q^*)$, and the $\sigma\to0$ constant-saddle contribution is
-   $\sum_{q^*}\operatorname{sign}\det DF(q^*) = \deg(F,J) = -N(J)$,
+   $\sum_{q^*}\mathrm{sign}\det DF(q^*) = \deg(F,J) = -N(J)$,
    **independent of $M$ and $\beta$** — provided
    $\det(A^2+\omega_k^2 I)\neq 0$ (proviso P3, checked) and no
    nonconstant zeros or boundary mass intervene (provisos P1–P2, probed).
@@ -113,7 +113,7 @@ $N_\tau = 64$ points integrates trig polynomials of degree $<64$ exactly
 **Structural frame (exact, cited co-area input).** Pushing $u\mapsto G(u)$
 forward, $Z_\sigma(J;M,\beta) = \mathbb{E}_\xi\bigl[\deg_G(\sigma\xi)\bigr]$
 with $\xi\sim\mathcal N(0,\mathbf 1_n)$ and $\deg_G(v) =
-\sum_{u\in G^{-1}(v)}\operatorname{sign}\det DG(u)$ — the Gaussian
+\sum_{u\in G^{-1}(v)}\mathrm{sign}\det DG(u)$ — the Gaussian
 mollification of the degree function of $G$, exactly as in 0D
 (`docs/WITTEN_INDEX.md` §1.3). Absolute convergence: generic fibers of the
 dominant polynomial map $G$ are finite and bounded by the Bézout number,
@@ -162,22 +162,22 @@ $$
 \;\overset{A\ \text{real}}{=}\; (\mathrm{Re})^2 + (\mathrm{Im})^2 \ \ge\ 0,
 $$
 all three equalities asserted symbolically (`A2(i)–(iii)`), with equality
-to $0$ iff $\pm i\omega\in\operatorname{spec}A$. Consequently
+to $0$ iff $\pm i\omega\in\mathrm{spec}A$. Consequently
 $$
 \det DG(u^*) = \det DF(q^*)\cdot\!\!\prod_{k=1}^{M}\bigl|\det(DF(q^*) +
 i\omega_k I)\bigr|^2,\qquad
-\operatorname{sign}\det DG(u^*) = \operatorname{sign}\det DF(q^*),
+\mathrm{sign}\det DG(u^*) = \mathrm{sign}\det DF(q^*),
 $$
 provided $\det(DF(q^*)^2+\omega_k^2 I)\neq0$ for all $k\le M$ (**proviso
 P3**; the numeric factorization is re-asserted against the assembled
 $DG$ to $3\times10^{-14}$ at all four chamber points, $\beta\in\{0.5,1,
-2\}$, $M\in\{1,2\}$, and the spectral gap $\min_k|\operatorname{spec}
+2\}$, $M\in\{1,2\}$, and the spectral gap $\min_k|\mathrm{spec}
 DF(q^*)\mp i\omega_k| = 3.14$ is asserted $>10^{-6}$).
 
 **Corollary.** The $\sigma\to0$ limit of $Z_\sigma(J;M,\beta)$ restricted
 to the constant-path saddles is
 $$
-\sum_{q^*:F(q^*)=J}\operatorname{sign}\det DF(q^*) = \deg(F,J) = -N(J),
+\sum_{q^*:F(q^*)=J}\mathrm{sign}\det DF(q^*) = \deg(F,J) = -N(J),
 $$
 independent of $M$ and $\beta$: **the mode fluctuation determinant is a
 $J$-independent positive factor** that the normalization removes. This is
@@ -189,7 +189,7 @@ infinity in mode space — the honest gaps, stated next and probed in §2.
 ### 1.3 A3 — gradient rigidity, and why AM escapes it
 
 At any zero of $G$: $0 = \langle\dot q, P_M\delta q\rangle = \langle\dot
-q, \delta q\rangle$ ($P_M$ self-adjoint, $\dot q\in\operatorname{ran}
+q, \delta q\rangle$ ($P_M$ self-adjoint, $\dot q\in\mathrm{ran}
 P_M$), and $\langle\dot q, J\rangle = 0$ on periodic loops, so
 $$
 \lVert\dot q\rVert_{L^2}^2 \;=\; -\,\bigl\langle\dot q, F(q)\bigr\rangle .
@@ -354,7 +354,7 @@ points each): 24–72 starts converge per combo ($\lVert G\rVert<10^{-10}$)
 and **every** converged zero is a constant path at a known equilibrium
 (higher-mode norm $<10^{-7}$, matched to the exact fiber to $10^{-6}$).
 No nonconstant zero of the truncated flow was found — a probe, not a
-proof (A3). Spectral proviso P3: $\min|\operatorname{spec}DF(q^*)\mp
+proof (A3). Spectral proviso P3: $\min|\mathrm{spec}DF(q^*)\mp
 i\omega_k| = 3.14$ over all equilibria, $\beta$ in the grid, $k\le2$.
 
 ## 3. Q1 verdict (truncated model)
@@ -387,7 +387,7 @@ it licenses nothing about the continuum, $D\ge2$, or UV.
 - **Proviso P1 (nonconstant zeros)** is a theorem only on the gradient
   branch (§1.3). For AM it rests on a 1920-start Newton probe at 8
   parameter combos. A nonconstant zero elsewhere in $(J,\beta,M)$-space
-  would add its own $\operatorname{sign}\det DG$ to the limit.
+  would add its own $\mathrm{sign}\det DG$ to the limit.
 - **Proviso P2 (mass from infinity)** is probed by the wide-tube/broad
   mixture components and the far-mass diagnostics, not bounded
   analytically. The 0D experience (`docs/WITTEN_INDEX.md` §1.3) is that

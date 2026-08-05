@@ -58,7 +58,7 @@ $$
 a polynomial in $(w,v)$ alone. The 3D Keller problem $\det DF = \kappa$
 is therefore a 2D problem, as for Alpöge–Mathew.
 
-**Gauge fixing.** $DF(0) = \operatorname{antidiag}(p_1(0), q_0'(0),
+**Gauge fixing.** $DF(0) = \mathrm{antidiag}(p_1(0), q_0'(0),
 r_0(0))$ where $p_1$ is the $v$-coefficient of $P$, etc.; target scalings
 normalize $p_1(0) = q_0'(0) = r_0(0) = 1$, hence $\kappa = \det DF(0) =
 -1$. A residual 2-torus $(w,v) \to (\mu w, \nu v)$ (with compensating
@@ -191,7 +191,7 @@ argument in $\mathbb{C}[w]$ (constants can't have nonconstant divisors):
 - **D2** ($p_1 = A$ const): the shear $h = -p_0/A$ sets $p_0 \equiv 0$;
   $E_0 = -A(q_0r_0)' = \kappa$ makes $q_0r_0$ exactly linear, so one
   factor is constant. $q_0 = \gamma$: $E_1$ forces $t$ linear and $r_0 =
-  (2C\gamma/B)t$, but un-shearing needs $\operatorname{val}(p_0 = -Ah)
+  (2C\gamma/B)t$, but un-shearing needs $\mathrm{val}(p_0 = -Ah)
   \ge 3 \Rightarrow h(0) = 0 \Rightarrow q_0(0) = \gamma \ne 0$:
   contradiction. $r_0 = \delta$: $E_1 \Rightarrow t \mid \delta^2t'
   \Rightarrow t' = 0$: contradiction.
@@ -306,9 +306,9 @@ At $m = 2$ the AM map sits in stratum "D1" of its own family:
 $p_1 = s^3$, $q_1 = 3s^2$, $r_1 = -1$, $s = 1 + w$ — the same $t = $
 const slot that at $m = 3$ produces the sheared family
 $q_0 = n,\ p_0 = (2A/B)ns$. The $m = 3$ box demands
-$\operatorname{val}_w p_0 \ge 3$ (from $j + 3k \ge 3$) while the family
+$\mathrm{val}_w p_0 \ge 3$ (from $j + 3k \ge 3$) while the family
 jets force $p_0(0) \neq 0$ unless $n = 0$, i.e. $\kappa = 0$. At
-$m = 2$ the box demands only $\operatorname{val}_w p_0 \ge 2$ *and* the
+$m = 2$ the box demands only $\mathrm{val}_w p_0 \ge 2$ *and* the
 corresponding equations have one more derivative-weighting ($E_0^{m=2} =
 q_0p_0' - 2p_0q_0' + \dots$), which is exactly what lets
 $P_{\rm AM} = (1+w)(v(1+w)^2 + w^2(3w+4))$ thread the needle. The

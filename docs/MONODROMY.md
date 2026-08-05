@@ -60,7 +60,7 @@ Script: `scripts/certified_monodromy.py`.  The argument is algebraic; no
 interval tracking is required.
 
 1. **Galois group $S_3$ (Exact).**  The eliminant is irreducible over
-   $K=\mathbb{Q}(a,b,c)$, and $\operatorname{disc}_X=-4\,D_0^2\,p$ with $p$
+   $K=\mathbb{Q}(a,b,c)$, and $\mathrm{disc}_X=-4\,D_0^2\,p$ with $p$
    irreducible of multiplicity one, hence not a square in $K$.  Classical
    cubic criterion: $\mathrm{Gal}(\text{Galois closure}/K)=S_3$.
 2. **Local wall monodromy is a transposition (Exact).**  At the smooth

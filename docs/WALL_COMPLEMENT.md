@@ -65,7 +65,7 @@ with $P_2 = c^2 p = 27u^2 + 16u - 18uw + w^3 - w^2$ the plane wall of
 three-dimensional covering data reduces *entirely* to this one-parameter
 cubic family over the $(u,w)$-plane; its discriminant in $\xi$ is
 $-4\,P_2\,(27u-9w+8)^2$, the invariant form of
-$\operatorname{disc}_X = -4\,D_0^2\,p$ from `docs/MONODROMY.md`.
+$\mathrm{disc}_X = -4\,D_0^2\,p$ from `docs/MONODROMY.md`.
 
 Depressing by $\eta = P_2\,\xi$ (multiply (I1) by $P_2^2$) gives a *monic*
 depressed cubic whose coefficients are **polynomial** in $(u,w)$:

@@ -1,6 +1,6 @@
 # The Symmetric (Variational) Jacobian Problem: Explicit Counterexamples in Dimension 6, Gradient No-Go in Dimension 3
 
-*(A **symmetric Keller map** is $F = \nabla W$ with $\det\operatorname{Hess} W$
+*(A **symmetric Keller map** is $F = \nabla W$ with $\det\mathrm{Hess} W$
 a nonzero constant — the "0D QFT with an action": the partition function
 $\int e^{-W}$ has genuinely stationary phases, SUSY/Parisi–Sourlas
 completions exist, coercivity is meaningful. `docs/PROBLEM.md` and
@@ -29,9 +29,9 @@ Singular, 16 GB cap). Literature anchor: M. de Bondt, A. van den Essen,
 1. **Variational Jacobian counterexamples exist, explicitly, in dimension
    6** (§3): two artifacts built from the Alpöge–Mathew map — the
    cotangent lift $W_6 = \bar\varphi \cdot F(\varphi)$ (rational, $\det
-   \operatorname{Hess} W_6 \equiv -4$, three explicit rational witnesses)
+   \mathrm{Hess} W_6 \equiv -4$, three explicit rational witnesses)
    and the dBvdE twisted lift $\widetilde F = \mathrm{id} + \nabla f_H$
-   (normalized, $\det(I + \operatorname{Hess} f_H) \equiv 1$, witnesses
+   (normalized, $\det(I + \mathrm{Hess} f_H) \equiv 1$, witnesses
    over $\mathbb{Q}(i)$). To our knowledge these are the first explicit
    symmetric/variational Jacobian counterexamples written down.
 2. **The Alpöge–Mathew defect itself is non-variational in dimension 3, in
@@ -51,7 +51,7 @@ Singular, 16 GB cap). Literature anchor: M. de Bondt, A. van den Essen,
    $\deg W = 6$, or for $n = 3$ up to $\deg W = 4$ (full coefficient box,
    exact over $\mathbb{Q}$). $n = 3$, $\deg W = 5$ is the honest wall.
 5. **Coercivity** (§7): a real symmetric Keller counterexample is never
-   coercive when $\kappa \le 0$ or $\deg W$ is odd; $\det\operatorname{Hess}
+   coercive when $\kappa \le 0$ or $\deg W$ is odd; $\det\mathrm{Hess}
    W = $ const forces the Hessian of the leading form to be singular. The
    explicit $W_6$ fails coercivity in every one of these ways at once.
 
@@ -80,7 +80,7 @@ is asserted in the script):
 > paper's sign/scaling convention for $f_H$ may differ; ours is fixed by
 > the assertions below. NOTE-unverified: dBvdE05 further combine this with
 > the Bass–Connell–Wright degree reduction to reach $f$ homogeneous of
-> degree 4 with $\operatorname{Hess} f$ nilpotent, at the cost of a further
+> degree 4 with $\mathrm{Hess} f$ nilpotent, at the cost of a further
 > dimension blow-up; we use only the twisted lift.]
 
 The proof is three exact identities, all asserted (script §A1–A3) with
@@ -89,10 +89,10 @@ $S = \begin{pmatrix} I & -iI \\ 0 & I \end{pmatrix}$ (so $f_H = g_H \circ
 S^{-1}$, $\det S = 1$):
 
 $$
-\operatorname{Hess} f_H = S^{-\mathsf T}\,
-\bigl(\operatorname{Hess} g_H\bigr)(S^{-1}\cdot)\, S^{-1},
+\mathrm{Hess} f_H = S^{-\mathsf T}\,
+\bigl(\mathrm{Hess} g_H\bigr)(S^{-1}\cdot)\, S^{-1},
 \qquad
-S^{\mathsf T} S + \operatorname{Hess} g_H =
+S^{\mathsf T} S + \mathrm{Hess} g_H =
 \begin{pmatrix} I + B & -i\,(I + JH)^{\mathsf T} \\ -i\,(I + JH) & 0
 \end{pmatrix},
 $$
@@ -104,7 +104,7 @@ for $n = 2, 3$; the $n$ row-block transpositions prove it for every $n$).
 Chaining them:
 
 $$
-\boxed{\ \det\bigl(I + \operatorname{Hess} f_H\bigr)
+\boxed{\ \det\bigl(I + \mathrm{Hess} f_H\bigr)
  = \det\bigl(I + JH\bigr)^2 \ }
 $$
 
@@ -133,10 +133,10 @@ $\varphi = (x,y,z)$, $\bar\varphi = (\bar x, \bar y, \bar z)$ and $F$ the
 Alpöge–Mathew map, all asserted:
 
 - $W_6 := \bar x F_1 + \bar y F_2 + \bar z F_3$, $\deg W_6 = 8$;
-- $\operatorname{Hess} W_6 = \begin{pmatrix} \sum_k \bar\varphi_k
-  \operatorname{Hess} F_k & JF^{\mathsf T} \\ JF & 0 \end{pmatrix}$, so by
+- $\mathrm{Hess} W_6 = \begin{pmatrix} \sum_k \bar\varphi_k
+  \mathrm{Hess} F_k & JF^{\mathsf T} \\ JF & 0 \end{pmatrix}$, so by
   the block lemma
-  $\det \operatorname{Hess} W_6 = -(\det JF)^2 = -4$ — **constant**;
+  $\det \mathrm{Hess} W_6 = -(\det JF)^2 = -4$ — **constant**;
 - $\nabla W_6 = (JF(\varphi)^{\mathsf T}\bar\varphi,\ F(\varphi))$ is
   **3:1 over a rational point**: since $F(a) = F(b) = F(c)$ on the
   Alpöge–Mathew triple and $JF^{\mathsf T}$ is invertible everywhere, a
@@ -165,8 +165,8 @@ $H := L^{-1}F - \mathrm{id}$ where $L = DF(0)$ (so $JH(0) = 0$,
 $\det(I + JH) = 1$; asserted). Then, all asserted:
 
 - $f_H = -i\sum_j H_j(x + iy)\,y_j$, $\deg f_H = 8$, coefficients in
-  $\mathbb{Q}(i)$, $\operatorname{Hess} f_H(0) = 0$;
-- $\det(I + \operatorname{Hess} f_H) = 1$ **identically**: $\widetilde F =
+  $\mathbb{Q}(i)$, $\mathrm{Hess} f_H(0) = 0$;
+- $\det(I + \mathrm{Hess} f_H) = 1$ **identically**: $\widetilde F =
   \mathrm{id} + \nabla f_H$ is a normalized symmetric Keller map on
   $\mathbb{C}^6$;
 - three distinct witnesses with common image $(0, 0, -\tfrac14, 0, 0, 0)$,
@@ -182,14 +182,14 @@ $\det(I + JH) = 1$; asserted). Then, all asserted:
 
 ### 3.3 What the twisted lift cannot do from here
 
-[dBvdE05, Lemma 1.2] states $\operatorname{Hess} f_H$ nilpotent iff $JH$
+[dBvdE05, Lemma 1.2] states $\mathrm{Hess} f_H$ nilpotent iff $JH$
 nilpotent. Both fail here, provably (script §A4):
 
-- $\operatorname{tr}\bigl((\operatorname{Hess} f_H)^2\bigr) \neq 0$ and
-  $\operatorname{charpoly}(JH) \neq t^3$: **neither is nilpotent**;
+- $\mathrm{tr}\bigl((\mathrm{Hess} f_H)^2\bigr) \neq 0$ and
+  $\mathrm{charpoly}(JH) \neq t^3$: **neither is nilpotent**;
 - no affine normalization helps: $x + H'$ with $JH'$ nilpotent would need
   an invertible $C$ with $C\,JF(u) - I$ nilpotent for all $u$, hence
-  $\operatorname{tr}(C\,JF) = 3$ identically — asserted **inconsistent**
+  $\mathrm{tr}(C\,JF) = 3$ identically — asserted **inconsistent**
   as a linear system (`linsolve` returns the empty set).
 
 So the dBvdE nilpotent/homogeneous normal form (their Cor. 1.3) provably
@@ -269,7 +269,7 @@ residual, then the first two; asserted):
 > $(P, Q, R) = (E(S),\, S_w,\, S_v)$ for a single $S(w,v)$, where
 > $E = w\,\partial_w + 3v\,\partial_v - 2$, i.e.
 > $F = \nabla\bigl(x^{-2} S(w,v)\bigr)$. The kernel of $E$ on admissible
-> monomials is $\operatorname{span}\{w^2\}$, inside the gauge slice — no
+> monomials is $\mathrm{span}\{w^2\}$, inside the gauge slice — no
 > integration-constant ambiguity survives the box (asserted).
 
 ### 5.3 The degenerate branches: complete classification, every $m$
@@ -280,7 +280,7 @@ All asserted (script §B3):
   $\prod a_i d_i\, x^{d_1-1}y^{d_2-1}z^{d_3-1} \neq 0$, so all $d_i = 1$:
   **linear**.
 - **$A(w)$-slice** ($W = A(xy) + \delta z^2/2$):
-  $\det\operatorname{Hess} = -\delta\,A'(A' + 2wA'')\big|_{w=xy}$, and the
+  $\det\mathrm{Hess} = -\delta\,A'(A' + 2wA'')\big|_{w=xy}$, and the
   Wronskian $u(u + 2wu') = (wu^2)'$ with $u := A'$ integrates the Keller
   condition to $w u^2 = -(\kappa/\delta)\,w$: $u$ constant (degree kill
   asserted): **linear**.
@@ -294,7 +294,7 @@ All asserted (script §B3):
 - **shear family** ($W = \alpha x^2/2 + \delta yz + \gamma y^{m+1}$):
   $$
   \nabla W = \bigl(\alpha x,\ \delta z + (m{+}1)\gamma y^m,\ \delta y
-  \bigr), \qquad \det\operatorname{Hess} W = -\alpha\delta^2,
+  \bigr), \qquad \det\mathrm{Hess} W = -\alpha\delta^2,
   $$
   a Keller map for **every** $m$ and every $\gamma$ — and a **tame
   automorphism**: explicit inverse verified by composition; the infinity
@@ -311,7 +311,7 @@ determinant of `reduction_w` gives the asserted identity
 $$
 \det M = -2\,\bigl(wS_w + 6vS_v - 3S\bigr)
 \bigl(S_{ww}S_{vv} - S_{wv}^2\bigr)
-- \bigl(S_v,\ S_w\bigr)\operatorname{Hess}S\,\bigl(S_v,\ S_w
+- \bigl(S_v,\ S_w\bigr)\mathrm{Hess}S\,\bigl(S_v,\ S_w
 \bigr)^{\mathsf T} \;=\; \kappa,
 $$
 
@@ -378,9 +378,9 @@ branches are closed with $m$ symbolic.
 
 If $\nabla W(a) = \nabla W(b)$, $a \neq b$, translate so the witness pair
 is $\pm e/2$; the substitution $x \to Ax$ acts on the Hessian by
-congruence ($\operatorname{Hess} \to A^{\mathsf T}(\operatorname{Hess})A$),
+congruence ($\mathrm{Hess} \to A^{\mathsf T}(\mathrm{Hess})A$),
 preserves the pair form, and over $\mathbb{C}$ normalizes the (invertible,
-symmetric) $\operatorname{Hess} W(0)$ to $I$ — hence quadratic part
+symmetric) $\mathrm{Hess} W(0)$ to $I$ — hence quadratic part
 $\sum x_i^2/2$ and $\kappa = 1$; the linear part of $W$ drops out of the
 witness equations. Degrees are preserved, so **unit-ideal certificates in
 the normalized box are complete** for the stated degree.
@@ -391,11 +391,11 @@ The **midpoint identity** (asserted on full generic cubics, $n = 2, 3, 4$;
 the polarization argument is dimension-free):
 
 $$
-\nabla W(a) - \nabla W(b) = \operatorname{Hess} W\!\Bigl(\frac{a+b}{2}
+\nabla W(a) - \nabla W(b) = \mathrm{Hess} W\!\Bigl(\frac{a+b}{2}
 \Bigr)\,(a - b) \qquad (\deg W \le 3),
 $$
 
-so $\det\operatorname{Hess} \equiv \kappa \neq 0$ forces injectivity.
+so $\det\mathrm{Hess} \equiv \kappa \neq 0$ forces injectivity.
 Every symmetric Keller map of degree $\le 3$ is injective, in every
 dimension. (Contrast: the *non-symmetric* cubic case is the full JC, by
 Bass–Connell–Wright.)
@@ -409,7 +409,7 @@ over $\mathbb{Q}$, seconds), with both controls:
   (witness pairs exist for generic quartics) — the pipeline cannot
   spuriously report emptiness;
 - the Keller variety alone is **nonempty**: nonlinear symmetric Keller
-  maps exist, e.g. $W = xy + f(x)$ with $\det\operatorname{Hess} = -1$ and
+  maps exist, e.g. $W = xy + f(x)$ with $\det\mathrm{Hess} = -1$ and
   the explicit inverse $(a, b) \mapsto (b,\ a - f'(b))$ (asserted) — the
   gradient analogue of a triangular automorphism.
 
@@ -437,8 +437,8 @@ elementary and exact, the third is asserted for $W_6$ and proved in
 general by one line of degree bookkeeping:
 
 1. **Sign of $\kappa$.** A coercive $C^2$ potential $W$ attains a minimum
-   $x_0$; nondegeneracy ($\kappa \neq 0$) makes $\operatorname{Hess}
-   W(x_0)$ positive definite, so $\kappa = \det\operatorname{Hess} W > 0$.
+   $x_0$; nondegeneracy ($\kappa \neq 0$) makes $\mathrm{Hess}
+   W(x_0)$ positive definite, so $\kappa = \det\mathrm{Hess} W > 0$.
    Any symmetric Keller data with $\kappa \le 0$ — e.g. $W_6$, with
    $\kappa = -4$ (asserted) — is **never coercive**.
 2. **Parity.** Odd $\deg W$ kills coercivity outright ($W(tx) \to
@@ -446,11 +446,11 @@ general by one line of degree bookkeeping:
    **affine in $\bar\varphi$** (asserted) — a first-order action is never
    coercive along the conjugate directions, for any base map.
 3. **The leading form is degenerate.** If $\deg W = D \ge 3$, the entries
-   of $\operatorname{Hess} W$ have degree $\le D - 2$ with top-degree
-   parts $\operatorname{Hess} W_D$ ($W_D$ the leading form), so the
-   degree-$n(D-2)$ part of $\det\operatorname{Hess} W$ is
-   $\det\operatorname{Hess} W_D$; constancy of $\det\operatorname{Hess} W$
-   forces $\det\operatorname{Hess} W_D \equiv 0$. So the leading form of
+   of $\mathrm{Hess} W$ have degree $\le D - 2$ with top-degree
+   parts $\mathrm{Hess} W_D$ ($W_D$ the leading form), so the
+   degree-$n(D-2)$ part of $\det\mathrm{Hess} W$ is
+   $\det\mathrm{Hess} W_D$; constancy of $\det\mathrm{Hess} W$
+   forces $\det\mathrm{Hess} W_D \equiv 0$. So the leading form of
    *every* nonquadratic symmetric Keller potential is a degenerate
    (parabolic) form — the growth of $W$ at infinity is never uniformly
    convex. Asserted instance: the leading form of $W_6$ is

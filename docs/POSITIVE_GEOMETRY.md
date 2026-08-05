@@ -50,7 +50,7 @@ c^2\, p \;=\; P_2(u,w) \;=\; 27u^2 + 16u - 18uw + w^3 - w^2 ,
 $$
 
 and on the chart $c \neq 0$ the chamber rule reads
-$\operatorname{sign} p = \operatorname{sign} P_2$: the entire
+$\mathrm{sign} p = \mathrm{sign} P_2$: the entire
 $N(J) \in \{1,3\}$ stratification of three-dimensional source space is the
 pullback of the two plane regions $\{P_2 < 0\}$ and $\{P_2 > 0\}$. The
 five-monomial quartic wall in $\mathbb{C}^3$ was hiding a **cubic plane
@@ -128,7 +128,7 @@ The residue of $\Omega$ along the wall, computed exactly on the
 normalization $\mathbb{P}^1_m$:
 
 $$
-\operatorname{Res}_{P_2=0}\, \frac{\kappa\, du\wedge dw}{P_2}
+\mathrm{Res}_{P_2=0}\, \frac{\kappa\, du\wedge dw}{P_2}
 \;=\; -\frac{\kappa}{3}\,\frac{dm}{(m-3)^2}.
 $$
 

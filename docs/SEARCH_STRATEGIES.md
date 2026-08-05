@@ -2,7 +2,7 @@
 
 *(Strategy document. The mechanism facts referenced here are verified in this
 repo: the $\mathbb{C}^*$-equivariance/orbifold mechanism in `PROGRESS.md`, the
-discriminant structure $\operatorname{disc}_X = -4D_0^2\,p$ in
+discriminant structure $\mathrm{disc}_X = -4D_0^2\,p$ in
 `scripts/branch_locus.py`/`scripts/monodromy.py`, the trace rationality in
 `scripts/trace_pushforward.py`. The ansatz/deformation search itself is reported in
 `docs/NEW_COUNTEREXAMPLES.md`.)*
@@ -40,7 +40,7 @@ consistency conditions this project proved are forced for Keller maps:
 1. **Perfect-square collision factor.** Étaleness ($\det DF = $ const)
    forbids finite ramification, so every discriminant component *not* on the
    escape locus must appear to even order. (For Alpöge–Mathew:
-   $\operatorname{disc}_X = -4\,D_0^2\,p$ — the collision factor $D_0^2$ is
+   $\mathrm{disc}_X = -4\,D_0^2\,p$ — the collision factor $D_0^2$ is
    exactly a square.)
 2. **Integrality in all but the escaping directions.** Coordinates that do
    not escape must have monic eliminants over $\mathbb{C}[J]$ (here: $y,z$

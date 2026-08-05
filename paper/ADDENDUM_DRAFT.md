@@ -78,9 +78,9 @@ at constant-path equilibria the mode fluctuation determinant
 factorizes as a $J$-independent positive spectator
 $\prod_k\lvert\det(DF+i\omega_k I)\rvert^2$, so
 \[
-\operatorname{sign}\det DG(u^*)
+\mathrm{sign}\det DG(u^*)
 \;=\;
-\operatorname{sign}\det DF(q^*)
+\mathrm{sign}\det DF(q^*)
 \]
 and the $\sigma\to0$ saddle sum remains $\deg(F,J)=-N(J)$, independent
 of mode cutoff $M$ and inverse temperature $\beta$ (symbolic asserts in
@@ -130,7 +130,7 @@ same object appear elsewhere in the paper:
 \item \emph{Variational counterexample in dimension $6$.}
   The cotangent lift $W_6=\bar\varphi\cdot F(\varphi)$ is an honest
   gradient Keller map,
-  $\det\operatorname{Hess}W_6\equiv-4$, with explicit rational
+  $\det\mathrm{Hess}W_6\equiv-4$, with explicit rational
   $3{:}1$ witnesses (Section~\ref{sec:witten},
   \texttt{docs/SYMMETRIC\_SEARCH.md}). The doubling that BV requires
   for non-gradient data is thus also the constructive route to a
@@ -202,7 +202,7 @@ generic wall point the dimension drops to $1$; over the empty-fiber
 cusp orbit $A_J$ is the zero ring. Thus $\{p=0\}$ is the non-flat
 locus of the bundle --- the module-theoretic face of non-properness
 already visible in the failure of $x$ to be integral over
-$\operatorname{im}F^*$ (Section~\ref{sec:obs}). Over $\R$, off the
+$\mathrm{im}F^*$ (Section~\ref{sec:obs}). Over $\R$, off the
 wall, $A_J\cong\C^{N(J)}$ as a finite-dimensional commutative
 $C^*$-algebra, so the chamber function $N(J)$ is the character count.
 The $S_3$ monodromy is the holonomy of the transport (wall meridians

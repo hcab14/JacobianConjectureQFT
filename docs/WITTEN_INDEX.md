@@ -17,7 +17,7 @@ the properness **prefilter** informally called "Witten-index prefilter" in
 $p = 27a^2c^2 - 18abc + b^3c - b^2 + 16a$ the wall polynomial:
 
 1. **Exact.** The signed solution count ("0D Witten index") is
-   $$\deg(F, J) \;=\; \sum_{\phi\,\in\,F^{-1}(J)} \operatorname{sign}\det DF(\phi)
+   $$\deg(F, J) \;=\; \sum_{\phi\,\in\,F^{-1}(J)} \mathrm{sign}\det DF(\phi)
    \;=\; -N(J) \;=\; \begin{cases} -1 & p(J) > 0,\\ -3 & p(J) < 0,\end{cases}$$
    asserted via exact fibers at rational points per chamber (every
    preimage verified to map back exactly).
@@ -71,7 +71,7 @@ $N(J) = 1$ iff $p(J) > 0$, from $4q^3 + 27pr^2 = 4D_0^2$.
 
 ### 1.1 The signed count is $-N(J)$: chamber-wise Brouwer degree
 
-Since $\det DF = -2$ *identically*, $\operatorname{sign}\det DF(\phi) = -1$
+Since $\det DF = -2$ *identically*, $\mathrm{sign}\det DF(\phi) = -1$
 at every point — in particular at every real solution of $F(\phi) = J$ —
 and every $J \in \mathbb{R}^3$ is a regular value. Hence the signed count
 is defined for every $J$ and equals $-N(J)$: the index is minus the vacuum

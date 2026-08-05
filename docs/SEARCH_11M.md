@@ -62,7 +62,7 @@ $$
 a function of $(w,v)$ alone; note $\det M$ is **linear in $m$**, which is
 what lets the whole derivation run with symbolic $m$. Polynomiality:
 monomials $w^jv^k$ of $P$ need $j + mk \ge m$, of $Q$ need $j + mk \ge 1$
-($R$ unconstrained). $DF(0) = \operatorname{antidiag}(p_1(0), q_0'(0),
+($R$ unconstrained). $DF(0) = \mathrm{antidiag}(p_1(0), q_0'(0),
 r_0(0))$; target scalings fix the **gauge** $p_1(0) = q_0'(0) = r_0(0) =
 1$, hence $\kappa = \det DF = -1$. The $v$-shear group $v \to v + h(w)$
 leaves $\det M$ invariant (asserted, $m$ symbolic) and is the main
@@ -116,8 +116,8 @@ Since $p_1(0) = 1$ forces $p_1 \ne 0$, the strata are A ($q_1 = r_1 =
 them (asserted, $m$ symbolic), so $\gcd(p_1,q_1,r_1) \mid E_0 = \kappa$
 is a constant — absorb it. Then per irreducible $\pi$ with multiplicities
 $(A,B,C)$ in $(p_1,q_1,r_1)$: $2A + (m{-}1)C = (m{+}1)B$ and
-$\min(A,B,C) = 0$; $B = 0$ forces $A = C = 0$, so $\operatorname{rad}q_1
-= \operatorname{rad}(p_1r_1)$ and $\gcd(p_1,r_1) = 1$. The minimal
+$\min(A,B,C) = 0$; $B = 0$ forces $A = C = 0$, so $\mathrm{rad}q_1
+= \mathrm{rad}(p_1r_1)$ and $\gcd(p_1,r_1) = 1$. The minimal
 solutions of $2A = (m{+}1)B$ resp. $(m{-}1)C = (m{+}1)B$ depend on the
 parity of $m$ (exponent arithmetic asserted with $k$ symbolic):
 
@@ -206,9 +206,9 @@ the complete $E_1$-solution is $r_0 = \rho_0t + Y$ with $\rho_0 =
 \deg t$; $Y \neq 0$ only for $t = ce^2$, and $r_0 = \rho_0t + y_0e$ is
 asserted to solve $E_1$ there); hence $\deg r_0 = \deg t$, and $r_0$
 exactly linear forces $t$ **linear** (then $Y = 0$). Un-shearing needs
-$\operatorname{val}(p_0 = -Ah) \ge m \Rightarrow h(0) = 0 \Rightarrow
+$\mathrm{val}(p_0 = -Ah) \ge m \Rightarrow h(0) = 0 \Rightarrow
 q_0(0) = \gamma \ne 0$, violating the box: empty (uses only
-$\operatorname{val}p_0 \ge 1$, so uniform). For $m$
+$\mathrm{val}p_0 \ge 1$, so uniform). For $m$
 even the complete solution $r_0 = \sigma t^2 + \rho t$ with $\sigma =
 \tfrac{(m+1)\gamma C}{(m-1)B} \neq 0$ has degree $2\deg t \ge 2$: never
 exactly linear, empty without the box.
@@ -283,7 +283,7 @@ formula that kills every $m \ge 4$:
    even at $m = 2$).
 
 At $m = 3$ neither killing factor is active either, and the residue is
-disposed of by the **box valuation** $\operatorname{val}_wp_0 \ge m$ (the
+disposed of by the **box valuation** $\mathrm{val}_wp_0 \ge m$ (the
 jet systems of §5) — this is `search_113`'s "numerological obstruction",
 now exhibited as the boundary case of the uniform mechanism: for
 $m \ge 4$ the polynomial factor kills D1/D3 before the box is even

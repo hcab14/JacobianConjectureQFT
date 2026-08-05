@@ -347,10 +347,10 @@ group $S_3$ (this is exactly the verified eliminant cubic and monodromy;
 `scripts/branch_locus.py`, `scripts/monodromy.py`). The observables missing
 from the image are precisely those that separate the three sheets — and this
 is now fully explicit: $\mathbb{C}(x,y,z)$ is free with basis $\{1, x, x^2\}$
-over the fraction field of $\operatorname{im}F^*$, every observable has a
+over the fraction field of $\mathrm{im}F^*$, every observable has a
 unique normal form $c_0(F) + c_1(F)x + c_2(F)x^2$ (membership iff
 $c_1 = c_2 = 0$), and no *finite-module* statement is possible because $x$ is
-not integral over $\operatorname{im}F^*$ — an exact escape-curve certificate,
+not integral over $\mathrm{im}F^*$ — an exact escape-curve certificate,
 equivalent to non-properness (`scripts/missing_observables.py`,
 `docs/MISSING_OBSERVABLES.md`). So: *a
 polynomial field redefinition with invertible propagator and constant unit
@@ -420,7 +420,7 @@ overstatement that it does **not** license.
 | Real change-of-variables defect: $N(J) = 3$ iff $p<0$, measured $A(\sigma)\to 2$ as $\sigma\to 0$ | `scripts/measure_anomaly.py` | failure of the perturbative equivalence theorem — formal-series equivalence statements are untouched |
 | Sheet-summed observables are rational with poles only on $\{p=0\}$; residues factorize at the wall | `scripts/trace_pushforward.py` | existence of a positive geometry / canonical form for the chambers — for *this* map that question is now settled negatively (`docs/POSITIVE_GEOMETRY.md`); the classification across Keller maps remains open |
 | $F^*$ is a monomorphism, not an automorphism, of polynomial observable algebras; extension degree 3, Galois group $S_3$ | `scripts/branch_locus.py` + `scripts/monodromy.py` | any statement about automorphisms of local nets or Borchers classes in $D\ge 1$ |
-| Missing observables made explicit: basis $\{1,x,x^2\}$ over $\operatorname{im}F^*$, unique normal form $c_0(F)+c_1(F)x+c_2(F)x^2$, separator coefficients carry the factor $p$; $x$ not integral over $\operatorname{im}F^*$ (exact escape certificate) | `scripts/missing_observables.py`, `docs/MISSING_OBSERVABLES.md` | a finite-module (polynomial-level) structure theorem — non-properness forbids it, provably |
+| Missing observables made explicit: basis $\{1,x,x^2\}$ over $\mathrm{im}F^*$, unique normal form $c_0(F)+c_1(F)x+c_2(F)x^2$, separator coefficients carry the factor $p$; $x$ not integral over $\mathrm{im}F^*$ (exact escape certificate) | `scripts/missing_observables.py`, `docs/MISSING_OBSERVABLES.md` | a finite-module (polynomial-level) structure theorem — non-properness forbids it, provably |
 | Alpöge–Mathew is rigid modulo gauge to first order within the equivariant degree box | `scripts/search_counterexamples.py` | uniqueness of counterexamples — the check is first-order, box-limited, and within one equivariance class |
 | The wall $\{p=0\}$ reduces, by C\*-invariance, to a cuspidal plane cubic; the cuspidal tangent is $\{D_0=0\}$ | `scripts/positive_geometry.py` | any statement about walls of other (hypothetical) counterexamples |
 | $F(\mathbb{C}^3)$ misses exactly one C\*-orbit ($ac^2=\tfrac{4}{27}$, $bc=\tfrac43$): sources with empty fiber | `scripts/positive_geometry.py` | a physical "instability" — there is no dynamics or energy here, only an exact solvability statement |
@@ -486,7 +486,7 @@ Abdesselam–Rivasseau [AR95]. Two sharp versions of the question:
   (`scripts/symmetric_search.py`; `docs/SYMMETRIC_SEARCH.md`): **yes,
   explicitly, in dimension 6** — the cotangent lift
   $W_6 = \bar\varphi\cdot F(\varphi)$ (the first-order action of §1.2
-  itself!) has $\det\operatorname{Hess}W_6 \equiv -4$ and $\nabla W_6$ is
+  itself!) has $\det\mathrm{Hess}W_6 \equiv -4$ and $\nabla W_6$ is
   3:1 with rational witnesses; a normalized dBvdE twisted lift over
   $\mathbb{Q}(i)$ is also written down. Complement: in dimension 3 the AM
   map is not a gradient in ANY affine frame ($K\,DF$ symmetric $\implies

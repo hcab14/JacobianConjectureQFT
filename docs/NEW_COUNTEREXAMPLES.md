@@ -129,7 +129,7 @@ Next steps, in order of expected value:
    higher-degree relatives; the 2D reduction keeps this cheap).
 3. **The bootstrap route** (`SEARCH_STRATEGIES.md` §1.2): prescribe the
    degree-3 eliminant data directly and solve the forced consistency
-   conditions ($\operatorname{disc} = -(\text{square})\cdot p$, integrality,
+   conditions ($\mathrm{disc} = -(\text{square})\cdot p$, integrality,
    uniruled $\{p=0\}$).
 4. **Exact certification**: replace the numerical continuation by Groebner
    computation of the solution ideal of the 2D Keller system in the box,

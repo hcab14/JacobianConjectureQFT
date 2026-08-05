@@ -171,7 +171,7 @@ Kummer system $\mathbb{C}_t$ is pulled back from $\mathbb{C}^*$ (wall
 meridians map to degree-1 loops), so the Wang sequence gives
 
 $$
-0 \to \operatorname{coker}\bigl(t\,h^* - 1 \mid H^{k-1}(F)\bigr)
+0 \to \mathrm{coker}\bigl(t\,h^* - 1 \mid H^{k-1}(F)\bigr)
   \to H^k(M;\mathbb{C}_t)
   \to \ker\bigl(t\,h^* - 1 \mid H^{k}(F)\bigr) \to 0 .
 $$

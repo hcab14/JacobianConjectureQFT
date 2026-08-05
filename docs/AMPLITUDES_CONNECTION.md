@@ -37,7 +37,7 @@ the above and not visible at any perturbative order:
 | Fiber degree $d$ | $3$ | number of solution sectors ("vacua") per source |
 | Monodromy group | $S_3$ (measured) | how source cycles permute vacua |
 | Non-properness divisor | $\{p=0\}$, $p = 27a^2c^2{-}18abc{+}16a{+}b^3c{-}b^2$ | where vacua escape to/return from infinity |
-| Chamber function $N(J)$ | $2 - \operatorname{sgn} p$ | number of *real* solutions; wall-crossing |
+| Chamber function $N(J)$ | $2 - \mathrm{sgn} p$ | number of *real* solutions; wall-crossing |
 | Field-space symmetry | $\mathbb{C}^*$, weights $(1,-1,-2) \to (-2,-1,1)$ | orbifold mechanism of non-injectivity |
 
 In $D = 0$ these are algorithmically computable (this repo is the
@@ -131,7 +131,7 @@ The dictionary is exact:
 | kinematic invariants | sources $(a,b,c)$ |
 | Feynman/loop variables | fields $(x,y,z)$ |
 | Landau equations | field equations $F(\phi) = J$ |
-| Landau discriminant | $\operatorname{disc}_X = -4D_0^2\,p$ |
+| Landau discriminant | $\mathrm{disc}_X = -4D_0^2\,p$ |
 | first-type (pinch) singularities | **absent** (étale: $\det DF = -2$) |
 | second-type singularities (loop momenta $\to \infty$, $\mathcal{U}_G = 0$) | escape locus $\{p = 0\}$ ($x \to \infty$) |
 

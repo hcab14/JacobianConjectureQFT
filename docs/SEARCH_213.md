@@ -128,7 +128,7 @@ rewriting). Since $\Phi$ parametrizes a dense open set,
 $$
 \det DF \equiv \kappa
 \quad\Longleftrightarrow\quad
-\operatorname{numer}\bigl(\Delta - \kappa\bigr) \equiv 0 \ \text{in}\
+\mathrm{numer}\bigl(\Delta - \kappa\bigr) \equiv 0 \ \text{in}\
 \mathbb{C}[p,q],
 $$
 
