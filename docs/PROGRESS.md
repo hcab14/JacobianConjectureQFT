@@ -993,3 +993,26 @@ $\mathbb{Q}$, 16 GB cap via `jcqft.gb_backend`) and Singular.
   mod-p prescreen behind `--full` dies at the 16 GB cap after ~12 min
   of F4 — honest wall), wall-crossing sign formula, other
   $\varepsilon$/segments, $z$-completeness of $e(t)$.
+
+## 2026-08-05 — Speculative (pA)QFT packaging + paper addendum draft
+
+Interpretive packaging of gauge / BV / lattice→QFT / amplitudes /
+effective-action / coupling-space readings, clearly flagged so as not
+to inflate Exact results:
+
+- **`docs/SPECULATIVE_IMPLICATIONS.md`** — banner (all claims
+  Interpretive unless citing Exact repo results); §§1–7 cover Gribov
+  without horizon, BV antifield pairing
+  $L=\bar\phi\cdot(F-J)$ / master equation vs global invertibility,
+  lattice→kinetic→continuum double limit with D1 transfer-matrix
+  bridge, amplitudes (Jelonek = second-type Landau; cite
+  `TWISTED_PERIODS.md`; Stokes through infinity; $Z(J)$ as section of
+  the fiber-algebra bundle), Maxwell- vs Jelonek-type branch points of
+  $\Gamma$, $S_3$ anomalies in coupling space, explicit non-goals
+  (UV / Borel / $D=4$), and ten concrete next theorems (T1–T10) that
+  would promote items Interpretive→Exact.
+- **`paper/ADDENDUM_DRAFT.md`** — three paste-ready LaTeX subsections
+  (not compiled; `main.tex` untouched): (1) Møller invertibility after
+  kinetics (lattice + D1); (2) BV antifield reading of the first-order
+  action; (3) fiber-algebra bundle as 0D AQFT datum. House disclaimers
+  included; no new citations.

@@ -57,6 +57,7 @@ Corrections and counter-arguments are very welcome — please open an issue.
 - Problem statement: [`docs/PROBLEM.md`](docs/PROBLEM.md)
 - Running progress log with all results: [`docs/PROGRESS.md`](docs/PROGRESS.md)
 - Implications for rigorous QFT: [`docs/QFT_IMPLICATIONS.md`](docs/QFT_IMPLICATIONS.md)
+- Speculative (pA)QFT / gauge / BV / amplitudes readings (Interpretive): [`docs/SPECULATIVE_IMPLICATIONS.md`](docs/SPECULATIVE_IMPLICATIONS.md); paste-ready addendum paragraphs: [`paper/ADDENDUM_DRAFT.md`](paper/ADDENDUM_DRAFT.md)
 - Connection to the amplitudes program: [`docs/AMPLITUDES_CONNECTION.md`](docs/AMPLITUDES_CONNECTION.md)
 - Monodromy of the three sheets: [`docs/MONODROMY.md`](docs/MONODROMY.md)
 - Search strategies for new counterexamples: [`docs/SEARCH_STRATEGIES.md`](docs/SEARCH_STRATEGIES.md)

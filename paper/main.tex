@@ -34,7 +34,7 @@ defect}
 \author{Christoph Mayer\thanks{Independent researcher.
 Email: \texttt{hcab14@gmail.com}.}}
 
-\date{July 28, 2026}
+\date{August 5, 2026}
 
 \begin{document}
 
@@ -1496,6 +1496,40 @@ Section \ref{sec:lattice}, both halves of the smallest honest
 $D\ge 1$ lift (classical solution structure, and now the localized
 partition function) preserve the 0D defect.
 
+\subsection{M{\o}ller invertibility after kinetics
+(lattice and finite-mode $D=1$)}\label{sec:moller-kinetics}
+
+In pAQFT the classical M{\o}ller map inverts the nonlinear field
+equation as a (typically formal) power series
+(Section~\ref{sec:paqft}). The zero-dimensional calibration is already
+sharp: that inverse may converge and still miss sheets at infinity.
+The first honest question off $D=0$ is whether \emph{kinetics} ---
+lattice gradients or a $D=1$ path measure --- restore global
+invertibility of the classical map, or kill the escaping equilibria
+that drive the index jump of Section~\ref{sec:witten}. Within the
+truncations computed above, the answer is negative on both counts.
+
+On an $L$-site chain the ultralocal product $F^{\times L}$ tensors the
+classical-map invariants of Section~\ref{sec:dictionary} exactly.
+The kinetic deformation $F_\varepsilon$ of Section~\ref{sec:lattice}
+keeps $N_\varepsilon$ non-constant for every probed $\varepsilon>0$, so
+$F_\varepsilon$ stays non-injective after mixing; at $\varepsilon=1/4$
+on the probed segment the exact fold eliminant of degree $516$
+accounts for all chamber walls (escape only dips the count
+pointwise). A formal or convergent M{\o}ller series about the
+ultralocal vacuum therefore continues, after kinetics, to describe at
+most one local sheet of a still multi-sheeted classical map. Likewise
+the finite-mode Mathai--Quillen index of Section~\ref{sec:d1index}
+remains $-N(J)$: path-space kinetics, in that truncation, do not
+single-value the classical inverse.
+
+Upgrading a formal M{\o}ller map to a convergent one is still not the
+missing step toward a globally single-valued classical inverse: after
+the first kinetic deformations one still needs an independent
+properness (or degree) input. No statement is made about the continuum
+limits $M\to\infty$ or lattice spacing $a\to0$, nor about interacting
+theories in $D\ge 2$.
+
 %=====================================================================
 \section{The 0D Buchholz--Fredenhagen caricature: the dynamical
 relation sees the wall}\label{sec:bfcar}
@@ -1563,6 +1597,47 @@ tame automorphism control) it yields the trivial rank-1 bundle —
 trivial holonomy, no wall — so the caricature re-expresses
 non-properness as (rank jump, holonomy, pole divisor) of algebraic
 $S$-data rather than presupposing it.
+
+The damped and Mathai--Quillen integrals of
+Sections~\ref{sec:witten}--\ref{sec:d1index} supply canonical
+\emph{numerical} sections built from the character theory of $A_J$
+(unsigned count $N(J)$, signed count $-N(J)$), finite for every source
+and blind to algebraic sector choice. In this sense the physical
+generating function $Z(J)$ is the single-valued shadow of the
+fiber-algebra bundle --- an AQFT-flavoured packaging of the same Exact
+defect that the observable pullback $F^*$ detects algebraically.
+
+\subsection{BV antifield reading of the first-order action}
+\label{sec:bv-antifield}
+
+The Alp\"oge--Mathew map admits no potential in three fields
+(Proposition~\ref{prop:nogradient}): there is no $W$ with
+$\nabla W=F$. The only Lagrangian implementing $F(\phi)=J$ is
+therefore the first-order density
+$L=\bar\phi\cdot(F(\phi)-J)$, already used by Abdesselam
+\cite{Abd03} and forced here by the variationality flag I8. In
+Batalin--Vilkovisky language $\bar\phi$ is the antifield of $\phi$,
+and $L$ is the classical master-action density for $F-J=0$. Two Exact
+faces of the same object appear elsewhere: the cotangent lift
+$W_6=\bar\varphi\cdot F(\varphi)$ is the variational counterexample of
+Section~\ref{sec:dim6} ($\det\operatorname{Hess}W_6\equiv-4$,
+necessarily non-coercive), and antifield shifts of $L$ are exactly
+what force the fiber algebra $A_J$ in the dynamical relation above.
+
+The constant Jacobian $\det DF\equiv-2$ makes the one-loop
+Faddeev--Popov / Berezin determinant field-independent, and the
+classical master equation for $L$ is the Koszul consistency of
+$F-J=0$ --- both are local. Neither forces the antifield equations to
+select a unique sheet: the fiber of $F$ is generically three points,
+the geometric monodromy is $S_3$, and $\{p=0\}$ is the jump locus of
+$\dim A_J$. In slogans adapted to BV: \emph{the master equation can
+hold with constant FP determinant while the antifield fiber bundle
+still carries nontrivial holonomy.} Global invertibility of the
+classical BV complex is an independent axiom, equivalent here to
+properness of $F$. The Mathai--Quillen BRST charge of
+Section~\ref{sec:witten} localizes to $-N(J)$ and \emph{sees} the
+wall; it does not remove it. We claim nothing about continuum BV
+actions or BV anomalies in $D\ge 1$.
 
 %=====================================================================
 \section{Implications for AQFT and pAQFT}\label{sec:qftread}
