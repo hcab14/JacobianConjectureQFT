@@ -4,6 +4,32 @@ All results below are produced by scripts in this repository (exact symbolic
 computation with SymPy unless stated otherwise) and can be reproduced with
 the commands given. Environment: `.venv` (Python 3.12, `requirements.txt`).
 
+## 2026-08-05 — Weighted / charted compactification of escape
+
+`scripts/weighted_compactification.py` · `docs/WEIGHTED_COMPACTIFICATION.md`
+
+- **Choice:** mixed-sign C\* weights $(1,-1,-2)$ rule out ordinary weighted
+  projective space. Compactify field space by the two-chart **escape-chart
+  partial compactification** $\overline{X}=U_0\cup U_\infty$ with
+  $s=1/x$, $\gamma=F_3$, boundary divisor $D_\infty=\{s=0\}$. Sources stay
+  affine (image of $D_\infty$ is already the Jelonek set); the C\*-reduced
+  wall closure in $\mathbb{P}^2_{(u:w:1)}$ remains as in
+  `POSITIVE_GEOMETRY.md`.
+- **Exact (44 assertions, ~2 s):** the AM escape curve extends regularly
+  to $D_\infty$; $\overline{F}$ is polynomial on $U_\infty$;
+  $p\circ\overline{F}|_{D_\infty}\equiv 0$ and
+  $\overline{F}(D_\infty)=\{p=0\}$ (eliminant $c\cdot p$); cusp orbit hit
+  by $\overline{F}(2/3,1)$; generic wall fiber = 1 affine + 1 boundary
+  point.
+- **Exact negative for ordinary $\mathbb{P}^3$:** component degrees
+  $(7,6,4)$ block a morphism $\mathbb{P}^3\to\mathbb{P}^3$; total-degree
+  leading cone $\{x^3z=0\}$ marks fake escapes (ray $(t,0,0)$);
+  total-degree truncation of $F_3$ discards same-weight terms
+  $2x-3x^2y$.
+- **Interpretive (flagged):** Gribov-at-infinity / second-type Landau /
+  lattice solutions-from-infinity = ordinary boundary evaluation on
+  $D_\infty$. No continuum $D\ge 1$ claim.
+
 ## 2026-07-20 — Verification of the counterexample
 
 `scripts/verify_counterexample.py`
@@ -134,14 +160,17 @@ cross-checked on a second generic line)
   (the two sheets with $x \sim \pm\sqrt{-q/p}$ swap while the finite sheet
   stays fixed); the four loops gave $(1\,2), (1\,3), (2\,3), (2\,3)$ —
   three distinct transpositions, generating all of $S_3$.
+  *(Group-level statement promoted to Exact in B6 /
+  `scripts/certified_monodromy.py`, 2026-08-05; labelled permutations
+  remain Numerical.)*
 - **Exact identity** (verified symbolically): with $D_0 = 27ac^2 - 9bc + 8$
   (the denominator of the $y,z$ fiber parametrization),
   $$4q^3 + 27 p r^2 = 4\,D_0^2, \qquad\text{so}\qquad
     \operatorname{disc}_X = -4\,D_0^2\,p .$$
   The $x$-collision locus is exactly $\{D_0 = 0\}$, and the discriminant is
   manifestly a non-square (multiplicity-1 factor $p$), so the Galois group of
-  the cubic over $\mathbb{Q}(a,b,c)$ is $S_3$ — realized geometrically by the
-  numerics.
+  the cubic over $\mathbb{Q}(a,b,c)$ is $S_3$ — equal to the geometric
+  monodromy (Exact, B6).
 - **Trivial monodromy confirmed** around $\{D_0 = 0\}$ (identity permutation,
   as forced by $\det DF = -2$: no ramification, only shared $x$-coordinates)
   and around a big loop enclosing all singularities on the line (the four
@@ -796,7 +825,7 @@ boxes and the $n=3$ degree-5 wall attempt); write-up
   degree, Galois/monodromy, Jelonek divisor, chamber $N(J)$, Witten
   index, observable defect, $\mathbb{C}^*$ weights, variationality),
   with Exact/Numerical/Interpretive tags and honest gaps (geometric
-  monodromy still Numerical; chamber formula on the wall).
+  monodromy later Exact in B6; chamber formula on the wall).
 - **$D\ge 1$ model-class ranking** (proposals, no continuum claims):
   (1) multi-component QM with Keller force map — sharp Q1 on MQ index
   jump; (2) ultralocal lattice + kinetic $\varepsilon$ — Q2a/b;
@@ -993,6 +1022,29 @@ $\mathbb{Q}$, 16 GB cap via `jcqft.gb_backend`) and Singular.
   mod-p prescreen behind `--full` dies at the 16 GB cap after ~12 min
   of F4 — honest wall), wall-crossing sign formula, other
   $\varepsilon$/segments, $z$-completeness of $e(t)$.
+
+## 2026-08-05 — B6 resolved: geometric monodromy $=S_3$ is Exact
+
+`scripts/certified_monodromy.py` (~1 s, 38 asserts); write-up
+`docs/MONODROMY.md`.
+
+- **Exact:** eliminant irreducible over $\mathbb{Q}(a,b,c)$,
+  $\operatorname{disc}_X=-4\,D_0^2\,p$ not a square $\Rightarrow$
+  $\mathrm{Gal}=S_3$.
+- **Exact local monodromy:** at the smooth wall point $(0,1,1)$,
+  transverse line $J(t)=(t,1,1)$ has Puiseux equation
+  $(27s^2-2)Z^3+Z-2s=0$ ($X=Z/\sqrt{t}$), odd in $(Z,s)$ $\Rightarrow$
+  wall meridian $=$ transposition; finite sheet holomorphic by IFT.
+- **Exact conclusion:** $\mathrm{Mon}$ transitive + contains a
+  transposition $\Rightarrow\mathrm{Mon}=S_3$ (equals Gal).
+- **Exact $B_3$ structure:** re-verified affine $A_2$ isomorphism (I4);
+  representation $=$ canonical $B_3\twoheadrightarrow S_3$; cusp local
+  model $\xi\sim(2/P_2)^{1/3}$ with $P_2$ double-winding $\Rightarrow$
+  Coxeter 3-cycle; $D_0$-meridians $=\mathrm{id}$ by $\det DF=-2$.
+- Lefschetz genericity of the `monodromy.py` default line verified
+  symbolically.  Labelled permutations on a homotopy basis remain
+  Numerical illustrations only.
+- Reproduce: `.venv/bin/python scripts/certified_monodromy.py`.
 
 ## 2026-08-05 — Speculative (pA)QFT packaging + paper addendum draft
 

@@ -43,7 +43,7 @@ of an Exact or Numerical fact; not an independent theorem.
 | Name | Algebraic definition | AM value | Verification | Local/perturbative data cannot see |
 |---|---|---|---|---|
 | Fiber degree $d$ | Generic $\# F^{-1}(J)$ over $\mathbb{C}$ (equiv. $[\mathbb{C}(x,y,z):\mathbb{C}(a,b,c)]$ via $F^*$) | $d=3$ | **Exact:** `scripts/verify_counterexample.py` (fiber over $(1,2,3)$); `scripts/branch_locus.py` (cubic eliminant, irreducible) | Tree expansion around $J=0$ sees one sheet; $\det DF=\mathrm{const}$ only says locally $1$-to-$1$ |
-| Monodromy / Galois | Image of $\pi_1(\mathbb{C}^3\setminus\{p=0\})\to S_d$; Galois group of the $x$-cubic over $\mathbb{Q}(a,b,c)$ | Geometric monodromy $=S_3$; Galois $=S_3$ | **Exact (Galois):** `disc_X=-4D_0^2\,p` not a square (`scripts/branch_locus.py`, `docs/MONODROMY.md` §Symbolic). **Numerical (geometric):** `scripts/monodromy.py` (two lines; all $p$-loops = transpositions; group order 6). Certification deferred: OPEN_QUESTIONS B6 | Any finite jet of the local inverse; the $D_0$-collision locus (ramification of the $x$-projection only) |
+| Monodromy / Galois | Image of $\pi_1(\mathbb{C}^3\setminus\{p=0\})\to S_d$; Galois group of the $x$-cubic over $\mathbb{Q}(a,b,c)$ | Geometric monodromy $=S_3$; Galois $=S_3$ | **Exact (both):** `scripts/certified_monodromy.py` (Puiseux wall meridian $=$ transposition + irreducibility $\Rightarrow\mathrm{Mon}=S_3=\mathrm{Gal}$; $=B_3\twoheadrightarrow S_3$). Labelled permutations: **Numerical** `scripts/monodromy.py`. `docs/MONODROMY.md`; B6 resolved | Any finite jet of the local inverse; the $D_0$-collision locus (ramification of the $x$-projection only) |
 | Non-properness divisor (Jelonek set) $S_F$ | $\{J:$ no nbhd has compact preimage closure$\}$; for this Keller map, leading coeff of the escaping eliminant | $S_F=\{p=0\}$ (quartic hypersurface); escape in $x$ only; $J=0\in S_F$ | **Exact:** `scripts/branch_locus.py`; escape curve + non-integrality of $x$ in `scripts/missing_observables.py` | Étale-ness ($\det DF\neq 0$); any properness test based only on $\det DF$ |
 | Chamber function $N(J)$ | $\#\{\phi\in\mathbb{R}^3:F(\phi)=J\}$ | $N(J)=3$ iff $p(J)<0$; $N(J)=1$ iff $p(J)>0$; on $\{p=0\}$: $N=1$ generic wall, $N=0$ at empty-fiber cusp orbit | **Exact (off wall):** `scripts/measure_anomaly.py` (chamber rule from monic disc $-4D_0^2/p^3$; 300-target spot check). Wall fibers: **Exact** `scripts/missing_observables.py` §6. Equivalent off-wall form $N=2-\mathrm{sgn}\,p$ as in `AMPLITUDES_CONNECTION.md` §1.1 — see the §2.3 gap | Formal power-series inverse; complex fiber count (constantly $3$ off wall) |
 | Witten / Brouwer index | $\deg(F,J)=\sum_{\phi\in F^{-1}(J)}\mathrm{sign}\,\det DF(\phi)$ | $\deg(F,J)=-N(J)\in\{-1,-3\}$ off wall (since $\mathrm{sign}\,\det DF\equiv -1$); jump is a non-properness certificate | **Exact:** `scripts/witten_index.py` (rational fibers per chamber + map-back). MQ mollification closed form same script; quadrature **Numerical** | Complex count; any proper-map degree theory that assumes a single integer |
@@ -116,10 +116,11 @@ topological.
 
 ### 2.3 Honest gaps in the 0D sources
 
-- **Geometric monodromy vs Galois.** Galois $=S_3$ is **Exact**;
-  geometric monodromy $=S_3$ is **Numerical** on two lines
-  (`docs/MONODROMY.md` caveats; OPEN_QUESTIONS B6). The package should
-  keep these as separate slots until certification.
+- **Geometric monodromy vs Galois.** Both $\mathrm{Gal}=S_3$ and
+  geometric $\mathrm{Mon}=S_3$ are **Exact**
+  (`scripts/certified_monodromy.py`; OPEN_QUESTIONS B6 resolved).
+  Labelled permutations on a homotopy basis remain **Numerical**
+  (`scripts/monodromy.py`).
 - **Chamber formula on the wall.** `AMPLITUDES_CONNECTION.md` §1.1 writes
   $N(J)=2-\mathrm{sgn}\,p$. Off $\{p=0\}$ this matches the chamber rule.
   On the wall, $\mathrm{sgn}\,0=0$ would give $N=2$, but actual real

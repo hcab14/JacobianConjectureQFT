@@ -391,9 +391,10 @@ are documented as such.
   through the permutation part of the transport. Calling the transport
   matrices "unitaries" is Interpretive dressing on an Exact/Numerical
   permutation statement.
-- **Geometric monodromy remains Numerical** (jump-guarded tracking at 25
-  digits, same caveats as `docs/MONODROMY.md`; certification is
-  OPEN_QUESTIONS B6). The Galois-side statements (irreducibility,
+- **Labelled geometric monodromy remains Numerical** (jump-guarded
+  tracking at 25 digits); the group-level statement $\mathrm{Mon}=S_3$
+  is **Exact** (`scripts/certified_monodromy.py`; B6 resolved,
+  `docs/MONODROMY.md`). The Galois-side statements (irreducibility,
   non-normality, trivial deck group) are Exact.
 - **Fiber dimensions on the wall** are counted through the exhaustive
   finite-fiber description (`docs/MISSING_OBSERVABLES.md` §4) plus

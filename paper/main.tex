@@ -379,7 +379,12 @@ and the two non-perturbative sheets over the vacuum sit at infinity,
 invisible to every order of perturbation theory. Off $\{p=0\}$ the map
 is a genuine 3-sheeted covering (being \'etale, sheets never merge at
 finite points); its geometric monodromy is the full $S_3$
-(\emph{numerical} evidence, two independent loops;
+(\textbf{Exact}: irreducible eliminant + local Puiseux at a smooth
+wall point prove wall meridians are transpositions, hence
+$\mathrm{Mon}=S_3=\mathrm{Gal}$; representation $=$ canonical
+$B_3\twoheadrightarrow S_3$ via the $A_2$ isomorphism of the wall
+complement --- \texttt{scripts/certified\_monodromy.py}; labelled
+permutations on a chosen basis remain numerical in
 \texttt{scripts/monodromy.py}).
 
 \subsection{\texorpdfstring{$\C^*$}{C*}-equivariance and reduction to
@@ -1312,7 +1317,7 @@ brackets; tags per Section \ref{sec:provenance}):
 \begin{itemize}
 \item[I1.] generic fiber degree [$3$; exact];
 \item[I2.] Galois group of the eliminant / geometric monodromy
- [$S_3$ exact / $S_3$ numerical --- kept as separate slots];
+ [$S_3$ exact for both; labelled basis permutations still numerical];
 \item[I3.] non-properness (Jelonek) divisor [$\{p=0\}$; exact];
 \item[I4.] real chamber function $N(J)$ [$3/1$ by $\operatorname{sign}
  p$; exact off the wall];
@@ -1334,6 +1339,27 @@ slot is computed. The programmatic claim of
 computable invariants of a Lagrangian — is thereby made concrete: the
 package is finite, machine-checkable, and (next subsections) stable
 under the smallest honest lifts toward $D\ge 1$.
+
+\subsection{Escape as a boundary divisor (weighted chart
+compactification)}\label{sec:compactify}
+
+Because the field weights $(1,-1,-2)$ are mixed-sign, ordinary
+weighted projective space is the wrong compactification. The minimal
+structure that turns the known escape curves into ordinary boundary
+points is the two-chart partial compactification
+$\overline{X}=U_0\cup U_\infty$ of field space with
+$s=1/x$, $\gamma=F_3$, and Cartier divisor $D_\infty=\{s=0\}$
+(\texttt{scripts/weighted\_compactification.py}, 44 assertions;
+\texttt{docs/WEIGHTED\_COMPACTIFICATION.md}). Exact: the AM escape
+curve extends regularly to $D_\infty$; the classical map extends to a
+polynomial morphism $\overline{F}\colon U_\infty\to\mathbb{A}^3$; and
+$\overline{F}(D_\infty)=\{p=0\}$ set-theoretically --- the Jelonek
+set is the image of the boundary. Ordinary $\mathbb{P}^3$
+homogenization fails concretely (component degrees $(7,6,4)$;
+total-degree leading cone marks fake escapes). Interpretively,
+``vacua at infinity,'' Gribov-at-infinity, and second-type Landau
+singularities are ordinary boundary evaluations of $\overline{F}$ on
+$D_\infty$; no continuum $D\ge 1$ claim is made.
 
 \subsection{Ultralocal tensoring and the kinetic probe (exact)}
 \label{sec:ultralocal}
@@ -1576,7 +1602,7 @@ of Section \ref{sec:dictionary} occupy precise slots in it:
  characters of the real $C^*$-fiber $\C^{N(J)}$;
 \item \textbf{$S_3$} is the holonomy of the parallel transport: wall
  meridians act by transpositions, the cusp loop by the order-3
- Coxeter element (numerical, as always for the geometric monodromy);
+ Coxeter element (Exact group-level; labelled basis still numerical);
  and there is provably \emph{no global deck action} — the eliminant
  is irreducible with $S_3$ Galois group, so the degree-3 extension is
  non-normal and $\mathrm{Aut}(L/K)=1$ (exact). ``Deck
@@ -1664,8 +1690,8 @@ global anomalies: a manipulation valid by every local criterion fails
 through the global structure of configuration space. Its closest
 relative is the modern notion of anomalies in parameter space: dialing
 the external source around a closed cycle permutes the solution
-branches (the $S_3$ monodromy --- numerical evidence,
-\texttt{scripts/monodromy.py}), mediated entirely through infinity in
+branches (the $S_3$ monodromy --- Exact at group level,
+\texttt{scripts/certified\_monodromy.py}), mediated entirely through infinity in
 field space. The exact observable-algebra statement of Section
 \ref{sec:obs} is the algebraic face of the same defect: $F^*$ is a
 monomorphism but not an automorphism of the observable algebra; the
@@ -1883,7 +1909,13 @@ script & claim(s) verified & runtime \\
  eliminant cubic \eqref{eq:cubic}; wall $\{p=0\}$; exact fibers &
  seconds \\
 \texttt{monodromy.py} &
- $S_3$ sheet monodromy (\emph{numerical}) & minutes \\
+ $S_3$ sheet monodromy (labelled; numerical) & minutes \\
+\texttt{certified\_monodromy.py} &
+ $\mathrm{Mon}=S_3=B_3\twoheadrightarrow S_3$ (Exact, B6) &
+ $\sim$1 s \\
+\texttt{weighted\_compactification.py} &
+ escape chart: $\overline{F}(D_\infty)=\{p=0\}$ (Exact) &
+ $\sim$2 s \\
 \texttt{missing\_observables.py} &
  Theorems \ref{thm:basis}, \ref{thm:nonintegral} & $\sim$15 s \\
 \texttt{reduction\_113.py} &

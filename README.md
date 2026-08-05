@@ -67,6 +67,7 @@ Corrections and counter-arguments are very welcome — please open an issue.
 - The infinity prefilter and rigidity in larger degree boxes: [`docs/RIGIDITY_AND_PREFILTER.md`](docs/RIGIDITY_AND_PREFILTER.md)
 - The damped partition function: finiteness, chamber prefactor, uniformity exponents: [`docs/DAMPED_PARTITION.md`](docs/DAMPED_PARTITION.md)
 - All open questions, consolidated and ranked by tractability: [`docs/OPEN_QUESTIONS.md`](docs/OPEN_QUESTIONS.md)
+- Weighted / charted compactification of escape: [`docs/WEIGHTED_COMPACTIFICATION.md`](docs/WEIGHTED_COMPACTIFICATION.md)
 
 ## Setup
 
@@ -100,7 +101,8 @@ runnable script in `scripts/`.
 | `scripts/verify_counterexample.py` | Independent verification: det DF = -2, non-injectivity, generic 3-point fiber | seconds |
 | `scripts/tree_expansion.py` | Tree-Feynman-graph inversion to order 10; ray series to t^60; radius of convergence vs exact branch points; Newton branch tracking | ~1 min |
 | `scripts/branch_locus.py` | Exact geometry: eliminants, discriminant classification, escape-to-infinity locus, exact fibers | seconds |
-| `scripts/monodromy.py` | Numerical monodromy of the 3 sheets (see `docs/MONODROMY.md`) | minutes |
+| `scripts/monodromy.py` | Numerical monodromy tracker of the 3 sheets (labelled permutations; see `docs/MONODROMY.md`) | minutes |
+| `scripts/certified_monodromy.py` | Exact certification: geometric monodromy $=S_3=$ canonical $B_3\twoheadrightarrow S_3$ via Puiseux + Galois (resolves OPEN_QUESTIONS B6; see `docs/MONODROMY.md`) | ~1 s |
 | `scripts/measure_anomaly.py` | Field-redefinition measure anomaly: exact chamber rule for the real preimage count, Monte Carlo anomaly factor, rational sum-over-sheets observables | ~6 s |
 | `scripts/trace_pushforward.py` | Amplitudes-program structures: trace/pushforward rationality, boundary factorization at the wall (see `docs/AMPLITUDES_CONNECTION.md`) | ~1 s |
 | `scripts/search_counterexamples.py` | Construction mechanism (2D reduction of the Keller condition) + first-order rigidity and continuation analysis (see `docs/NEW_COUNTEREXAMPLES.md`) | ~40 s |
@@ -125,6 +127,7 @@ runnable script in `scripts/`.
 | `scripts/bf_caricature.py` | The 0D Buchholz–Fredenhagen S(J) caricature: causal factorization provably vacuous on a point; the dynamical relation forces the fiber-algebra bundle — wall = rank jump 3→1→0 + pole divisor, 1↔3 = character count, S₃ = transport holonomy (deck group provably trivial); obstruction dichotomy + proper-map collapse control (see `docs/BF_CARICATURE.md`) | ~4 s |
 | `scripts/d1_index_modes.py` | Q1 (§5.1) answered for the finite-mode truncation: the D=1 Mathai–Quillen index of the AM force map on Fourier-truncated periodic paths still jumps −1 ↔ −3 — M=0 reduces exactly to the 0D integral, the saddle mode-determinant factorizes as det DF · ∏ₖ\|det(DF+iωₖ)\|² (J-independent positive), MC confirms Z → −N(J) for M ≤ 2 (see `docs/D1_INDEX.md`) | ~4.5 min (`--full` ~25 min) |
 | `scripts/lattice_discriminant.py` | EXACT wall structure of the 2-site lattice map at ε=1/4 on the T1→T3 segment: fold polynomial f(t) (degree 516, irreducible, 14 real roots in (0,1) = all 14 chamber walls, exact counts 18…6 with every jump ±2), escape polynomial e(t) = t(13t−1)(3t+1)q_y q_x (escape only dips the count pointwise: N(1/13)=13, T1 itself has 4 real solutions at infinity); corrects the §6.4 HC undercounts (see `docs/CLASSICAL_MAP_INVARIANTS.md` §6.5) | ~6 min (`--full` ~40 min; needs `external/msolve`) |
+| `scripts/weighted_compactification.py` | Escape-chart compactification of field space: AM escape curve lands on divisor $D_\infty$; $\overline{F}$ polynomial with $\overline{F}(D_\infty)=\{p=0\}$; ordinary $\mathbb{P}^3$ homogenization fails (degrees 7/6/4, fake leading cone) (see `docs/WEIGHTED_COMPACTIFICATION.md`) | ~2 s |
 
 Run any script from the repository root with
 `.venv/bin/python scripts/<name>.py`.

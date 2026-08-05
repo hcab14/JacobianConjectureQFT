@@ -1,16 +1,21 @@
 # Monodromy of the Alpöge–Mathew covering
 
-**Result (numerical): the monodromy group of the degree-3 covering is the full
-symmetric group S3.**  Every simple loop around the branch locus `{p = 0}`
-acts as a transposition, loops around the x-collision locus
-`{4q^3 + 27pr^2 = 0}` act trivially, and different branch points give
-*different* transpositions, so together they generate all of S3.
+**Result (Exact): the geometric monodromy group of the degree-3 covering
+is the full symmetric group $S_3$.**  Wall meridians act as transpositions,
+$D_0$-meridians act as the identity, and (via the affine $A_2$
+identification of `docs/WALL_COMPLEMENT.md`) the monodromy representation
+is the canonical surjection $B_3 \twoheadrightarrow S_3$, with the cusp
+loop mapping to a Coxeter element (3-cycle).
 
-Script: [`scripts/monodromy.py`](../scripts/monodromy.py).  Reproduce with
+Certification script: [`scripts/certified_monodromy.py`](../scripts/certified_monodromy.py)
+(~1 s, 38 `[ok]` asserts).  The older high-precision tracker
+[`scripts/monodromy.py`](../scripts/monodromy.py) remains as a Numerical
+cross-check of labelled permutations on a Lefschetz line:
 
 ```bash
-.venv/bin/python scripts/monodromy.py          # default line (seed 20260720), ~80 s
-.venv/bin/python scripts/monodromy.py 7        # independent cross-check line
+.venv/bin/python scripts/certified_monodromy.py   # Exact proof, ~1 s
+.venv/bin/python scripts/monodromy.py             # Numerical tracker, ~80 s
+.venv/bin/python scripts/monodromy.py 7           # independent cross-check line
 ```
 
 ## Setup
@@ -43,13 +48,61 @@ points:
 * **`p = 0` — true branch locus.**  The x-eliminant drops degree; sheets
   escape to infinity in the x-direction only (the y- and z-eliminants are
   monic cubics, so y, z stay bounded).  Since `x ~ ±sqrt(−q/p)` for the
-  escaping roots, a loop around a simple zero of `p` can swap the two
+  escaping roots, a loop around a simple zero of `p` swaps the two
   escaping sheets.
 * **`D0 = 0` (`p ≠ 0`) — x-collision locus.**  Two *distinct* fiber points
   share the same x-coordinate; the projection to x ramifies but the covering
-  does not (`det DF = −2` forbids merging).  Trivial monodromy expected.
+  does not (`det DF = −2` forbids merging).  Trivial monodromy.
 
-## Method
+## Exact certification (B6 resolved)
+
+Script: `scripts/certified_monodromy.py`.  The argument is algebraic; no
+interval tracking is required.
+
+1. **Galois group $S_3$ (Exact).**  The eliminant is irreducible over
+   $K=\mathbb{Q}(a,b,c)$, and $\operatorname{disc}_X=-4\,D_0^2\,p$ with $p$
+   irreducible of multiplicity one, hence not a square in $K$.  Classical
+   cubic criterion: $\mathrm{Gal}(\text{Galois closure}/K)=S_3$.
+2. **Local wall monodromy is a transposition (Exact).**  At the smooth
+   wall point $(a,b,c)=(0,1,1)$ ($p=0$, $q=1$, $D_0=-1$, $\nabla p\neq0$),
+   the transverse line $J(t)=(t,1,1)$ has $p(t)=t(27t-2)$.  The finite
+   sheet $X_0=-r/q=2$ continues holomorphically by the implicit-function
+   theorem ($\partial(\text{cubic})/\partial X|_{t=0}=q\neq0$).  The escaping
+   sheets admit the Puiseux ansatz $X=Z/\sqrt{t}$; the cleared equation
+   $(27s^2-2)Z^3+Z-2s=0$ ($s=\sqrt{t}$) is odd in $(Z,s)$, so a positive
+   meridian $t\mapsto e^{2\pi i}t$ (i.e. $s\mapsto-s$) swaps the two
+   escaping branches.  The same Puiseux equation governs the invariant
+   eliminant on the cut $(u,w)=(t,1)$.
+3. **Geometric monodromy $=S_3$ (Exact).**  Irreducibility $\Rightarrow$
+   $\mathrm{Mon}$ transitive in $S_3$; the only transitive subgroups are
+   $A_3$ and $S_3$; a transposition is odd $\Rightarrow\mathrm{Mon}=S_3$.
+   Combined with $\mathrm{Mon}\subseteq\mathrm{Gal}=S_3$, equality is
+   forced both ways.  The default Lefschetz line of `monodromy.py`
+   ($J_0=(-5/6,2/5,0)$, $v=(3/2,-7/8,-3/2)$) is verified square-free /
+   transverse, so the same conclusion holds after restriction to a line.
+4. **Canonical $B_3\twoheadrightarrow S_3$ (Exact).**  Re-verify the
+   affine isomorphism (I4) of `docs/WALL_COMPLEMENT.md`:
+   $\pi_1(\mathbb{C}^2\setminus\{P_2=0\})=B_3$.  Wall meridians map to
+   transpositions, so the representation is (conjugate to) the canonical
+   surjection.  At the cusp, the quadratic part of $P_2$ is the perfect
+   square $3(3\delta u-\delta w)^2$ and $q=0$, so the leading model is
+   $\xi\sim(2/P_2)^{1/3}$ with $P_2$ winding twice on a small cusp loop:
+   monodromy is a 3-cycle (Coxeter element of $W(A_2)$).
+5. **$D_0$-meridians $= \mathrm{id}$ (Exact).**  Forced by $\det DF=-2$;
+   confirmed at the rational x-collision point $(1/27,1,1)$ (fiber: three
+   distinct points in $\mathbb{C}^3$).
+
+### What remains Numerical
+
+Individual *labelled* permutations on a chosen homotopy basis of loops
+(approach-segment conjugacy), as tabulated by `scripts/monodromy.py` and
+`scripts/wall_braid.py` §3.  Those labels depend on path choices; the
+generated group and the Coxeter image of the cusp do not, and are Exact
+above.
+
+## Numerical cross-check (historical tracker)
+
+Method of `scripts/monodromy.py` (unchanged):
 
 1. **Generic line.**  Restrict to `J(t) = J0 + t·v` with small random
    rational `J0, v` (seeded; conditions checked symbolically: `p`, `D0`
@@ -80,7 +133,7 @@ points:
    singularities, with the radial approach segment steered away from the
    real roots of `p(t)`.
 
-## Numerical results
+### Numerical results
 
 Default line `J0 = (−5/6, 2/5, 0)`, `v = (3/2, −7/8, −3/2)`: `p(J(t))` has 4
 simple roots, `D0(J(t))` has 3.  Base fiber sheets (labelled 1–3 by real part
@@ -103,47 +156,23 @@ An independent line (seed 7: `J0 = (1/3, 3, −7/9)`, `v = (−1, 9, 7/4)`) give
 the same picture: transpositions (1 3), (1 2), (2 3), (2 3) around the four
 `p`-roots, id around the `D0`-roots, id for the big loop, group S3.
 
-Observations:
+Observations (now consequences of the Exact certification):
 
-* **Every branch point is a simple transposition** — exactly the behaviour
-  predicted by the local model `x ~ ±sqrt(−q/p)`: the two sheets that escape
-  to infinity swap; the third (finite) sheet is fixed.  Note that *two*
-  x-roots blow up as `p → 0` along a generic path, but generically only one
-  fiber point is lost over `{p = 0}` itself (the two escaping x-branches
-  merge at infinity like a square root).
-* **The x-collision locus is confirmed harmless**: identity permutation,
-  as forced by `det DF = −2` (fiber points there are distinct in C^3; only
-  their x-coordinates collide).
+* **Every simple branch point is a transposition** — local model
+  `x ~ ±sqrt(−q/p)`.
+* **The x-collision locus is harmless**: identity permutation, as forced
+  by `det DF = −2`.
 * **Big-loop permutation = id** on both test lines: the product of the four
   branch-point transpositions (in path order, suitably conjugated) cancels,
   i.e. the covering restricted to these lines is unramified over `t = ∞`.
-  Consistency check: an even product of four transpositions can be id, and
-  the parity matches automatically.
 
-## Symbolic cross-check
+## Note for paper authors
 
-`disc_X = −4·D0²·p` is *not* a square in `C(a,b,c)` (the factor `p` occurs
-with multiplicity 1), so the Galois group of the x-cubic over `Q(a,b,c)` is
-S3.  The geometric monodromy group is a priori only a subgroup of it; the
-numerics above show it actually *equals* S3.  In particular the covering is
-connected of degree 3 with no intermediate subcover: no sheet is globally
-distinguishable, even though over the perturbative vacuum `J = 0` (which lies
-*on* `{p = 0}`) only the "perturbative" sheet is visible.
-
-## Caveats
-
-* This is a **numerical** computation: permutations are read off by
-  nearest-neighbour matching (tolerance `1e−10`) of fibers tracked at 30
-  significant digits with residuals `≤ 1e−22`.  The margin between residual
-  and matching tolerance is ~12 orders of magnitude, and the sheet-jump
-  guard bounds each corrector step by 20 % of the sheet separation, but it is
-  not a certified (interval-arithmetic) proof.
-* Monodromy is computed on **one complex line** (plus one cross-check line).
-  For a generic line this captures the full monodromy group of the covering
-  over the complement of the discriminant (Zariski/Lefschetz-type argument),
-  and S3 is in any case maximal for a degree-3 covering; but the code does
-  not verify the genericity of the line beyond the explicit square-freeness
-  and transversality checks listed above.
-* Individual permutation *labels* depend on the homotopy class of the chosen
-  approach segments (changing them conjugates the permutation); the generated
-  group does not.
+The geometric monodromy group may now be stated as a theorem (not a
+numerical observation): $\mathrm{Mon}=S_3=\mathrm{Gal}$, via local Puiseux
+at a smooth wall point plus irreducibility of the eliminant; equivalently,
+the sheet local system realizes the canonical $B_3\twoheadrightarrow S_3$
+on the wall complement ($K(B_3,1)$ by the affine $A_2$ isomorphism of
+`docs/WALL_COMPLEMENT.md`).  Cite `scripts/certified_monodromy.py`.  The
+tables of labelled permutations on specific loops remain Numerical
+illustrations.

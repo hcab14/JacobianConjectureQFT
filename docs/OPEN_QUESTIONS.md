@@ -151,11 +151,17 @@ set by target-space chamber geometry, not by field-space escape rates.
 Sheet resolution beyond total mass remains open.
 
 **B6. Certified monodromy.**
-[`MONODROMY.md` caveats]
-Upgrade the numerical $S_3$ result to a certified one (interval arithmetic /
-Smale alpha-theory along the loops, plus a genericity check for the chosen
-line). Mechanical but somewhat laborious; the result is already believed, so
-the payoff is rigor rather than novelty. *(Code — deferred.)*
+✅ **Resolved 2026-08-05** (`scripts/certified_monodromy.py`;
+`docs/MONODROMY.md`). Algebraic route (no interval tracking): irreducible
+eliminant + $\operatorname{disc}_X=-4D_0^2 p$ not a square $\Rightarrow$
+$\mathrm{Gal}=S_3$; Exact Puiseux at the smooth wall point $(0,1,1)$
+(transverse line $J(t)=(t,1,1)$) proves wall meridians act by
+transpositions $\Rightarrow$ geometric $\mathrm{Mon}=S_3$; affine $A_2$
+isomorphism $\Rightarrow$ representation $=B_3\twoheadrightarrow S_3$
+with cusp $=$ Coxeter 3-cycle; $D_0$-meridians $=\mathrm{id}$ by
+$\det DF=-2$. Lefschetz-line genericity of the `monodromy.py` default
+line verified symbolically. Remaining Numerical: labelled permutations
+on a chosen homotopy basis only.
 
 ---
 
@@ -229,6 +235,9 @@ Classification of low-degree $n=3$ counterexamples
 a laboratory for second-type Landau singularities
 [`AMPLITUDES_CONNECTION.md` §2.2]. These are directions, not single
 questions; they progress when the items above do.
+*(0D face of "vacua at infinity as boundary points": escape-chart
+compactification $\overline{X}$ with $\overline{F}(D_\infty)=\{p=0\}$,
+`docs/WEIGHTED_COMPACTIFICATION.md` — exact; continuum lift still C7.)*
 
 **C9′. Classical-map invariants as Lagrangian data in $D\ge 1$.**
 ◐ **Opened / partially resolved 2026-07-26**
@@ -263,7 +272,7 @@ continuum $M\to\infty$ order of limits.
 
 | Question | Posed in | Resolution |
 |---|---|---|
-| Monodromy $\mathbb{Z}/3$ or $S_3$? | `QFT_IMPLICATIONS.md` §5.1 | $S_3$ (numerical, two independent lines; Galois group $S_3$ symbolically). `docs/MONODROMY.md`. Certification remains as B6. |
+| Monodromy $\mathbb{Z}/3$ or $S_3$? | `QFT_IMPLICATIONS.md` §5.1 | $S_3$ **Exact** (`scripts/certified_monodromy.py`; local Puiseux + irreducibility; $=B_3\twoheadrightarrow S_3$). `docs/MONODROMY.md`. B6 resolved. |
 | Is the $N=3$ chamber a positive geometry? | `AMPLITUDES_CONNECTION.md` §2.4 Q1 | **No** — cuspidal-cubic wall, residueless double pole, vertex collision. `docs/POSITIVE_GEOMETRY.md` (2026-07-21). |
 | Where does the tree expansion fail? | `PROBLEM.md` Goal 1 | Converges with finite radius to one branch of a degree-3 algebraic function; failure is non-properness, not divergence. `docs/PROGRESS.md`. |
 | Circulating AI claims (zero radius, Borel, "explains $D=4$") | `PROBLEM.md`; `QFT_IMPLICATIONS.md` §3 | Corrected as false / misleading / category error. |

@@ -1,12 +1,13 @@
 # The Wall Complement Is the Braid-Group Classifying Space: the A2-Discriminant Structure of the Counterexample
 
 *(2026-07-21. All exact claims verified in `scripts/wall_braid.py` (symbolic
-identities + numerical monodromy; runs in ~6 s); this answers item **B2** of
-`docs/OPEN_QUESTIONS.md` — identify the correct "amplituhedron-analogue"
-object after the failure of the real-chamber positive geometry
-(`docs/POSITIVE_GEOMETRY.md`). Repo-internal inputs: the C\*-reduction and
-cusp geometry of `docs/POSITIVE_GEOMETRY.md`, the $S_3$ monodromy of
-`docs/MONODROMY.md`, the trace rationality of
+identities + numerical labelled monodromy; runs in ~6 s); this answers item
+**B2** of `docs/OPEN_QUESTIONS.md` — identify the correct
+"amplituhedron-analogue" object after the failure of the real-chamber
+positive geometry (`docs/POSITIVE_GEOMETRY.md`). Repo-internal inputs: the
+C\*-reduction and cusp geometry of `docs/POSITIVE_GEOMETRY.md`, the $S_3$
+monodromy of `docs/MONODROMY.md` (group-level statement Exact as of B6 /
+`scripts/certified_monodromy.py`), the trace rationality of
 `scripts/trace_pushforward.py`.)*
 
 **Summary of the main results.**
@@ -22,13 +23,13 @@ cusp geometry of `docs/POSITIVE_GEOMETRY.md`, the $S_3$ monodromy of
    the cuspidal tangent $\{R=0\}$.
 2. **Therefore $\pi_1(\mathbb{C}^2 \setminus \{P_2=0\}) = B_3$**, the braid
    group on three strands, and the wall complement is a $K(B_3,1)$
-   [Arn69, Bri71, Del72]. The verified $S_3$ sheet monodromy is the image
-   of the canonical surjection $B_3 \twoheadrightarrow S_3$.
-3. **The cusp-loop monodromy is a 3-cycle of order 3** (measured): the
-   image of the braid $\sigma_1\sigma_2$, a Coxeter element of
-   $W(A_2) = S_3$ — *not* a transposition. The full twist
-   $(\sigma_1\sigma_2)^3 = \Delta^2$ (a torus-type loop) acts trivially, as
-   it must.
+   [Arn69, Bri71, Del72]. The $S_3$ sheet monodromy is the image of the
+   canonical surjection $B_3 \twoheadrightarrow S_3$ (**Exact**, B6).
+3. **The cusp-loop monodromy is a 3-cycle of order 3** (Exact via local
+   model; Numerical path labels in §3): the image of the braid
+   $\sigma_1\sigma_2$, a Coxeter element of $W(A_2) = S_3$ — *not* a
+   transposition. The full twist $(\sigma_1\sigma_2)^3 = \Delta^2$ (a
+   torus-type loop) acts trivially, as it must.
 4. **The rank-3 sheet local system splits as trivial $\oplus$ standard.**
    The trivial summand is exactly the trace observables (rational, poles
    only on the wall); *all* non-rational sheet data lives in the 2-dim
@@ -237,11 +238,12 @@ $h = 3$. Three independent confirmations, all in the script:
    and its pullback to the invariant plane, consistent with
    $(3\text{-cycle})^3 = \mathrm{id}$.
 
-Caveat, as in `docs/MONODROMY.md`: the monodromy computations are
-numerical (permutations read off by nearest-neighbour matching of roots
-tracked at 30 digits with a jump guard; matching unambiguous by $\geq 6$
-orders of magnitude in every loop), not certified. The identities (I1)–(I4)
-and everything in §§1–2 and 4 are exact symbolic algebra.
+Caveat on the *tables above*: labelled permutations are numerical
+(nearest-neighbour matching at 30 digits).  The *group* they generate
+and the Coxeter image of the cusp are now **Exact**
+(`scripts/certified_monodromy.py`, resolving OPEN_QUESTIONS B6; see
+`docs/MONODROMY.md`). The identities (I1)–(I4) and everything in §§1–2
+and 4 remain exact symbolic algebra.
 
 ## 4. The local system, its decomposition, and what it explains
 
@@ -316,7 +318,10 @@ a perfect intersection pairing.)
 - The sheet monodromy factors through the canonical
   $B_3 \twoheadrightarrow S_3$; wall meridians $\mapsto$ transpositions,
   $D_0$-meridians $\mapsto$ id, cusp loop $\mapsto$ 3-cycle (Coxeter
-  element), full twist $\mapsto$ id (numerical, three cross-checks).
+  element), full twist $\mapsto$ id.  **Exact** as of B6
+  (`scripts/certified_monodromy.py`; local Puiseux + irreducibility +
+  cusp leading model); the labelled-permutation tables in §3 remain a
+  Numerical cross-check.
 - The decomposition $\mathcal{L} = \underline{\mathbb{C}} \oplus
   \mathcal{S}$, trace rationality as the trivial summand, and
   $\chi(\text{complement}) = 0$.

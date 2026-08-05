@@ -53,16 +53,18 @@ degeneration of both axioms for the Alpöge-Mathew map F (jcqft.core):
    x = -r/q), 0 at the cusp.  The two chamber algebras C^3 and C^1 are
    non-isomorphic.
 
-7. HOLONOMY OF THE RELATIVE S-TRANSPORT IS S3 (Numerical).  Parallel
-   transport of the fiber-algebra bundle along loops in the invariant
-   (u,w)-plane: wall meridians act by transpositions generating a group
-   of order 6, the D0-meridian acts trivially, the cusp loop is a
-   3-cycle of order 3 (Coxeter element).  Permutation unitaries U(sigma)
-   verify U_cusp^3 = 1 != U_cusp.
+7. HOLONOMY OF THE RELATIVE S-TRANSPORT IS S3.  Parallel transport of
+   the fiber-algebra bundle along loops in the invariant (u,w)-plane:
+   wall meridians act by transpositions generating a group of order 6,
+   the D0-meridian acts trivially, the cusp loop is a 3-cycle of order
+   3 (Coxeter element).  Permutation unitaries U(sigma) verify
+   U_cusp^3 = 1 != U_cusp.  The group-level statement Mon = S3 =
+   B3 ->> S3 is Exact in scripts/certified_monodromy.py (OPEN_QUESTIONS
+   B6); the labelled-permutation tracking below remains Numerical.
 
 Exact claims carry asserts ([ok] lines); the monodromy section is
-labelled Numerical (mpmath tracking, not certified).  Runtime well under
-3 min.  Usage:  .venv/bin/python scripts/bf_caricature.py
+labelled Numerical for path labels only (group = S3 is Exact elsewhere).
+Runtime well under 3 min.  Usage:  .venv/bin/python scripts/bf_caricature.py
 """
 
 import time
@@ -345,8 +347,9 @@ print("\n=== 7. Holonomy of the relative S-transport (NUMERICAL) ===")
 # (u,w)-plane (docs/WALL_COMPLEMENT.md): track the 3 roots of
 #   P2(u,w) xi^3 + (4 - 3w) xi - 2 = 0
 # along loops; permutations = holonomy of the character bundle.
-# NUMERICAL: mpmath tracking with a nearest-neighbour jump guard; not a
-# certified computation (cf. docs/MONODROMY.md caveats, OPEN_QUESTIONS B6).
+# NUMERICAL path labels: mpmath tracking with a nearest-neighbour jump
+# guard.  Group-level Mon = S3 is Exact in scripts/certified_monodromy.py
+# (OPEN_QUESTIONS B6 resolved; docs/MONODROMY.md).
 mp.mp.dps = 25
 uu, ww, s = sp.symbols("uu ww s")
 P2 = 27 * uu**2 + 16 * uu - 18 * uu * ww + ww**3 - ww**2
