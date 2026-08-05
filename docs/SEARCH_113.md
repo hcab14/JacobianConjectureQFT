@@ -271,11 +271,12 @@ class is a tame automorphism.
 ## 8. Honest limitations
 
 1. **$v$-degree.** The class searched is $v$-linear (the AM-analogue
-   class). Ansätze of $v$-degree $\ge 2$ are untouched — for them
-   $\det M = \kappa$ has $v$-degree $2\deg_v - something$ higher and the
-   Wronskian stratification above does not directly apply. (At $m = 2$
-   the known counterexample is $v$-linear; but this is a heuristic, not
-   an argument, for prioritizing the class.)
+   class). Ansätze of $v$-degree $\ge 2$ are untouched *here* — for them
+   $\det M = \kappa$ has $v$-degree higher and the Wronskian
+   stratification above does not directly apply. (At $m = 2$ the
+   $v$-quadratic class is closed in-box by a different argument —
+   Jung–van der Kulk after forcing $R \equiv 1$ — see
+   `docs/SEARCH_VQUAD.md`.)
 2. **The D3′ gap.** Stratum D3 with non-squarefree $s$ or $t$
    ($\deg p_1 \ge 4$ or $\deg r_1 \ge 4$ plus both $s,t$ nonconstant) is
    proved empty only inside Gröbner boxes. Beyond them it is *open*,

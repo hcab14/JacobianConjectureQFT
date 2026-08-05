@@ -4,6 +4,31 @@ All results below are produced by scripts in this repository (exact symbolic
 computation with SymPy unless stated otherwise) and can be reproduced with
 the commands given. Environment: `.venv` (Python 3.12, `requirements.txt`).
 
+## 2026-08-05 — B3 remnant: v-quadratic class of (1,-1,-2) — only tame + AM
+
+`scripts/search_vquad.py` (~5 min default; `--full` enlarges boxes);
+write-up `docs/SEARCH_VQUAD.md`. Attacks the open residue of the
+uniqueness theorem (`SEARCH_11M.md` §9: "$v$-degree ≥ 2 ansätze").
+
+- **Box.** $\deg_v \le 2$; $\deg_w$ of the $v$-linear part of $(P,Q,R)
+  \le (4,3,1)$ (contains target-scaled AM with $\kappa = -1$); $\deg_w$
+  of each $v^2$ coefficient $\le 1$. GB via `jcqft.gb_backend` (16 GB
+  cap, sequential).
+- **Jung–van der Kulk hammer.** On $R \equiv 1$, $\det M = J_2(P,Q)$;
+  JC in dimension 2 + Jung–van der Kulk ⇒ every such map is a tame
+  automorphism of $\mathbb{A}^2$, assembling to a tame automorphism of
+  $\mathbb{A}^3$. Explicit $v$-quadratic tame controls (complete-the-square,
+  quadratic/cubic target shears) asserted with inverses.
+- **In-box certificates.** $r_2 \ne 0$ is EMPTY; any nonzero $p_2$ or
+  $q_2$ coefficient forces all $r_1$ and non-gauge $r_0$ coefficients to
+  vanish (Rabinowitsch) — hence $R \equiv 1$ ⇒ tame. $v$-linear slice =
+  tame ∪ AM by `SEARCH_11M`.
+- **Verdict: ONLY TAME + AM STRATUM** — no new counterexample in the
+  box. Cheap $\deg_v = 3$ probe (single cubic monomial, tiny lin box):
+  $P$/$R$ EMPTY, $Q$ forces $R \equiv 1$ (tame).
+- Honest residue: beyond-box $w$-degrees; full $\deg_v \le 3$ boxes;
+  $v$-quadratic at $m \ge 3$; 4-field gradings; D3′.
+
 ## 2026-08-05 — Weighted / charted compactification of escape
 
 `scripts/weighted_compactification.py` · `docs/WEIGHTED_COMPACTIFICATION.md`

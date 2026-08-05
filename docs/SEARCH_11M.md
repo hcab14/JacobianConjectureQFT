@@ -347,8 +347,10 @@ emptiness in-box at $m = 4, 5$.
 
 ## 9. Honest limitations
 
-1. **$v$-degree.** The class is $v$-linear (the AM-analogue class);
-   $v$-degree $\ge 2$ ansätze are untouched, for every $m$.
+1. **$v$-degree.** The class is $v$-linear (the AM-analogue class).
+   At $m = 2$ the $v$-quadratic class is closed in-box — only tame + AM
+   (`docs/SEARCH_VQUAD.md`); $v$-degree $\ge 3$ and $v$-quadratic at
+   $m \ge 3$ remain open.
 2. **The D3′ gap** (§7): structural proof reaches only squarefree $s,t$;
    beyond the boxes the non-squarefree corner is open — though for
    $m \ge 4$ the $\kappa$-equation kill needs *no box at all* on the
@@ -380,4 +382,5 @@ landscape the Alpöge–Mathew anomaly is not one instance of a family but
 an **isolated numerological coincidence of $m = 2$** — the unique weight
 where the killing factor $u^{m-2}$ degenerates *and* the even-parity
 homogeneous direction exists. The natural remaining probes are the
-$v$-quadratic classes and 4-field gradings.
+$v$-quadratic class at $m = 2$ (closed in-box: `SEARCH_VQUAD.md`),
+higher $v$-degree, and 4-field gradings.

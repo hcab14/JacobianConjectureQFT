@@ -124,8 +124,13 @@ for EVERY $m \ge 3$ the $v$-linear class of $(1,-1,-m)$ contains only
 tame automorphisms — for $m \ge 4$ with no box at all in the D strata —
 so Alpöge–Mathew is the unique member of its equivariant family within
 the $v$-linear class (`docs/SEARCH_11M.md`, same D3′ non-squarefree gap,
-box-closed $m \le 5$). Remaining: $v$-degree $\ge 2$ ansätze, 4-field
-gradings, the D3′ corner.)*
+box-closed $m \le 5$). **$v$-quadratic at $m=2$ CLOSED in-box
+2026-08-05**: default box $\deg_v\le 2$, $\deg_w(\mathrm{lin})\le(4,3,1)$,
+$\deg_w(v^2)\le 1$ contains only the tame Jung–van der Kulk locus and
+the AM stratum — genuine $v^2$ terms force $R\equiv 1$ (GB) hence tame;
+$r_2\neq 0$ EMPTY (`docs/SEARCH_VQUAD.md`, `scripts/search_vquad.py`).
+Remaining: $v$-degree $\ge 3$ full boxes, 4-field gradings, the D3′
+corner, $v$-quadratic at $m\ge 3$.)*
 
 **B4. Exact Gröbner certification of local rigidity.**
 [`NEW_COUNTEREXAMPLES.md` §5 step 4, §3]

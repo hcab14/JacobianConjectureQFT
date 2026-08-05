@@ -1101,6 +1101,17 @@ The same $D_3'$ non-squarefree gap as at $m=3$ remains, box-closed for
 $m\le 5$.
 \end{theorem}
 
+\emph{$v$-quadratic extension at $m=2$
+(\texttt{scripts/search\_vquad.py}; \texttt{docs/SEARCH\_VQUAD.md}).}
+Raising the $v$-degree to $2$ inside a finishable $\deg_w$ box
+($\deg_w$ of the $v$-linear part $\le(4,3,1)$, of each $v^2$
+coefficient $\le 1$) produces no new counterexample: any genuine
+$v^2$ term forces $R\equiv 1$, hence the map is tame by the
+Jung--van der Kulk theorem in the reduced plane; the $v$-linear slice
+is again tame $\cup\{\textrm{AM}\}$. A cheap $\deg_v=3$ probe shows
+the same pattern. Uniqueness of the defect is therefore stable under
+the first raise of $v$-degree at the AM weight.
+
 \emph{The general integrated constraint.} The $v^2$-coefficient of
 $\det M$ (with $m$ symbolic) is
 $E_2 = 2p_1'q_1r_1 - (m{+}1)p_1q_1'r_1 + (m{-}1)p_1q_1r_1'$,
@@ -1867,9 +1878,10 @@ Next probes, ordered by expected leverage for the QFT reading:
  open: the fold hypersurface over a frozen source block, a
  wall-crossing sign formula, other $\varepsilon$/segments, and
  $z$-completeness of the escape factor list.
-\item \emph{The $v$-quadratic class of $(1,-1,-m)$.} Does anything else
- live near Alp\"oge--Mathew at $m=2$, or is uniqueness stable under
- raising the $v$-degree? Directly tests how rare the defect is.
+\item \emph{Higher $v$-degree / other $m$.} The $v$-quadratic class at
+ $m=2$ is settled in-box (only tame + AM; Section~\ref{sec:11m}).
+ Still open: full $\deg_v\ge 3$ boxes, $v$-quadratic at $m\ge 3$, and
+ four-field gradings.
 \item \emph{Closing the $D_3'$ gap.} A structural argument removing the
  squarefree hypothesis would make Theorem~\ref{thm:11m} fully
  gap-free, strengthening the uniqueness claim that underwrites the
@@ -1940,6 +1952,9 @@ script & claim(s) verified & runtime \\
 \texttt{search\_11m.py --full} &
  medium-box / targeted $D_3'$ certificates for $m\le 5$ &
  $\sim$72 min \\
+\texttt{search\_vquad.py} &
+ Section \ref{sec:11m}: $v$-quadratic box at $m=2$ (only tame + AM) &
+ $\sim$6 min \\
 \texttt{witten\_index.py} &
  Section \ref{sec:witten}: index \eqref{eq:index}, jump certificate,
  MQ completion, closed form of $Z_\sigma$ & $\sim$10 s \\
